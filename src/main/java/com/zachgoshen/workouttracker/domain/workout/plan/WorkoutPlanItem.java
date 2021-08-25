@@ -1,23 +1,15 @@
 package com.zachgoshen.workouttracker.domain.workout.plan;
 
-import com.zachgoshen.workouttracker.domain.workout.exercise.Exercise;
+import com.zachgoshen.workouttracker.domain.workout.WorkoutItemHeader;
 
 public class WorkoutPlanItem {
 	
 	private long id;
-	private int index;
-	private int repRangeLowerBound;
-	private int repRangeUpperBound;
-	private int secondsToRest;
-	private Exercise exercise;
+	private WorkoutItemHeader header;
 	
-	public WorkoutPlanItem(long id, int index, int repRangeLowerBound, int repRangeUpperBound, int secondsToRest, Exercise exercise) {
+	public WorkoutPlanItem(long id, WorkoutItemHeader header) {
 		this.id = id;
-		this.index = index;
-		this.repRangeLowerBound = repRangeLowerBound;
-		this.repRangeUpperBound = repRangeUpperBound;
-		this.secondsToRest = secondsToRest;
-		this.exercise = exercise;
+		this.header = header;
 	}
 
 	public long getId() {
@@ -28,44 +20,12 @@ public class WorkoutPlanItem {
 		this.id = id;
 	}
 
-	public int getIndex() {
-		return index;
+	public WorkoutItemHeader getHeader() {
+		return header;
 	}
 
-	public void setIndex(int index) {
-		this.index = index;
-	}
-
-	public int getRepRangeLowerBound() {
-		return repRangeLowerBound;
-	}
-
-	public void setRepRangeLowerBound(int repRangeLowerBound) {
-		this.repRangeLowerBound = repRangeLowerBound;
-	}
-
-	public int getRepRangeUpperBound() {
-		return repRangeUpperBound;
-	}
-
-	public void setRepRangeUpperBound(int repRangeUpperBound) {
-		this.repRangeUpperBound = repRangeUpperBound;
-	}
-
-	public int getSecondsToRest() {
-		return secondsToRest;
-	}
-
-	public void setSecondsToRest(int secondsToRest) {
-		this.secondsToRest = secondsToRest;
-	}
-
-	public Exercise getExercise() {
-		return exercise;
-	}
-
-	public void setExercise(Exercise exercise) {
-		this.exercise = exercise;
+	public void setHeader(WorkoutItemHeader header) {
+		this.header = header;
 	}
 
 }

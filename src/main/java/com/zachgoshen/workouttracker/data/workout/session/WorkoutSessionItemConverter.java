@@ -18,7 +18,6 @@ public class WorkoutSessionItemConverter implements DataConverter<WorkoutSession
 		sessionItemData.setRepsCompleted(model.getRepsCompleted());
 		sessionItemData.setWeightUsed(model.getWeightUsed());
 		sessionItemData.setWorkoutPlanItem(planItemData);
-		
 		return sessionItemData;
 	}
 

@@ -7,13 +7,13 @@ public class WorkoutSessionItemConverter implements ModelToDtoConverter<WorkoutS
 
 	public WorkoutSessionItemDto convertFromModel(WorkoutSessionItem model) {
 		return new WorkoutSessionItemDto(
-			model.getPlanItem().getExercise().getName(),
-			model.getPlanItem().getIndex(),
-			model.getPlanItem().getRepRangeLowerBound(),
-			model.getPlanItem().getRepRangeUpperBound(),
+			model.getPlanItem().getHeader().getExercise().getName(),
+			model.getPlanItem().getHeader().getIndex(),
+			model.getPlanItem().getHeader().getRepRangeLowerBound(),
+			model.getPlanItem().getHeader().getRepRangeUpperBound(),
 			model.getRepsCompleted(),
 			model.getWeightUsed(),
-			model.getPlanItem().getSecondsToRest());
+			model.getPlanItem().getHeader().getSecondsToRest());
 	}
 
 }

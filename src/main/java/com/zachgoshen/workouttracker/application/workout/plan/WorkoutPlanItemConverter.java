@@ -7,12 +7,11 @@ public class WorkoutPlanItemConverter implements ModelToDtoConverter<WorkoutPlan
 
 	public WorkoutPlanItemDto convertFromModel(WorkoutPlanItem model) {
 		return new WorkoutPlanItemDto(
-			model.getIndex(), 
-			model.getExercise().getName(), 
-			model.getRepRangeLowerBound(), 
-			model.getRepRangeUpperBound(), 
-			model.getSecondsToRest()
-		);
+			model.getHeader().getIndex(), 
+			model.getHeader().getExercise().getName(), 
+			model.getHeader().getRepRangeLowerBound(), 
+			model.getHeader().getRepRangeUpperBound(), 
+			model.getHeader().getSecondsToRest());
 	}
 
 }

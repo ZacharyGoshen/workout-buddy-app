@@ -9,12 +9,11 @@ public class WorkoutPlanItemDto {
 	private int secondsToRest;
 
 	public WorkoutPlanItemDto(
-		int index, 
-		String exerciseName, 
-		int repRangeMin, 
-		int repRangeMax,
-		int secondsToRest
-	) {
+			int index, 
+			String exerciseName, 
+			int repRangeMin, 
+			int repRangeMax,
+			int secondsToRest) {
 		this.index = index;
 		this.exerciseName = exerciseName;
 		this.repRangeMin = repRangeMin;

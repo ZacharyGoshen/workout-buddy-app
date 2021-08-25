@@ -10,10 +10,9 @@ public class WorkoutSessionDto {
 	private List<WorkoutSessionItemDto> workoutSessionItems;
 	
 	public WorkoutSessionDto(
-		String workoutPlanName, 
-		Date timeCompleted,
-		List<WorkoutSessionItemDto> workoutSessionItems
-	) {
+			String workoutPlanName, 
+			Date timeCompleted,
+			List<WorkoutSessionItemDto> workoutSessionItems) {
 		this.workoutPlanName = workoutPlanName;
 		this.timeCompleted = timeCompleted;
 		this.workoutSessionItems = workoutSessionItems;
