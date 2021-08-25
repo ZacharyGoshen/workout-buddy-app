@@ -3,16 +3,18 @@ package com.zachgoshen.workouttracker.domain.workout.session;
 import java.util.Date;
 import java.util.List;
 
+import com.zachgoshen.workouttracker.domain.workout.WorkoutHeader;
+
 public class WorkoutSession {
 	
 	private long id;
-	private String name;
+	private WorkoutHeader header;
 	private Date timeCompleted;
 	private List<WorkoutSessionItem> items;
 	
-	public WorkoutSession(long id, String name, Date timeCompleted, List<WorkoutSessionItem> items) {
+	public WorkoutSession(long id, WorkoutHeader header, Date timeCompleted, List<WorkoutSessionItem> items) {
 		this.id = id;
-		this.name = name;
+		this.header = header;
 		this.timeCompleted = timeCompleted;
 		this.items = items;
 	}
@@ -25,12 +27,12 @@ public class WorkoutSession {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public WorkoutHeader getHeader() {
+		return header;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setHeader(WorkoutHeader header) {
+		this.header = header;
 	}
 
 	public Date getTimeCompleted() {
