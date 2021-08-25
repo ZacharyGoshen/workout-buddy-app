@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.zachgoshen.workouttracker.data.DataConverter;
+import com.zachgoshen.workouttracker.domain.workout.WorkoutHeader;
 import com.zachgoshen.workouttracker.domain.workout.plan.WorkoutPlan;
 import com.zachgoshen.workouttracker.domain.workout.plan.WorkoutPlanItem;
 
@@ -21,13 +22,15 @@ public class WorkoutPlanConverter implements DataConverter<WorkoutPlan, WorkoutP
 		
 		WorkoutPlanData planData = new WorkoutPlanData();
 		planData.setId(model.getId());
-		planData.setName(model.getName());
+		planData.setName(model.getHeader().getName());
 		planData.setWorkoutPlanItems(itemsData);
 		
 		return planData;
 	}
 
 	public WorkoutPlan convertFromData(WorkoutPlanData data) {
+		WorkoutHeader header = new WorkoutHeader(data.getName());
+		
 		List<WorkoutPlanItem> items = (
 			data.getWorkoutPlanItems()
 				.stream()
@@ -35,7 +38,7 @@ public class WorkoutPlanConverter implements DataConverter<WorkoutPlan, WorkoutP
 				.collect(Collectors.toList())
 		);
 		
-		return new WorkoutPlan(data.getId(), data.getName(), items);
+		return new WorkoutPlan(data.getId(), header, items);
 	}
 
 }

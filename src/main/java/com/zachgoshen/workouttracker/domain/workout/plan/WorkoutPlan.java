@@ -2,15 +2,17 @@ package com.zachgoshen.workouttracker.domain.workout.plan;
 
 import java.util.List;
 
+import com.zachgoshen.workouttracker.domain.workout.WorkoutHeader;
+
 public class WorkoutPlan {
 	
 	private Long id;
-	private String name;
+	private WorkoutHeader header;
 	private List<WorkoutPlanItem> workoutPlanItems;
 	
-	public WorkoutPlan(Long id, String name, List<WorkoutPlanItem> workoutPlanItems) {
+	public WorkoutPlan(Long id, WorkoutHeader header, List<WorkoutPlanItem> workoutPlanItems) {
 		this.id = id;
-		this.name = name;
+		this.header = header;
 		this.workoutPlanItems = workoutPlanItems;
 	}
 
@@ -22,14 +24,14 @@ public class WorkoutPlan {
 		this.id = id;
 	}
 	
-	public String getName() {
-		return name;
+	public WorkoutHeader getHeader() {
+		return header;
 	}
-	
-	public void setName(String name) {
-		this.name = name;
+
+	public void setHeader(WorkoutHeader header) {
+		this.header = header;
 	}
-	
+
 	public List<WorkoutPlanItem> getWorkoutPlanItems() {
 		return workoutPlanItems;
 	}
