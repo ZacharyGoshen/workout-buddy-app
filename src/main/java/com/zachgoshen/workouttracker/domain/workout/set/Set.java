@@ -12,11 +12,13 @@ public abstract class Set {
 	private Optional<RestTimeConstraint> restTimeConstraint;
 	
 	protected Set() {
+		timeCompleted = Optional.empty();
 		timeRested = Optional.empty();
 		restTimeConstraint = Optional.empty();
 	}
 	
 	protected Set(Set set) {
+		timeCompleted = set.getTimeCompleted();
 		timeRested = set.getTimeRested();
 		restTimeConstraint = set.getRestTimeConstraint();
 	}

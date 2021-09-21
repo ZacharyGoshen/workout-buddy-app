@@ -3,11 +3,13 @@ package com.zachgoshen.workouttracker.domain.workout.set;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SetContainsExerciseSpecification extends SetSpecification {
+import com.zachgoshen.workouttracker.domain.common.specification.Specification;
+
+public class ContainsExerciseSpecification extends Specification<Set> {
 	
 	private final String exerciseName;
 
-	public SetContainsExerciseSpecification(String exerciseName) {
+	public ContainsExerciseSpecification(String exerciseName) {
 		this.exerciseName = exerciseName;
 	}
 
