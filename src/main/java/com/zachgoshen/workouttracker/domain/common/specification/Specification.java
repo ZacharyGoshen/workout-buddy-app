@@ -1,7 +1,19 @@
 package com.zachgoshen.workouttracker.domain.common.specification;
 
-public interface Specification<T> {
+public abstract class Specification<T> {
 	
-	public boolean isSatisfiedBy(T candidate);
+	public abstract boolean isSatisfiedBy(T candidate);
+	
+	public Specification<T> and(Specification<T> otherSpecification) {
+		return new AndSpecification<>(this, otherSpecification);
+	}
+	
+	public Specification<T> or(Specification<T> otherSpecification) {
+		return new OrSpecification<>(this, otherSpecification);
+	}
+	
+	public Specification<T> not(Specification<T> specification) {
+		return new NotSpecification<>(specification);
+	}
 
 }

@@ -1,10 +1,14 @@
 package com.zachgoshen.workouttracker.application.workout;
 
+import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SetDto {
+	
+	@JsonProperty("timeCompleted")
+	private Date timeCompleted;
 	
 	@JsonProperty("timeRested")
 	private Float timeRested;
@@ -17,6 +21,14 @@ public class SetDto {
 	
 	@JsonProperty("exercises")
 	private List<ExerciseDto> exercises;
+
+	public Date getTimeCompleted() {
+		return timeCompleted;
+	}
+
+	public void setTimeCompleted(Date timeCompleted) {
+		this.timeCompleted = timeCompleted;
+	}
 
 	public Float getTimeRested() {
 		return timeRested;

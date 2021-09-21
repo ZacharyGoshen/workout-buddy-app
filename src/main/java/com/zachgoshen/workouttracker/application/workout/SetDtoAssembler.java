@@ -1,10 +1,11 @@
 package com.zachgoshen.workouttracker.application.workout;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Optional;
 
-import com.zachgoshen.workouttracker.domain.workout.Set;
-import com.zachgoshen.workouttracker.domain.workout.SingleExerciseSet;
+import com.zachgoshen.workouttracker.domain.workout.set.Set;
+import com.zachgoshen.workouttracker.domain.workout.set.SingleExerciseSet;
 
 public class SetDtoAssembler {
 	
@@ -18,6 +19,11 @@ public class SetDtoAssembler {
 	
 	private static SetDto assemble(SingleExerciseSet set) {
 		SetDto dto = new SetDto();
+		
+		Optional<Date> timeCompleted = set.getTimeCompleted();
+		if (timeCompleted.isPresent()) {
+			dto.setTimeCompleted(timeCompleted.get());
+		}
 		
 		Optional<Float> timeRested = set.getTimeRested();
 		if (timeRested.isPresent()) {

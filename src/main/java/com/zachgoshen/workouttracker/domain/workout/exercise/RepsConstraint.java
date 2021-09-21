@@ -1,14 +1,13 @@
-package com.zachgoshen.workouttracker.domain.workout;
+package com.zachgoshen.workouttracker.domain.workout.exercise;
 
 import java.util.Optional;
 
 import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workouttracker.domain.common.math.PositiveIntegerRange;
-import com.zachgoshen.workouttracker.domain.common.math.Range;
 
 public class RepsConstraint implements ExerciseConstraint {
 	
-	private final Range<Integer> range;
+	private final PositiveIntegerRange range;
 
 	public RepsConstraint(int minimumRepsAllowed) throws InvalidRangeException {
 		this.range = new PositiveIntegerRange(Optional.of(minimumRepsAllowed), Optional.empty());

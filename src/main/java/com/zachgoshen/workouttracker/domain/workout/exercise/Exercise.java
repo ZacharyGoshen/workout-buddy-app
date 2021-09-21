@@ -1,4 +1,4 @@
-package com.zachgoshen.workouttracker.domain.workout;
+package com.zachgoshen.workouttracker.domain.workout.exercise;
 
 import java.util.Optional;
 

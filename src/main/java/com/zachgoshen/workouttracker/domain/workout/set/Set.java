@@ -1,11 +1,13 @@
-package com.zachgoshen.workouttracker.domain.workout;
+package com.zachgoshen.workouttracker.domain.workout.set;
 
+import java.util.Date;
 import java.util.Optional;
 
 import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
 
 public abstract class Set {
-	
+
+	private Optional<Date> timeCompleted;
 	private Optional<Float> timeRested;
 	private Optional<RestTimeConstraint> restTimeConstraint;
 	
@@ -21,6 +23,14 @@ public abstract class Set {
 	
 	public abstract Set clone();
 	
+	public Optional<Date> getTimeCompleted() {
+		return timeCompleted;
+	}
+
+	public void setTimeCompleted(Date timeCompleted) {
+		this.timeCompleted = Optional.of(timeCompleted);
+	}
+
 	public Optional<Float> getTimeRested() {
 		return timeRested;
 	}

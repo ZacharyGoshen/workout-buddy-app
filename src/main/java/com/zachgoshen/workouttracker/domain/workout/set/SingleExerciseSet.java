@@ -1,4 +1,6 @@
-package com.zachgoshen.workouttracker.domain.workout;
+package com.zachgoshen.workouttracker.domain.workout.set;
+
+import com.zachgoshen.workouttracker.domain.workout.exercise.Exercise;
 
 public class SingleExerciseSet extends Set {
 	

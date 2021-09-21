@@ -1,4 +1,4 @@
-package com.zachgoshen.workouttracker.domain.workout;
+package com.zachgoshen.workouttracker.domain.workout.set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -7,10 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
-import com.zachgoshen.workouttracker.domain.workout.Exercise;
-import com.zachgoshen.workouttracker.domain.workout.ExerciseDescription;
-import com.zachgoshen.workouttracker.domain.workout.Set;
-import com.zachgoshen.workouttracker.domain.workout.SingleExerciseSet;
+import com.zachgoshen.workouttracker.domain.workout.exercise.Exercise;
+import com.zachgoshen.workouttracker.domain.workout.exercise.ExerciseDescription;
+import com.zachgoshen.workouttracker.domain.workout.set.Set;
+import com.zachgoshen.workouttracker.domain.workout.set.SingleExerciseSet;
 
 public class SingleExerciseSetTests {
 	

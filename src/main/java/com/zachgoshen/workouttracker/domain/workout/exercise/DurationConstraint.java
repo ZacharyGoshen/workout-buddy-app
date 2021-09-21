@@ -1,14 +1,13 @@
-package com.zachgoshen.workouttracker.domain.workout;
+package com.zachgoshen.workouttracker.domain.workout.exercise;
 
 import java.util.Optional;
 
 import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workouttracker.domain.common.math.PositiveRealNumberRange;
-import com.zachgoshen.workouttracker.domain.common.math.Range;
 
 public class DurationConstraint implements ExerciseConstraint {
 	
-	private final Range<Float> range;
+	private final PositiveRealNumberRange range;
 
 	public DurationConstraint(float minimumDurationAllowed) throws InvalidRangeException {
 		this.range = new PositiveRealNumberRange(Optional.of(minimumDurationAllowed), Optional.empty());

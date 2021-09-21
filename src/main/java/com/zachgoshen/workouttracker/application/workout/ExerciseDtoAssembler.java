@@ -2,7 +2,7 @@ package com.zachgoshen.workouttracker.application.workout;
 
 import java.util.Optional;
 
-import com.zachgoshen.workouttracker.domain.workout.Exercise;
+import com.zachgoshen.workouttracker.domain.workout.exercise.Exercise;
 
 public class ExerciseDtoAssembler {
 	

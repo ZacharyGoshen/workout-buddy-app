@@ -6,12 +6,12 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
-import com.zachgoshen.workouttracker.domain.workout.Exercise;
-import com.zachgoshen.workouttracker.domain.workout.ExerciseDescription;
-import com.zachgoshen.workouttracker.domain.workout.Set;
-import com.zachgoshen.workouttracker.domain.workout.SingleExerciseSet;
 import com.zachgoshen.workouttracker.domain.workout.Workout;
 import com.zachgoshen.workouttracker.domain.workout.WorkoutRepository;
+import com.zachgoshen.workouttracker.domain.workout.exercise.Exercise;
+import com.zachgoshen.workouttracker.domain.workout.exercise.ExerciseDescription;
+import com.zachgoshen.workouttracker.domain.workout.set.Set;
+import com.zachgoshen.workouttracker.domain.workout.set.SingleExerciseSet;
 
 @Repository
 public class MockWorkoutRepository implements WorkoutRepository {
