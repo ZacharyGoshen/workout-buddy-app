@@ -8,11 +8,13 @@ public class SingleExerciseSet extends Set {
 
 	public SingleExerciseSet(Exercise exercise) {
 		super();
+		
 		this.exercise = exercise;
 	}
 	
 	public SingleExerciseSet(SingleExerciseSet set) {
 		super(set);
+		
 		exercise = new Exercise(set.getExercise());
 	}
 
