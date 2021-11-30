@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/sets")
 public class SetController {
 	
-	private final QuerySetsApplicationService querySetsService;
+	private final SetQueryApplicationService querySetsService;
 	
-	public SetController(QuerySetsApplicationService querySetsService) {
+	public SetController(SetQueryApplicationService querySetsService) {
 		this.querySetsService = querySetsService;
 	}
 	
 	@GetMapping("")
 	public List<SetDto> findBy(@RequestParam(defaultValue = "") List<String> exerciseNames) {
-		QuerySetsParameters parameters = new QuerySetsParameters(exerciseNames);
+		SetQueryParameters parameters = new SetQueryParameters(exerciseNames);
 		
 		return querySetsService.findBy(parameters);
 	}

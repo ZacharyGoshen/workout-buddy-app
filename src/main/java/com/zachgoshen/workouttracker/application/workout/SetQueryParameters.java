@@ -2,11 +2,11 @@ package com.zachgoshen.workouttracker.application.workout;
 
 import java.util.List;
 
-public class QuerySetsParameters {
+public class SetQueryParameters {
 	
 	private List<String> exerciseNames;
 
-	public QuerySetsParameters(List<String> exerciseNames) {
+	public SetQueryParameters(List<String> exerciseNames) {
 		this.exerciseNames = exerciseNames;
 	}
 

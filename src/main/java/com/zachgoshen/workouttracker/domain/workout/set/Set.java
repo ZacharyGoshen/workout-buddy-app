@@ -37,8 +37,8 @@ public abstract class Set {
 		return timeRested;
 	}
 	
-	public void setTimeRested(float timeRested) {
-		this.timeRested = Optional.of(timeRested);
+	public void setTimeRested(Float timeRested) {
+		this.timeRested = Optional.ofNullable(timeRested);
 	}
 	
 	private Optional<RestTimeConstraint> getRestTimeConstraint() {

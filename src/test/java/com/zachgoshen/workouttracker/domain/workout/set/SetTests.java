@@ -10,10 +10,65 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
-import com.zachgoshen.workouttracker.domain.workout.exercise.Exercise;
-import com.zachgoshen.workouttracker.domain.workout.exercise.ExerciseDescription;
 
-public class SetTests {
+public abstract class SetTests {
+	
+	@Test
+	public void Clone_TimeRestedHasNotBeenSet_TimeRestedValueOfCopyHasNotBeenSet() {
+		Set set = buildSet();
+		
+		Set copy = set.clone();
+		
+		assertTrue(copy.getTimeRested().isEmpty());
+	}
+	
+	@Test
+	public void Clone_TimeRestedIsSet_CopyHasSameTimeRested() {
+		Set set = buildSet();
+		set.setTimeRested(75f);
+		
+		Set copy = set.clone();
+		
+		assertEquals(75, copy.getTimeRested().get());
+	}
+	
+	@Test
+	public void Clone_MinimumRestTimeAllowedHasNotBeenSet_MinimumRestTimeAllowedOfCopyHasNotBeenSet() {
+		Set set = buildSet();
+		
+		Set copy = set.clone();
+		
+		assertTrue(copy.getMinimumRestTimeAllowed().isEmpty());
+	}
+	
+	@Test
+	public void Clone_MinimumRestTimeAllowedIsSet_CopyHasSameMinimumRestTimeAllowed() throws InvalidRangeException {
+		Set set = buildSet();
+		set.addBoundedRestTimeConstraint(30, 60);
+		
+		Set copy = set.clone();
+		
+		assertEquals(30, copy.getMinimumRestTimeAllowed().get());
+	}
+	
+	@Test
+	public void Clone_MaximumRestTimeAllowedHasNotBeenSet_MaximumRestTimeAllowedOfCopyHasNotBeenSet() {
+		Set set = buildSet();
+		
+		Set copy = set.clone();
+		
+		assertTrue(copy.getMaximumRestTimeAllowed().isEmpty());
+	}
+	
+	@Test
+	public void Clone_MaximumRestTimeAllowedIsSet_CopyHasSameMaximumRestTimeAllowed() throws InvalidRangeException {
+		Set set = buildSet();
+		set.addBoundedRestTimeConstraint(30, 60);
+		
+		Set copy = set.clone();
+		
+		assertEquals(60, copy.getMaximumRestTimeAllowed().get());
+	}
 	
 	@Test
 	public void AddMaximumRestTimeConstraint_ValidValue_MaximumRestTimeAllowedIsSameValue() throws InvalidRangeException {
@@ -75,6 +130,26 @@ public class SetTests {
 	}
 	
 	@Test
+	public void WereConstraintsSatisfied_NoConstraintsSets_ReturnTrue() throws InvalidRangeException {
+		Set set = buildSet();
+		
+		boolean wereSatisfied = set.wereConstraintsSatisfied();
+		
+		assertTrue(wereSatisfied);
+	}
+	
+	@Test
+	public void WereConstraintsSatisfied_TimeRestedConstraintNotSatisfied_ReturnFalse() throws InvalidRangeException {
+		Set set = buildSet();
+		set.addBoundedRestTimeConstraint(30, 60);
+		set.setTimeRested(75f);
+		
+		boolean wereSatisfied = set.wereConstraintsSatisfied();
+		
+		assertFalse(wereSatisfied);
+	}
+	
+	@Test
 	public void WasRestTimeConstraintSatisfied_ConstraintNotSet_ReturnTrue() throws InvalidRangeException {
 		Set set = buildSet();
 		
@@ -97,7 +172,7 @@ public class SetTests {
 	public void WasRestTimeConstraintSatisfied_TimeRestedIsBelowMaximum_ReturnTrue() throws InvalidRangeException {
 		Set set = buildSet();
 		set.addMaximumRestTimeConstraint(60);
-		set.setTimeRested(45);
+		set.setTimeRested(45f);
 		
 		boolean wasSatisfied = set.wasRestTimeConstraintSatisfied();
 		
@@ -108,7 +183,7 @@ public class SetTests {
 	public void WasRestTimeConstraintSatisfied_TimeRestedIsAboveMaximum_ReturnFalse() throws InvalidRangeException {
 		Set set = buildSet();
 		set.addMaximumRestTimeConstraint(60);
-		set.setTimeRested(75);
+		set.setTimeRested(75f);
 		
 		boolean wasSatisfied = set.wasRestTimeConstraintSatisfied();
 		
@@ -119,7 +194,7 @@ public class SetTests {
 	public void WasRestTimeConstraintSatisfied_TimeRestedIsWithinRange_ReturnTrue() throws InvalidRangeException {
 		Set set = buildSet();
 		set.addBoundedRestTimeConstraint(30, 60);
-		set.setTimeRested(45);
+		set.setTimeRested(45f);
 		
 		boolean wasSatisfied = set.wasRestTimeConstraintSatisfied();
 		
@@ -130,17 +205,13 @@ public class SetTests {
 	public void WasRestTimeConstraintSatisfied_TimeRestedIsOutsideRange_ReturnFalse() throws InvalidRangeException {
 		Set set = buildSet();
 		set.addBoundedRestTimeConstraint(0, 60);
-		set.setTimeRested(90);
+		set.setTimeRested(90f);
 		
 		boolean wasSatisfied = set.wasRestTimeConstraintSatisfied();
 		
 		assertFalse(wasSatisfied);
 	}
 	
-	private static Set buildSet() {
-		ExerciseDescription description = new ExerciseDescription("description");
-		Exercise exercise = new Exercise(description);
-		return new SingleExerciseSet(exercise);
-	}
+	protected abstract Set buildSet();
 
 }

@@ -156,10 +156,10 @@ public class WorkoutTests {
 	public void DuplicateLastSet_MultipleSets_CopyIsOfLastSet() {
 		Workout workout = new Workout();
 		Set set1 = buildSet();
-		set1.setTimeRested(45);
+		set1.setTimeRested(45f);
 		workout.appendSet(set1);
 		Set set2 = buildSet();
-		set2.setTimeRested(60);
+		set2.setTimeRested(60f);
 		workout.appendSet(set2);
 		
 		workout.duplicateLastSet();

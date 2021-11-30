@@ -9,16 +9,17 @@ public class PositiveRealNumberRange extends Range<Float> {
 	}
 
 	@Override
-	protected boolean isValid() {
-		return isLowerBoundValid() && isLowerBoundLessThanOrEqualToUpperBound();
-	}
-	
-	private boolean isLowerBoundValid() {
+	protected boolean isLowerBoundValid() {
 		if (!lowerBound.isPresent()) {
 			return true;
 		}
 		
 		return lowerBound.get().floatValue() >= 0;
+	}
+
+	@Override
+	protected boolean isUpperBoundValid() {
+		return true;
 	}
 
 }

@@ -16,9 +16,15 @@ public abstract class Range<T extends Number> {
 		}
 	}
 	
-	protected abstract boolean isValid();
+	private boolean isValid() {
+		return isLowerBoundValid() && isUpperBoundValid() && isLowerBoundLessThanOrEqualToUpperBound();
+	}
 	
-	protected boolean isLowerBoundLessThanOrEqualToUpperBound() {
+	protected abstract boolean isLowerBoundValid();
+	
+	protected abstract boolean isUpperBoundValid();
+	
+	private boolean isLowerBoundLessThanOrEqualToUpperBound() {
 		if (!lowerBound.isPresent() || !upperBound.isPresent()) {
 			return true;
 		}

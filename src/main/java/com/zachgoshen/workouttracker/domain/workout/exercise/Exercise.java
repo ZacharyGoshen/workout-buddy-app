@@ -51,7 +51,7 @@ public class Exercise {
 		return weightUsed;
 	}
 	
-	public void setWeightUsed(float weightUsed) {
+	public void setWeightUsed(Float weightUsed) {
 		this.weightUsed = Optional.of(weightUsed);
 	}
 	
@@ -99,7 +99,7 @@ public class Exercise {
 		return repsCompleted;
 	}
 
-	public void setRepsCompleted(int repsCompleted) {
+	public void setRepsCompleted(Integer repsCompleted) {
 		this.repsCompleted = Optional.of(repsCompleted);
 	}
 	
@@ -147,7 +147,7 @@ public class Exercise {
 		return timePerformed;
 	}
 
-	public void setTimePerformed(float timePerformed) {
+	public void setTimePerformed(Float timePerformed) {
 		this.timePerformed = Optional.of(timePerformed);
 	}
 	

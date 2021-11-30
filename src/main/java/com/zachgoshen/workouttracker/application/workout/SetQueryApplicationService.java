@@ -11,15 +11,15 @@ import com.zachgoshen.workouttracker.domain.workout.set.SetRepository;
 import com.zachgoshen.workouttracker.domain.workout.set.SetSpecifications;
 
 @Service
-public class QuerySetsApplicationService {
+public class SetQueryApplicationService {
 	
 	private final SetRepository repository;
 	
-	public QuerySetsApplicationService(SetRepository repository) {
+	public SetQueryApplicationService(SetRepository repository) {
 		this.repository = repository;
 	}
 	
-	public List<SetDto> findBy(QuerySetsParameters parameters) {
+	public List<SetDto> findBy(SetQueryParameters parameters) {
 		Specification<Set> specification = SetSpecifications.alwaysSatisfied();
 		
 		List<String> exerciseNames = parameters.getExerciseNames();

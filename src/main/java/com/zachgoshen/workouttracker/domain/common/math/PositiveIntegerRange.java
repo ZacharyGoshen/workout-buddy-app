@@ -9,16 +9,21 @@ public class PositiveIntegerRange extends Range<Integer> {
 	}
 
 	@Override
-	protected boolean isValid() {
-		return isLowerBoundValid() && isLowerBoundLessThanOrEqualToUpperBound();
-	}
-	
-	private boolean isLowerBoundValid() {
+	protected boolean isLowerBoundValid() {
 		if (!lowerBound.isPresent()) {
 			return true;
 		}
 		
-		return lowerBound.get().floatValue() >= 0;
+		return lowerBound.get().intValue() >= 0;
+	}
+
+	@Override
+	protected boolean isUpperBoundValid() {
+		if (!upperBound.isPresent()) {
+			return true;
+		}
+		
+		return upperBound.get().intValue() >= 0;
 	}
 
 }

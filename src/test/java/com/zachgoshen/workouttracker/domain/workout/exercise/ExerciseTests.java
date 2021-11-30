@@ -93,7 +93,7 @@ public class ExerciseTests {
 	public void WasWeightConstraintSatisfied_WeightIsAboveMinimum_ReturnTrue() throws InvalidRangeException {
 		Exercise exercise = buildExercise();
 		exercise.addMinimumWeightConstraint(90);
-		exercise.setWeightUsed(95);
+		exercise.setWeightUsed(95f);
 		
 		boolean wasSatisfied = exercise.wasWeightConstraintSatisfied();
 		
@@ -104,7 +104,7 @@ public class ExerciseTests {
 	public void WasWeightConstraintSatisfied_WeightIsBelowMinimum_ReturnFalse() throws InvalidRangeException {
 		Exercise exercise = buildExercise();
 		exercise.addMinimumWeightConstraint(90);
-		exercise.setWeightUsed(85);
+		exercise.setWeightUsed(85f);
 		
 		boolean wasSatisfied = exercise.wasWeightConstraintSatisfied();
 		
@@ -115,7 +115,7 @@ public class ExerciseTests {
 	public void WasWeightConstraintSatisfied_WeightIsWithinRange_ReturnTrue() throws InvalidRangeException {
 		Exercise exercise = buildExercise();
 		exercise.addBoundedWeightConstraint(90, 100);
-		exercise.setWeightUsed(95);
+		exercise.setWeightUsed(95f);
 		
 		boolean wasSatisfied = exercise.wasWeightConstraintSatisfied();
 		
@@ -126,7 +126,7 @@ public class ExerciseTests {
 	public void WasWeightConstraintSatisfied_WeightIsOutsideRange_ReturnFalse() throws InvalidRangeException {
 		Exercise exercise = buildExercise();
 		exercise.addBoundedWeightConstraint(90, 100);
-		exercise.setWeightUsed(80);
+		exercise.setWeightUsed(80f);
 		
 		boolean wasSatisfied = exercise.wasWeightConstraintSatisfied();
 		
@@ -333,7 +333,7 @@ public class ExerciseTests {
 	public void WasDurationConstraintSatisfied_DurationIsAboveMinimum_ReturnTrue() throws InvalidRangeException {
 		Exercise exercise = buildExercise();
 		exercise.addMinimumDurationConstraint(30);
-		exercise.setTimePerformed(45);
+		exercise.setTimePerformed(45f);
 		
 		boolean wasSatisfied = exercise.wasDurationConstraintSatisfied();
 		
@@ -344,7 +344,7 @@ public class ExerciseTests {
 	public void WasDurationConstraintSatisfied_DurationIsBelowMinimum_ReturnFalse() throws InvalidRangeException {
 		Exercise exercise = buildExercise();
 		exercise.addMinimumDurationConstraint(30);
-		exercise.setTimePerformed(15);
+		exercise.setTimePerformed(15f);
 		
 		boolean wasSatisfied = exercise.wasDurationConstraintSatisfied();
 		
@@ -355,7 +355,7 @@ public class ExerciseTests {
 	public void WasDurationConstraintSatisfied_DurationIsWithinRange_ReturnTrue() throws InvalidRangeException {
 		Exercise exercise = buildExercise();
 		exercise.addBoundedDurationConstraint(30, 60);
-		exercise.setTimePerformed(45);
+		exercise.setTimePerformed(45f);
 		
 		boolean wasSatisfied = exercise.wasDurationConstraintSatisfied();
 		
@@ -366,7 +366,7 @@ public class ExerciseTests {
 	public void WasDurationConstraintSatisfied_DurationIsOutsideRange_ReturnFalse() throws InvalidRangeException {
 		Exercise exercise = buildExercise();
 		exercise.addBoundedDurationConstraint(30, 60);
-		exercise.setTimePerformed(75);
+		exercise.setTimePerformed(75f);
 		
 		boolean wasSatisfied = exercise.wasDurationConstraintSatisfied();
 		
@@ -386,11 +386,11 @@ public class ExerciseTests {
 	public void WereConstraintsSatisfied_AllConstraintsSetAndSatisfied_ReturnTrue() throws InvalidRangeException {
 		Exercise exercise = buildExercise();
 		exercise.addBoundedWeightConstraint(90, 100);
-		exercise.setWeightUsed(95);
+		exercise.setWeightUsed(95f);
 		exercise.addBoundedRepsConstraint(8, 10);
 		exercise.setRepsCompleted(9);
 		exercise.addBoundedDurationConstraint(30, 60);
-		exercise.setTimePerformed(45);
+		exercise.setTimePerformed(45f);
 		
 		boolean wereSatisfied = exercise.wereConstraintsSatisfied();
 		
@@ -401,7 +401,7 @@ public class ExerciseTests {
 	public void WereConstraintsSatisfied_WeightConstraintNotSatisfied_ReturnFalse() throws InvalidRangeException {
 		Exercise exercise = buildExercise();
 		exercise.addBoundedWeightConstraint(90, 100);
-		exercise.setWeightUsed(110);
+		exercise.setWeightUsed(110f);
 		
 		boolean wereSatisfied = exercise.wereConstraintsSatisfied();
 		
@@ -423,7 +423,7 @@ public class ExerciseTests {
 	public void WereConstraintsSatisfied_DurationConstraintNotSatisfied_ReturnFalse() throws InvalidRangeException {
 		Exercise exercise = buildExercise();
 		exercise.addBoundedDurationConstraint(30, 60);
-		exercise.setTimePerformed(75);
+		exercise.setTimePerformed(75f);
 		
 		boolean wereSatisfied = exercise.wereConstraintsSatisfied();
 		
