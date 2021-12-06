@@ -1,7 +1,6 @@
 package com.zachgoshen.workouttracker.domain.application.workout;
 
-import static com.zachgoshen.workouttracker.domain.application.workout.set.SetDtoAssertions.assertSetDtoMatchesSet;
-
+import static com.zachgoshen.workouttracker.domain.application.set.SetDtoAssertions.assertSetDtoMatchesSet;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.zachgoshen.workouttracker.application.workout.WorkoutDto;

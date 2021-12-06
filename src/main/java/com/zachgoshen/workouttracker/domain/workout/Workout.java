@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import com.zachgoshen.workouttracker.domain.workout.set.Set;
+import com.zachgoshen.workouttracker.domain.set.Set;
 
 public class Workout {
 	

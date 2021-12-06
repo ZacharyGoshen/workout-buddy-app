@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
-import com.zachgoshen.workouttracker.domain.workout.exercise.Exercise;
-import com.zachgoshen.workouttracker.domain.workout.exercise.ExerciseDescription;
-import com.zachgoshen.workouttracker.domain.workout.set.Set;
-import com.zachgoshen.workouttracker.domain.workout.set.SingleExerciseSet;
+import com.zachgoshen.workouttracker.domain.exercise.Exercise;
+import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescription;
+import com.zachgoshen.workouttracker.domain.set.Set;
+import com.zachgoshen.workouttracker.domain.set.SingleExerciseSet;
 
 public class WorkoutTests {
 	

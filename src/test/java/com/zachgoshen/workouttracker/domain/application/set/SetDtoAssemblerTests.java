@@ -1,6 +1,6 @@
-package com.zachgoshen.workouttracker.domain.application.workout;
+package com.zachgoshen.workouttracker.domain.application.set;
 
-import static com.zachgoshen.workouttracker.domain.application.workout.WorkoutDtoAssertions.assertWorkoutDtoMatchesWorkout;
+import static com.zachgoshen.workouttracker.domain.application.set.SetDtoAssertions.assertSetDtoMatchesSet;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -8,31 +8,18 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.zachgoshen.workouttracker.application.workout.WorkoutDto;
-import com.zachgoshen.workouttracker.application.workout.WorkoutDtoAssembler;
+import com.zachgoshen.workouttracker.application.set.SetDto;
+import com.zachgoshen.workouttracker.application.set.SetDtoAssembler;
 import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workouttracker.domain.exercise.Exercise;
 import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescription;
 import com.zachgoshen.workouttracker.domain.set.SingleExerciseSet;
 import com.zachgoshen.workouttracker.domain.set.Superset;
-import com.zachgoshen.workouttracker.domain.workout.Workout;
 
-public class WorkoutDtoAssemblerTests {
+public class SetDtoAssemblerTests {
 	
 	@Test
-	public void Assemble_WorkoutWithAllFieldsSet_DtoHasAllFieldsSet() throws InvalidRangeException {
-		Workout workout = new Workout();
-		workout.setName("Push Day");
-		workout.setTimeCompleted(new Date());
-		workout.appendSet(buildSingleExerciseSet());
-		workout.appendSet(buildSuperset());
-		
-		WorkoutDto dto = WorkoutDtoAssembler.assemble(workout);
-		
-		assertWorkoutDtoMatchesWorkout(dto, workout);
-	}
-	
-	private static SingleExerciseSet buildSingleExerciseSet() throws InvalidRangeException {
+	public void Assemble_SingleExerciseSetWithAllFieldsSet_DtoHasAllFieldsSet() throws InvalidRangeException {
 		Exercise exercise = buildExercise1();
 		
 		SingleExerciseSet set = new SingleExerciseSet(exercise);
@@ -40,10 +27,13 @@ public class WorkoutDtoAssemblerTests {
 		set.setTimeRested(180f);
 		set.addBoundedRestTimeConstraint(120f, 240f);
 		
-		return set;
+		SetDto dto = SetDtoAssembler.assemble(set);
+		
+		assertSetDtoMatchesSet(dto, set);
 	}
 	
-	private static Superset buildSuperset() throws InvalidRangeException {
+	@Test
+	public void Assemble_SupersetWithAllFieldsSet_DtoHasAllFieldsSet() throws InvalidRangeException {
 		Exercise exercise1 = buildExercise1();
 		Exercise exercise2 = buildExercise2();
 		List<Exercise> exercises = Arrays.asList(exercise1, exercise2);
@@ -53,7 +43,9 @@ public class WorkoutDtoAssemblerTests {
 		set.setTimeRested(180f);
 		set.addBoundedRestTimeConstraint(120f, 240f);
 		
-		return set;
+		SetDto dto = SetDtoAssembler.assemble(set);
+
+		assertSetDtoMatchesSet(dto, set);
 	}
 	
 	private static Exercise buildExercise1() throws InvalidRangeException {
