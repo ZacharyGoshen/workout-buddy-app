@@ -1,11 +1,11 @@
-package com.zachgoshen.workouttracker.domain.workout.set;
+package com.zachgoshen.workouttracker.domain.workout.set.specification;
 
 import java.util.List;
 
 import com.zachgoshen.workouttracker.domain.common.specification.AlwaysSatisfiedSpecification;
 import com.zachgoshen.workouttracker.domain.common.specification.NeverSatisfiedSpecification;
 import com.zachgoshen.workouttracker.domain.common.specification.Specification;
-import com.zachgoshen.workouttracker.domain.workout.set.specification.ContainsExerciseSpecification;
+import com.zachgoshen.workouttracker.domain.workout.set.Set;
 
 public class SetSpecifications {
 	

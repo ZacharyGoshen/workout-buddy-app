@@ -19,7 +19,7 @@ public abstract class SetTests {
 		
 		Set copy = set.clone();
 		
-		assertTrue(copy.getTimeRested().isEmpty());
+		assertFalse(copy.getTimeRested().isPresent());
 	}
 	
 	@Test
@@ -38,7 +38,7 @@ public abstract class SetTests {
 		
 		Set copy = set.clone();
 		
-		assertTrue(copy.getMinimumRestTimeAllowed().isEmpty());
+		assertFalse(copy.getMinimumRestTimeAllowed().isPresent());
 	}
 	
 	@Test
@@ -57,7 +57,7 @@ public abstract class SetTests {
 		
 		Set copy = set.clone();
 		
-		assertTrue(copy.getMaximumRestTimeAllowed().isEmpty());
+		assertFalse(copy.getMaximumRestTimeAllowed().isPresent());
 	}
 	
 	@Test

@@ -16,6 +16,7 @@ public class ContainsExerciseSpecification extends Specification<Set> {
 		this.exerciseName = exerciseName;
 	}
 
+	@Override
 	public boolean isSatisfiedBy(Set candidate) {
 		if (candidate instanceof SingleExerciseSet) {
 			return isSatisfiedBy((SingleExerciseSet) candidate);

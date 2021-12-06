@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.zachgoshen.workouttracker.domain.common.specification.Specification;
 import com.zachgoshen.workouttracker.domain.workout.set.Set;
 import com.zachgoshen.workouttracker.domain.workout.set.SetRepository;
-import com.zachgoshen.workouttracker.domain.workout.set.SetSpecifications;
+import com.zachgoshen.workouttracker.domain.workout.set.specification.SetSpecifications;
 
 @Service
 public class SetQueryApplicationService {

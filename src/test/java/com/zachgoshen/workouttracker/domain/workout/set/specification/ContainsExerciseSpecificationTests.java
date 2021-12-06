@@ -12,7 +12,6 @@ import com.zachgoshen.workouttracker.domain.workout.exercise.Exercise;
 import com.zachgoshen.workouttracker.domain.workout.exercise.ExerciseDescription;
 import com.zachgoshen.workouttracker.domain.workout.set.SingleExerciseSet;
 import com.zachgoshen.workouttracker.domain.workout.set.Superset;
-import com.zachgoshen.workouttracker.domain.workout.set.specification.ContainsExerciseSpecification;
 
 public class ContainsExerciseSpecificationTests {
 	
