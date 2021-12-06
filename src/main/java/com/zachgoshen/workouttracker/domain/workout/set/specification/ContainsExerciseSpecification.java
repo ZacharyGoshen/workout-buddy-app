@@ -1,9 +1,12 @@
-package com.zachgoshen.workouttracker.domain.workout.set;
+package com.zachgoshen.workouttracker.domain.workout.set.specification;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.zachgoshen.workouttracker.domain.common.specification.Specification;
+import com.zachgoshen.workouttracker.domain.workout.set.Set;
+import com.zachgoshen.workouttracker.domain.workout.set.SingleExerciseSet;
+import com.zachgoshen.workouttracker.domain.workout.set.Superset;
 
 public class ContainsExerciseSpecification extends Specification<Set> {
 	

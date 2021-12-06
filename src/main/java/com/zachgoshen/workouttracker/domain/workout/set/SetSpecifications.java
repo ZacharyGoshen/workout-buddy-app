@@ -5,6 +5,7 @@ import java.util.List;
 import com.zachgoshen.workouttracker.domain.common.specification.AlwaysSatisfiedSpecification;
 import com.zachgoshen.workouttracker.domain.common.specification.NeverSatisfiedSpecification;
 import com.zachgoshen.workouttracker.domain.common.specification.Specification;
+import com.zachgoshen.workouttracker.domain.workout.set.specification.ContainsExerciseSpecification;
 
 public class SetSpecifications {
 	

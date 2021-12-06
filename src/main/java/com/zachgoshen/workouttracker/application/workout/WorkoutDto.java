@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.zachgoshen.workouttracker.application.workout.set.SetDto;
 
 public class WorkoutDto {
 	

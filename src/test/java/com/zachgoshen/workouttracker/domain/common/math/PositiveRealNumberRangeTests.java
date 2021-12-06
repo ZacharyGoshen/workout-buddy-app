@@ -1,4 +1,4 @@
-package com.zachgoshen.workouttracker.common.math;
+package com.zachgoshen.workouttracker.domain.common.math;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -6,10 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
-
-import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
-import com.zachgoshen.workouttracker.domain.common.math.PositiveRealNumberRange;
-import com.zachgoshen.workouttracker.domain.common.math.Range;
 
 public class PositiveRealNumberRangeTests extends RangeTests<Float> {
 	
