@@ -22,10 +22,16 @@ public class SetDtoAssembler {
 		
 		if (set instanceof SingleExerciseSet) {
 			SingleExerciseSet singleExerciseSet = (SingleExerciseSet) set;
+			
+			setDto.setType("Single Exercise Set");
+			
 			ExerciseDto exerciseDto = ExerciseDtoAssembler.assemble(singleExerciseSet.getExercise());
 			exerciseDtos = Arrays.asList(exerciseDto);
 		} else if (set instanceof Superset) {
 			Superset superset = (Superset) set;
+			
+			setDto.setType("Superset");
+			
 			exerciseDtos = superset.getExercises()
 				.stream()
 				.map(exercise -> ExerciseDtoAssembler.assemble(exercise))

@@ -10,6 +10,7 @@ import com.zachgoshen.workouttracker.domain.exercise.Exercise;
 import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescription;
 import com.zachgoshen.workouttracker.domain.set.Set;
 import com.zachgoshen.workouttracker.domain.set.SingleExerciseSet;
+import com.zachgoshen.workouttracker.domain.set.Superset;
 import com.zachgoshen.workouttracker.domain.workout.Workout;
 import com.zachgoshen.workouttracker.domain.workout.WorkoutRepository;
 
@@ -37,6 +38,7 @@ public class MockWorkoutRepository implements WorkoutRepository {
 		ExerciseDescription sumoDeadliftDescription = new ExerciseDescription("Sumo Deadlift");
 		ExerciseDescription hamstringCurlDescription = new ExerciseDescription("Hamstring Curl");
 		ExerciseDescription latPulldownDescription = new ExerciseDescription("Lat Pulldown");
+		ExerciseDescription pullupDescription = new ExerciseDescription("Pullup");
 		ExerciseDescription chestSupportedRowDescription = new ExerciseDescription("Chest Supported Row");
 		ExerciseDescription ezBarCurlDescription = new ExerciseDescription("EZ Bar Curl");
 		ExerciseDescription dumbbellCurlDescription = new ExerciseDescription("Dumbbell Curl");
@@ -52,6 +54,9 @@ public class MockWorkoutRepository implements WorkoutRepository {
 		Exercise latPulldown = new Exercise(latPulldownDescription);
 		latPulldown.addBoundedRepsConstraint(8, 10);
 		latPulldown.addMinimumWeightConstraint(100);
+		
+		Exercise pullup = new Exercise(pullupDescription);
+		latPulldown.addBoundedRepsConstraint(8, 10);
 		
 		Exercise chestSupportedRow = new Exercise(chestSupportedRowDescription);
 		chestSupportedRow.addBoundedRepsConstraint(8, 10);
@@ -71,8 +76,8 @@ public class MockWorkoutRepository implements WorkoutRepository {
 		Set hamstringCurlSet = new SingleExerciseSet(hamstringCurl);
 		hamstringCurlSet.addMaximumRestTimeConstraint(60);
 		
-		Set latPulldownSet = new SingleExerciseSet(latPulldown);
-		latPulldownSet.addMaximumRestTimeConstraint(60);
+		Set latPulldownAndPullupSuperset = new Superset(Arrays.asList(latPulldown, pullup));
+		latPulldownAndPullupSuperset.addMaximumRestTimeConstraint(60);
 		
 		Set chestSupportedRowSet = new SingleExerciseSet(chestSupportedRow);
 		chestSupportedRowSet.addMaximumRestTimeConstraint(60);
@@ -91,7 +96,7 @@ public class MockWorkoutRepository implements WorkoutRepository {
 		workout.duplicateLastSet();
 		workout.duplicateLastSet();
 		workout.duplicateLastSet();
-		workout.appendSet(latPulldownSet);
+		workout.appendSet(latPulldownAndPullupSuperset);
 		workout.duplicateLastSet();
 		workout.duplicateLastSet();
 		workout.duplicateLastSet();

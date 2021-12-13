@@ -8,6 +8,9 @@ import com.zachgoshen.workouttracker.application.exercise.ExerciseDto;
 
 public class SetDto {
 	
+	@JsonProperty("type")
+	private String type;
+	
 	@JsonProperty("timeCompleted")
 	private Date timeCompleted;
 	
@@ -22,6 +25,14 @@ public class SetDto {
 	
 	@JsonProperty("exercises")
 	private List<ExerciseDto> exercises;
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	public Date getTimeCompleted() {
 		return timeCompleted;

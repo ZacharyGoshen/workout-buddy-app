@@ -17,8 +17,10 @@ public class SetDtoAssertions {
 		assertEquals(set.getMaximumRestTimeAllowed().orElse(null), dto.getMaximumRestTimeAllowed());
 		
 		if (set instanceof SingleExerciseSet) {
+			assertEquals("Single Exercise Set", dto.getType());
 			assertSetDtoOnlyContainsExerciseFromSingleExerciseSet(dto, (SingleExerciseSet) set);
 		} else if (set instanceof Superset) {
+			assertEquals("Superset", dto.getType());
 			assertSetDtoOnlyContainsExercisesFromSuperset(dto, (Superset) set);
 		}
 	}
