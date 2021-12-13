@@ -8,23 +8,24 @@ import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
 
 public abstract class Set {
 
-	private String id;
+	private final String id;
 	private Optional<Date> timeCompleted;
 	private Optional<Float> timeRested;
 	private Optional<RestTimeConstraint> restTimeConstraint;
 	
 	protected Set() {
-		id = UUID.randomUUID().toString();
-		timeCompleted = Optional.empty();
-		timeRested = Optional.empty();
-		restTimeConstraint = Optional.empty();
+		this(Optional.empty(), Optional.empty(), Optional.empty());
 	}
 	
 	protected Set(Set set) {
+		this(set.getTimeCompleted(), set.getTimeRested(), set.getRestTimeConstraint());
+	}
+	
+	private Set(Optional<Date> timeCompleted, Optional<Float> timeRested, Optional<RestTimeConstraint> restTimeConstraint) {
 		id = UUID.randomUUID().toString();
-		timeCompleted = set.getTimeCompleted();
-		timeRested = set.getTimeRested();
-		restTimeConstraint = set.getRestTimeConstraint();
+		this.timeCompleted = timeCompleted;
+		this.timeRested = timeRested;
+		this.restTimeConstraint = restTimeConstraint;
 	}
 	
 	public abstract Set clone();
