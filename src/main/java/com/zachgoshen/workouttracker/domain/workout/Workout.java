@@ -67,5 +67,15 @@ public class Workout {
 	public void removeSet(int index) {
 		sets.remove(index);
 	}
+	
+	public boolean containsSet(String setId) {
+		for (Set set : sets) {
+			if (set.getId().equals(setId)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 
 }

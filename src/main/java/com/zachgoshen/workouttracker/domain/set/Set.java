@@ -2,28 +2,36 @@ package com.zachgoshen.workouttracker.domain.set;
 
 import java.util.Date;
 import java.util.Optional;
+import java.util.UUID;
 
 import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
 
 public abstract class Set {
 
+	private String id;
 	private Optional<Date> timeCompleted;
 	private Optional<Float> timeRested;
 	private Optional<RestTimeConstraint> restTimeConstraint;
 	
 	protected Set() {
+		id = UUID.randomUUID().toString();
 		timeCompleted = Optional.empty();
 		timeRested = Optional.empty();
 		restTimeConstraint = Optional.empty();
 	}
 	
 	protected Set(Set set) {
+		id = UUID.randomUUID().toString();
 		timeCompleted = set.getTimeCompleted();
 		timeRested = set.getTimeRested();
 		restTimeConstraint = set.getRestTimeConstraint();
 	}
 	
 	public abstract Set clone();
+	
+	public String getId() {
+		return id;
+	}
 	
 	public Optional<Date> getTimeCompleted() {
 		return timeCompleted;

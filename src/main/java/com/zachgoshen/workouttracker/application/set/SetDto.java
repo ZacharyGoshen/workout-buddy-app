@@ -9,22 +9,22 @@ import com.zachgoshen.workouttracker.application.exercise.ExerciseDto;
 public class SetDto {
 	
 	@JsonProperty("type")
-	private String type;
+	protected String type;
 	
 	@JsonProperty("timeCompleted")
-	private Date timeCompleted;
+	protected Date timeCompleted;
 	
 	@JsonProperty("timeRested")
-	private Float timeRested;
+	protected Float timeRested;
 	
 	@JsonProperty("minimumRestTimeAllowed")
-	private Float minimumRestTimeAllowed;
+	protected Float minimumRestTimeAllowed;
 	
 	@JsonProperty("maximumRestTimeAllowed")
-	private Float maximumRestTimeAllowed;
+	protected Float maximumRestTimeAllowed;
 	
 	@JsonProperty("exercises")
-	private List<ExerciseDto> exercises;
+	protected List<ExerciseDto> exercises;
 
 	public String getType() {
 		return type;

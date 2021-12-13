@@ -2,6 +2,7 @@ package com.zachgoshen.workouttracker.data.workout;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
@@ -21,10 +22,6 @@ public class MockWorkoutRepository implements WorkoutRepository {
 	
 	public MockWorkoutRepository() throws InvalidRangeException {
 		workouts = buildWorkouts();
-	}
-
-	public List<Workout> findAll() {
-		return workouts;
 	}
 	
 	private static List<Workout> buildWorkouts() throws InvalidRangeException {
@@ -112,6 +109,18 @@ public class MockWorkoutRepository implements WorkoutRepository {
 		workout.duplicateLastSet();
 		
 		return workout;
+	}
+
+	@Override
+	public List<Workout> findAll() {
+		return workouts;
+	}
+
+	@Override
+	public Optional<Workout> findBySetId(String setId) {
+		return workouts.stream()
+			.filter(workout -> workout.containsSet(setId))
+			.findFirst();
 	}
 
 }

@@ -1,7 +1,9 @@
 package com.zachgoshen.workouttracker.domain.workout;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -329,6 +331,28 @@ public class WorkoutTests {
 		assertEquals(set3, workout.getSets().get(4));
 		assertEquals(set4, workout.getSets().get(2));
 		assertEquals(set5, workout.getSets().get(3));
+	}
+	
+	@Test
+	public void ContainsSet_DoesContainSet_ReturnsTrue() {
+		Workout workout = new Workout();
+		Set set = buildSet();
+		workout.appendSet(set);
+		
+		boolean containsSet = workout.containsSet(set.getId());
+		
+		assertTrue(containsSet);
+	}
+	
+	@Test
+	public void ContainsSet_DoesntContainSet_ReturnsFalse() {
+		Workout workout = new Workout();
+		Set set = buildSet();
+		workout.appendSet(set);
+		
+		boolean containsSet = workout.containsSet("1");
+		
+		assertFalse(containsSet);
 	}
 	
 	private static Set buildSet() {

@@ -17,27 +17,11 @@ public class SetDtoAssembler {
 	
 	public static SetDto assemble(Set set) {
 		SetDto setDto = assembleWithoutExercises(set);
+
+		String type = getSetType(set);
+		setDto.setType(type);
 		
-		List<ExerciseDto> exerciseDtos = new ArrayList<>();
-		
-		if (set instanceof SingleExerciseSet) {
-			SingleExerciseSet singleExerciseSet = (SingleExerciseSet) set;
-			
-			setDto.setType("Single Exercise Set");
-			
-			ExerciseDto exerciseDto = ExerciseDtoAssembler.assemble(singleExerciseSet.getExercise());
-			exerciseDtos = Arrays.asList(exerciseDto);
-		} else if (set instanceof Superset) {
-			Superset superset = (Superset) set;
-			
-			setDto.setType("Superset");
-			
-			exerciseDtos = superset.getExercises()
-				.stream()
-				.map(exercise -> ExerciseDtoAssembler.assemble(exercise))
-				.collect(Collectors.toList());
-		}
-		
+		List<ExerciseDto> exerciseDtos = assembleExerciseDtos(set);
 		setDto.setExercises(exerciseDtos);
 		
 		return setDto;
@@ -67,6 +51,36 @@ public class SetDtoAssembler {
 		}
 		
 		return dto;
+	}
+	
+	private static String getSetType(Set set) {
+		if (set instanceof SingleExerciseSet) {
+			return "Single Exercise Set";
+		} else if (set instanceof Superset) {
+			return "Superset";
+		} else {
+			return "";
+		}
+	}
+	
+	private static List<ExerciseDto> assembleExerciseDtos(Set set) {
+		List<ExerciseDto> exerciseDtos = new ArrayList<>();
+		
+		if (set instanceof SingleExerciseSet) {
+			SingleExerciseSet singleExerciseSet = (SingleExerciseSet) set;
+			
+			ExerciseDto exerciseDto = ExerciseDtoAssembler.assemble(singleExerciseSet.getExercise());
+			exerciseDtos = Arrays.asList(exerciseDto);
+		} else if (set instanceof Superset) {
+			Superset superset = (Superset) set;
+			
+			exerciseDtos = superset.getExercises()
+				.stream()
+				.map(exercise -> ExerciseDtoAssembler.assemble(exercise))
+				.collect(Collectors.toList());
+		}
+		
+		return exerciseDtos;
 	}
 
 }
