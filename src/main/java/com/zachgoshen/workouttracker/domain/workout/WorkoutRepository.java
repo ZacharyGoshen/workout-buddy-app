@@ -7,6 +7,8 @@ public interface WorkoutRepository {
 
 	public List<Workout> findAll();
 	
+	public Optional<Workout> findById(String id);
+	
 	public Optional<Workout> findBySetId(String setId);
 	
 }

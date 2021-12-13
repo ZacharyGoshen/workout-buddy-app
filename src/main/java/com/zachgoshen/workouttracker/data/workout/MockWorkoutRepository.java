@@ -1,6 +1,7 @@
 package com.zachgoshen.workouttracker.data.workout;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +32,9 @@ public class MockWorkoutRepository implements WorkoutRepository {
 	private static Workout buildPullDay1() throws InvalidRangeException {
 		Workout workout = new Workout();
 		workout.setName("Pull Day 1");
+		workout.setTimeCompleted(new Date());
+		
+		System.out.println(workout.getId());
 		
 		ExerciseDescription sumoDeadliftDescription = new ExerciseDescription("Sumo Deadlift");
 		ExerciseDescription hamstringCurlDescription = new ExerciseDescription("Hamstring Curl");
@@ -114,6 +118,13 @@ public class MockWorkoutRepository implements WorkoutRepository {
 	@Override
 	public List<Workout> findAll() {
 		return workouts;
+	}
+
+	@Override
+	public Optional<Workout> findById(String id) {
+		return workouts.stream()
+			.filter(workout -> workout.getId().equals(id))
+			.findFirst();
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import com.zachgoshen.workouttracker.domain.workout.Workout;
 public class WorkoutDtoAssertions {
 	
 	public static void assertWorkoutDtoMatchesWorkout(WorkoutDto dto, Workout workout) {
+		assertEquals(workout.getId(), dto.getId());
 		assertEquals(workout.getName().orElse(null), dto.getName());
 		assertEquals(workout.getTimeCompleted().orElse(null), dto.getTimeCompleted());
 		

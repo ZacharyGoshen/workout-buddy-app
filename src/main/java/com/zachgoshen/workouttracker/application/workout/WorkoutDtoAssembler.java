@@ -14,6 +14,8 @@ public class WorkoutDtoAssembler {
 	public static WorkoutDto assemble(Workout workout) {
 		WorkoutDto dto = new WorkoutDto();
 		
+		dto.setId(workout.getId());
+		
 		Optional<String> name = workout.getName();
 		if (name.isPresent()) {
 			dto.setName(name.get());

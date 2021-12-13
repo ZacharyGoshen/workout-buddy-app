@@ -8,6 +8,9 @@ import com.zachgoshen.workouttracker.application.set.SetDto;
 
 public class WorkoutDto {
 	
+	@JsonProperty("id")
+	private String id;
+	
 	@JsonProperty("name")
 	private String name;
 	
@@ -16,6 +19,14 @@ public class WorkoutDto {
 	
 	@JsonProperty("sets")
 	private List<SetDto> sets;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;

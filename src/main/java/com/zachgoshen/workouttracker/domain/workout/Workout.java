@@ -4,19 +4,26 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import com.zachgoshen.workouttracker.domain.set.Set;
 
 public class Workout {
 	
+	private final String id;
 	private Optional<String> name;
 	private Optional<Date> timeCompleted;
 	private List<Set> sets;
 	
 	public Workout() {
+		id = UUID.randomUUID().toString();
 		name = Optional.empty();
 		timeCompleted = Optional.empty();
 		sets = new ArrayList<>();
+	}
+
+	public String getId() {
+		return id;
 	}
 
 	public Optional<String> getName() {
