@@ -36,6 +36,7 @@ public class SetWithWorkoutDetailsDtoAssemblerTests {
 		SetWithWorkoutDetailsDto dto = SetWithWorkoutDetailsDtoAssembler.assemble(set, workout);
 		
 		assertSetDtoMatchesSet(dto, set);
+		assertEquals(workout.getId(), dto.getWorkoutId());
 		assertEquals(workout.getName().get(), dto.getWorkoutName());
 		assertEquals(workout.getTimeCompleted().get(), dto.getWorkoutCompletionTime());
 	}
@@ -58,6 +59,7 @@ public class SetWithWorkoutDetailsDtoAssemblerTests {
 		SetWithWorkoutDetailsDto dto = SetWithWorkoutDetailsDtoAssembler.assemble(set, workout);
 
 		assertSetDtoMatchesSet(dto, set);
+		assertEquals(workout.getId(), dto.getWorkoutId());
 		assertEquals(workout.getName().get(), dto.getWorkoutName());
 		assertEquals(workout.getTimeCompleted().get(), dto.getWorkoutCompletionTime());
 	}

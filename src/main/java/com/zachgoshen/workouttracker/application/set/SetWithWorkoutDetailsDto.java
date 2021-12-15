@@ -18,6 +18,9 @@ public class SetWithWorkoutDetailsDto extends SetDto {
 		this.exercises = setDto.getExercises();
 	}
 	
+	@JsonProperty("workoutId")
+	private String workoutId;
+	
 	@JsonProperty("workoutName")
 	private String workoutName;
 	
@@ -26,6 +29,14 @@ public class SetWithWorkoutDetailsDto extends SetDto {
 	
 	@JsonProperty("setNumber")
 	private Integer setNumber;
+
+	public String getWorkoutId() {
+		return workoutId;
+	}
+
+	public void setWorkoutId(String workoutId) {
+		this.workoutId = workoutId;
+	}
 
 	public String getWorkoutName() {
 		return workoutName;

@@ -11,6 +11,9 @@ public class SetWithWorkoutDetailsDtoAssembler {
 		SetDto setDto = SetDtoAssembler.assemble(set);
 		SetWithWorkoutDetailsDto setWithWorkoutDetailsDto = new SetWithWorkoutDetailsDto(setDto);
 		
+		String workoutId = workout.getId();
+		setWithWorkoutDetailsDto.setWorkoutId(workoutId);
+		
 		String workoutName = workout.getName().orElse(null);
 		setWithWorkoutDetailsDto.setWorkoutName(workoutName);
 		
