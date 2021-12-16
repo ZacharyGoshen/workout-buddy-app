@@ -11,4 +11,6 @@ public interface WorkoutRepository {
 	
 	public Optional<Workout> findBySetId(String setId);
 	
+	public void save(Workout workout);
+	
 }

@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.zachgoshen.workouttracker.application.set.SetDto;
-import com.zachgoshen.workouttracker.application.set.SetDtoAssembler;
+import com.zachgoshen.workouttracker.application.set.SetConverter;
 import com.zachgoshen.workouttracker.domain.workout.Workout;
 
 public class WorkoutDtoAssembler {
@@ -28,7 +28,7 @@ public class WorkoutDtoAssembler {
 		
 		List<SetDto> sets = workout.getSets()
 			.stream()
-			.map(set -> SetDtoAssembler.assemble(set))
+			.map(set -> SetConverter.toDto(set))
 			.collect(Collectors.toList());
 		dto.setSets(sets);
 		

@@ -8,7 +8,7 @@ import com.zachgoshen.workouttracker.domain.workout.Workout;
 public class SetWithWorkoutDetailsDtoAssembler {
 
 	public static SetWithWorkoutDetailsDto assemble(Set set, Workout workout) {
-		SetDto setDto = SetDtoAssembler.assemble(set);
+		SetDto setDto = SetConverter.toDto(set);
 		SetWithWorkoutDetailsDto setWithWorkoutDetailsDto = new SetWithWorkoutDetailsDto(setDto);
 		
 		String workoutId = workout.getId();

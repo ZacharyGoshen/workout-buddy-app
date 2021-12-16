@@ -52,7 +52,7 @@ public class Exercise {
 	}
 	
 	public void setWeightUsed(Float weightUsed) {
-		this.weightUsed = Optional.of(weightUsed);
+		this.weightUsed = Optional.ofNullable(weightUsed);
 	}
 	
 	public Optional<Float> getMinimumWeightAllowed() {
@@ -100,7 +100,7 @@ public class Exercise {
 	}
 
 	public void setRepsCompleted(Integer repsCompleted) {
-		this.repsCompleted = Optional.of(repsCompleted);
+		this.repsCompleted = Optional.ofNullable(repsCompleted);
 	}
 	
 	public Optional<Integer> getMinimumRepsAllowed() {
@@ -148,7 +148,7 @@ public class Exercise {
 	}
 
 	public void setTimePerformed(Float timePerformed) {
-		this.timePerformed = Optional.of(timePerformed);
+		this.timePerformed = Optional.ofNullable(timePerformed);
 	}
 	
 	private Optional<DurationConstraint> getDurationConstraint() {

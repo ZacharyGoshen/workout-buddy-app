@@ -39,7 +39,7 @@ public abstract class Set {
 	}
 
 	public void setTimeCompleted(Date timeCompleted) {
-		this.timeCompleted = Optional.of(timeCompleted);
+		this.timeCompleted = Optional.ofNullable(timeCompleted);
 	}
 
 	public Optional<Float> getTimeRested() {

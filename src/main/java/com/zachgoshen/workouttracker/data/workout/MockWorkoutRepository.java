@@ -34,8 +34,6 @@ public class MockWorkoutRepository implements WorkoutRepository {
 		workout.setName("Pull Day 1");
 		workout.setTimeCompleted(new Date());
 		
-		System.out.println(workout.getId());
-		
 		ExerciseDescription sumoDeadliftDescription = new ExerciseDescription("Sumo Deadlift");
 		ExerciseDescription hamstringCurlDescription = new ExerciseDescription("Hamstring Curl");
 		ExerciseDescription latPulldownDescription = new ExerciseDescription("Lat Pulldown");
@@ -132,6 +130,13 @@ public class MockWorkoutRepository implements WorkoutRepository {
 		return workouts.stream()
 			.filter(workout -> workout.containsSet(setId))
 			.findFirst();
+	}
+	
+	@Override
+	public void save(Workout workout) {
+		if (!workouts.contains(workout)) {
+			workouts.add(workout);
+		}
 	}
 
 }

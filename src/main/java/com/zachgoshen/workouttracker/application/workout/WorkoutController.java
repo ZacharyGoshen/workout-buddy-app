@@ -1,40 +1,44 @@
 package com.zachgoshen.workouttracker.application.workout;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.zachgoshen.workouttracker.domain.workout.Workout;
-import com.zachgoshen.workouttracker.domain.workout.WorkoutRepository;
+import com.zachgoshen.workouttracker.application.DtoConversionException;
+import com.zachgoshen.workouttracker.application.NonexistentWorkoutException;
+import com.zachgoshen.workouttracker.application.set.SetDto;
+import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
 
 @RestController
 @RequestMapping("/api/workouts")
 public class WorkoutController {
+
+	private final WorkoutQueryApplicationService queryService;
+	private final WorkoutUpdateApplicationService updateService;
 	
-	private final WorkoutRepository repository;
-	
-	public WorkoutController(WorkoutRepository repository) {
-		this.repository = repository;
+	public WorkoutController(WorkoutQueryApplicationService queryService, WorkoutUpdateApplicationService updateService) {
+		this.queryService = queryService;
+		this.updateService = updateService;
 	}
 	
 	@GetMapping("")
 	public List<WorkoutDto> findAll() {
-		return repository.findAll()
-			.stream()
-			.map(workout -> WorkoutDtoAssembler.assemble(workout))
-			.collect(Collectors.toList());
+		return queryService.findAll();
 	}
 	
 	@GetMapping("/{id}")
 	public WorkoutDto findById(@PathVariable("id") String id) {
-		Optional<Workout> workout = repository.findById(id);
-		
-		return WorkoutDtoAssembler.assemble(workout.get());
+		return queryService.findById(id);
+	}
+	
+	@PostMapping("/{id}/addSet")
+	public void addSet(@PathVariable("id") String workoutId, @RequestBody SetDto set) throws NonexistentWorkoutException, InvalidRangeException, DtoConversionException {
+		updateService.addSet(workoutId, set);
 	}
 
 }

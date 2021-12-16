@@ -5,15 +5,16 @@ import static com.zachgoshen.workouttracker.domain.application.exercise.Exercise
 import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workouttracker.application.exercise.ExerciseDto;
-import com.zachgoshen.workouttracker.application.exercise.ExerciseDtoAssembler;
+import com.zachgoshen.workouttracker.application.DtoConversionException;
+import com.zachgoshen.workouttracker.application.exercise.ExerciseConverter;
 import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workouttracker.domain.exercise.Exercise;
 import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescription;
 
-public class ExerciseDtoAssemblerTests {
+public class ExerciseConverterTests {
 	
 	@Test
-	public void Assemble_ExerciseWithAllFieldsSet_DtoHasAllFieldsSet() throws InvalidRangeException {
+	public void ToDto_ExerciseWithAllFieldsSet_DtoHasAllFieldsSet() throws InvalidRangeException {
 		ExerciseDescription description = new ExerciseDescription("Bench Press");
 		
 		Exercise exercise = new Exercise(description);
@@ -24,7 +25,27 @@ public class ExerciseDtoAssemblerTests {
 		exercise.setTimePerformed(30f);
 		exercise.addBoundedDurationConstraint(15f, 45f);
 		
-		ExerciseDto dto = ExerciseDtoAssembler.assemble(exercise);
+		ExerciseDto dto = ExerciseConverter.toDto(exercise);
+		
+		assertExerciseDtoMatchesExercise(dto, exercise);
+	}
+	
+	@Test
+	public void ToDto_DtoWithAllFieldsSet_ExerciseHasAllFieldsSet() throws InvalidRangeException, DtoConversionException {
+		ExerciseDto dto = new ExerciseDto();
+		
+		dto.setName("Bench Press");
+		dto.setWeightUsed(225f);
+		dto.setMinimumWeightAllowed(220f);
+		dto.setMaximumWeightAllowed(230f);
+		dto.setRepsCompleted(5);
+		dto.setMinimumRepsAllowed(4);
+		dto.setMaximumRepsAllowed(6);
+		dto.setTimePerformed(30f);
+		dto.setMinimumDurationAllowed(15f);
+		dto.setMaximumDurationAllowed(45f);
+		
+		Exercise exercise = ExerciseConverter.toEntity(dto);
 		
 		assertExerciseDtoMatchesExercise(dto, exercise);
 	}
