@@ -23,14 +23,32 @@ public class WorkoutUpdateApplicationService {
 	}
 	
 	public void addSet(String workoutId, SetDto setDto) throws NonexistentWorkoutException, InvalidRangeException, DtoConversionException {
-		Optional<Workout> workout = repository.findById(workoutId);
+		Optional<Workout> workoutOptional = repository.findById(workoutId);
 		
-		if (workout.isPresent()) {
-			Set set = SetConverter.toEntity(setDto);
-			workout.get().appendSet(set);
-		} else {
+		if (!workoutOptional.isPresent()) {
 			throw new NonexistentWorkoutException();
 		}
+		
+		Workout workout = workoutOptional.get();
+		
+		Set set = SetConverter.toEntity(setDto);
+		workout.appendSet(set);
+		
+		repository.save(workout);
+	}
+	
+	public void removeSet(String workoutId, int setIndex) throws NonexistentWorkoutException {
+		Optional<Workout> workoutOptional = repository.findById(workoutId);
+		
+		if (!workoutOptional.isPresent()) {
+			throw new NonexistentWorkoutException();
+		}
+		
+		Workout workout = workoutOptional.get();
+		
+		workout.removeSet(setIndex);
+		
+		repository.save(workout);
 	}
 
 }
