@@ -41,6 +41,11 @@ public class WorkoutController {
 		updateService.addSet(workoutId, set);
 	}
 	
+	@PostMapping("/{id}/updateSet/{index}")
+	public void updateSet(@PathVariable("id") String workoutId, @PathVariable("index") int setIndex, @RequestBody SetDto updatedSet) throws NonexistentWorkoutException, InvalidRangeException, DtoConversionException {
+		updateService.updateSet(workoutId, setIndex, updatedSet);
+	}
+	
 	@PostMapping("/{id}/removeSet/{index}")
 	public void removeSet(@PathVariable("id") String workoutId, @PathVariable("index") int setIndex) throws NonexistentWorkoutException {
 		updateService.removeSet(workoutId, setIndex);

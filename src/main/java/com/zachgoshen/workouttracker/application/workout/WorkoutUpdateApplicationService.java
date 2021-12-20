@@ -23,13 +23,7 @@ public class WorkoutUpdateApplicationService {
 	}
 	
 	public void addSet(String workoutId, SetDto setDto) throws NonexistentWorkoutException, InvalidRangeException, DtoConversionException {
-		Optional<Workout> workoutOptional = repository.findById(workoutId);
-		
-		if (!workoutOptional.isPresent()) {
-			throw new NonexistentWorkoutException();
-		}
-		
-		Workout workout = workoutOptional.get();
+		Workout workout = tryToFindWorkoutById(workoutId);
 		
 		Set set = SetConverter.toEntity(setDto);
 		workout.appendSet(set);
@@ -37,18 +31,33 @@ public class WorkoutUpdateApplicationService {
 		repository.save(workout);
 	}
 	
+	public void updateSet(String workoutId, int setIndex, SetDto updatedSetDto) throws NonexistentWorkoutException, InvalidRangeException, DtoConversionException {
+		Workout workout = tryToFindWorkoutById(workoutId);
+		
+		workout.removeSet(setIndex);
+		
+		Set updatedSet = SetConverter.toEntity(updatedSetDto);
+		workout.addSet(updatedSet, setIndex);
+		
+		repository.save(workout);
+	}
+	
 	public void removeSet(String workoutId, int setIndex) throws NonexistentWorkoutException {
-		Optional<Workout> workoutOptional = repository.findById(workoutId);
-		
-		if (!workoutOptional.isPresent()) {
-			throw new NonexistentWorkoutException();
-		}
-		
-		Workout workout = workoutOptional.get();
+		Workout workout = tryToFindWorkoutById(workoutId);
 		
 		workout.removeSet(setIndex);
 		
 		repository.save(workout);
+	}
+	
+	private Workout tryToFindWorkoutById(String id) throws NonexistentWorkoutException {
+		Optional<Workout> workoutOptional = repository.findById(id);
+		
+		if (workoutOptional.isPresent()) {
+			return workoutOptional.get();
+		} else {
+			throw new NonexistentWorkoutException();
+		}
 	}
 
 }
