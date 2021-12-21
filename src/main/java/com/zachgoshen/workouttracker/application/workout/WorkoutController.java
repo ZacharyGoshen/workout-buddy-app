@@ -46,6 +46,11 @@ public class WorkoutController {
 		updateService.updateSet(workoutId, setIndex, updatedSet);
 	}
 	
+	@PostMapping("/{id}/moveSet/{originalIndex}/{destinationIndex}")
+	public void moveSet(@PathVariable("id") String workoutId, @PathVariable("originalIndex") int originalIndex, @PathVariable("destinationIndex") int destinationIndex) throws NonexistentWorkoutException {
+		updateService.moveSet(workoutId, originalIndex, destinationIndex);
+	}
+	
 	@PostMapping("/{id}/removeSet/{index}")
 	public void removeSet(@PathVariable("id") String workoutId, @PathVariable("index") int setIndex) throws NonexistentWorkoutException {
 		updateService.removeSet(workoutId, setIndex);

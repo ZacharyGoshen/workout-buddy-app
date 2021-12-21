@@ -42,6 +42,14 @@ public class WorkoutUpdateApplicationService {
 		repository.save(workout);
 	}
 	
+	public void moveSet(String workoutId, int originalIndex, int destinationIndex) throws NonexistentWorkoutException {
+		Workout workout = tryToFindWorkoutById(workoutId);
+		
+		workout.moveSet(originalIndex, destinationIndex);
+		
+		repository.save(workout);
+	}
+	
 	public void removeSet(String workoutId, int setIndex) throws NonexistentWorkoutException {
 		Workout workout = tryToFindWorkoutById(workoutId);
 		
