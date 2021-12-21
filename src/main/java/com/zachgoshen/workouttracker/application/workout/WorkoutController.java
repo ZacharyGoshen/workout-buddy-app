@@ -36,9 +36,9 @@ public class WorkoutController {
 		return queryService.findById(id);
 	}
 	
-	@PostMapping("/{id}/addSet")
-	public void addSet(@PathVariable("id") String workoutId, @RequestBody SetDto set) throws NonexistentWorkoutException, InvalidRangeException, DtoConversionException {
-		updateService.addSet(workoutId, set);
+	@PostMapping("/{id}/addSet/{index}")
+	public void addSet(@PathVariable("id") String workoutId, @PathVariable("index") int setIndex, @RequestBody SetDto set) throws NonexistentWorkoutException, InvalidRangeException, DtoConversionException {
+		updateService.addSet(workoutId, setIndex, set);
 	}
 	
 	@PostMapping("/{id}/updateSet/{index}")

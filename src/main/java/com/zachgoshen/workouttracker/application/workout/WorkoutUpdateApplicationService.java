@@ -22,11 +22,11 @@ public class WorkoutUpdateApplicationService {
 		this.repository = repository;
 	}
 	
-	public void addSet(String workoutId, SetDto setDto) throws NonexistentWorkoutException, InvalidRangeException, DtoConversionException {
+	public void addSet(String workoutId, int setIndex, SetDto setDto) throws NonexistentWorkoutException, InvalidRangeException, DtoConversionException {
 		Workout workout = tryToFindWorkoutById(workoutId);
 		
 		Set set = SetConverter.toEntity(setDto);
-		workout.appendSet(set);
+		workout.addSet(set, setIndex);
 		
 		repository.save(workout);
 	}
