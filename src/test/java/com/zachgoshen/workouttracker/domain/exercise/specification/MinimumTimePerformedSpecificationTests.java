@@ -7,9 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workouttracker.domain.exercise.Exercise;
 import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescription;
-import com.zachgoshen.workouttracker.domain.exercise.specification.MinimumDurationSpecification;
 
-public class MinimumDurationSpecificationTests {
+public class MinimumTimePerformedSpecificationTests {
 	
 	@Test
 	public void IsSatisfiedBy_ExerciseWithTimePerformedGreaterThanMinimumDuration_ReturnsTrue() {
@@ -17,7 +16,7 @@ public class MinimumDurationSpecificationTests {
 		Exercise exercise = new Exercise(description);
 		exercise.setTimePerformed(90f);
 		
-		MinimumDurationSpecification specification = new MinimumDurationSpecification(60f);
+		MinimumTimePerformedSpecification specification = new MinimumTimePerformedSpecification(60f);
 		
 		boolean isSatisfied = specification.isSatisfiedBy(exercise);
 		
@@ -30,7 +29,7 @@ public class MinimumDurationSpecificationTests {
 		Exercise exercise = new Exercise(description);
 		exercise.setTimePerformed(60f);
 		
-		MinimumDurationSpecification specification = new MinimumDurationSpecification(60f);
+		MinimumTimePerformedSpecification specification = new MinimumTimePerformedSpecification(60f);
 		
 		boolean isSatisfied = specification.isSatisfiedBy(exercise);
 		
@@ -43,7 +42,7 @@ public class MinimumDurationSpecificationTests {
 		Exercise exercise = new Exercise(description);
 		exercise.setTimePerformed(60f);
 		
-		MinimumDurationSpecification specification = new MinimumDurationSpecification(90f);
+		MinimumTimePerformedSpecification specification = new MinimumTimePerformedSpecification(90f);
 		
 		boolean isSatisfied = specification.isSatisfiedBy(exercise);
 		

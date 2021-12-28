@@ -8,44 +8,48 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import com.zachgoshen.workouttracker.domain.common.specification.Specification;
 import com.zachgoshen.workouttracker.domain.exercise.Exercise;
 import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescription;
+import com.zachgoshen.workouttracker.domain.exercise.specification.ExerciseSpecifications;
+import com.zachgoshen.workouttracker.domain.set.Set;
 import com.zachgoshen.workouttracker.domain.set.SingleExerciseSet;
 import com.zachgoshen.workouttracker.domain.set.Superset;
-import com.zachgoshen.workouttracker.domain.set.specification.ContainsExerciseSpecification;
 
-public class ContainsExerciseSpecificationTests {
+public class ContainsSatisyingExerciseSpecificationTests {
 	
 	@Test
-	public void IsSatisfiedBy_SingleExerciseSetThatContainsExercise_ReturnsTrue() {
+	public void IsSatisfiedBy_SingleExerciseSetThatContainsSatisfyinExercise_ReturnsTrue() {
 		ExerciseDescription description = new ExerciseDescription("Bench Press");
 		Exercise exercise = new Exercise(description);
 		
 		SingleExerciseSet set = new SingleExerciseSet(exercise);
 		
-		ContainsExerciseSpecification specification = new ContainsExerciseSpecification("Bench Press");
+		Specification<Exercise> exerciseSpecification = ExerciseSpecifications.nameIs("Bench Press");
+		Specification<Set> setSpecification = SetSpecifications.containsSatisfyingExercise(exerciseSpecification);
 		
-		boolean isSatisfied = specification.isSatisfiedBy(set);
+		boolean isSatisfied = setSpecification.isSatisfiedBy(set);
 		
 		assertTrue(isSatisfied);
 	}
 	
 	@Test
-	public void IsSatisfiedBy_SingleExerciseSetThatDoesntContainExercise_ReturnsFalse() {
+	public void IsSatisfiedBy_SingleExerciseSetThatDoesntContainSatisfyingExercise_ReturnsFalse() {
 		ExerciseDescription description = new ExerciseDescription("Bench Press");
 		Exercise exercise = new Exercise(description);
 		
 		SingleExerciseSet set = new SingleExerciseSet(exercise);
 		
-		ContainsExerciseSpecification specification = new ContainsExerciseSpecification("Squat");
+		Specification<Exercise> exerciseSpecification = ExerciseSpecifications.nameIs("Squat");
+		Specification<Set> setSpecification = SetSpecifications.containsSatisfyingExercise(exerciseSpecification);
 		
-		boolean isSatisfied = specification.isSatisfiedBy(set);
+		boolean isSatisfied = setSpecification.isSatisfiedBy(set);
 		
 		assertFalse(isSatisfied);
 	}
 	
 	@Test
-	public void IsSatisfiedBy_SupersetThatContainsExercise_ReturnsTrue() {
+	public void IsSatisfiedBy_SupersetThatContainsSatisfyingExercise_ReturnsTrue() {
 		ExerciseDescription description1 = new ExerciseDescription("Bench Press");
 		Exercise exercise1 = new Exercise(description1);
 		
@@ -56,15 +60,16 @@ public class ContainsExerciseSpecificationTests {
 		
 		Superset set = new Superset(exercises);
 		
-		ContainsExerciseSpecification specification = new ContainsExerciseSpecification("Bench Press");
+		Specification<Exercise> exerciseSpecification = ExerciseSpecifications.nameIs("Bench Press");
+		Specification<Set> setSpecification = SetSpecifications.containsSatisfyingExercise(exerciseSpecification);
 		
-		boolean isSatisfied = specification.isSatisfiedBy(set);
+		boolean isSatisfied = setSpecification.isSatisfiedBy(set);
 		
 		assertTrue(isSatisfied);
 	}
 	
 	@Test
-	public void IsSatisfiedBy_SupersetThatDoesntContainExercise_ReturnsFalse() {
+	public void IsSatisfiedBy_SupersetThatDoesntContainSatisfyingExercise_ReturnsFalse() {
 		ExerciseDescription description1 = new ExerciseDescription("Bench Press");
 		Exercise exercise1 = new Exercise(description1);
 		
@@ -75,9 +80,10 @@ public class ContainsExerciseSpecificationTests {
 		
 		Superset set = new Superset(exercises);
 		
-		ContainsExerciseSpecification specification = new ContainsExerciseSpecification("Squat");
+		Specification<Exercise> exerciseSpecification = ExerciseSpecifications.nameIs("Squat");
+		Specification<Set> setSpecification = SetSpecifications.containsSatisfyingExercise(exerciseSpecification);
 		
-		boolean isSatisfied = specification.isSatisfiedBy(set);
+		boolean isSatisfied = setSpecification.isSatisfiedBy(set);
 		
 		assertFalse(isSatisfied);
 	}

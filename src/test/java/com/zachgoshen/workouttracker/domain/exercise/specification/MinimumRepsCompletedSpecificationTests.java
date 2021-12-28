@@ -7,9 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workouttracker.domain.exercise.Exercise;
 import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescription;
-import com.zachgoshen.workouttracker.domain.exercise.specification.MinimumRepsSpecification;
 
-public class MinimumRepsSpecificationTests {
+public class MinimumRepsCompletedSpecificationTests {
 	
 	@Test
 	public void IsSatisfiedBy_ExerciseWithRepsCompletedGreaterThanMinimumReps_ReturnsTrue() {
@@ -17,7 +16,7 @@ public class MinimumRepsSpecificationTests {
 		Exercise exercise = new Exercise(description);
 		exercise.setRepsCompleted(8);
 		
-		MinimumRepsSpecification specification = new MinimumRepsSpecification(6);
+		MinimumRepsCompletedSpecification specification = new MinimumRepsCompletedSpecification(6);
 		
 		boolean isSatisfied = specification.isSatisfiedBy(exercise);
 		
@@ -30,7 +29,7 @@ public class MinimumRepsSpecificationTests {
 		Exercise exercise = new Exercise(description);
 		exercise.setRepsCompleted(8);
 		
-		MinimumRepsSpecification specification = new MinimumRepsSpecification(8);
+		MinimumRepsCompletedSpecification specification = new MinimumRepsCompletedSpecification(8);
 		
 		boolean isSatisfied = specification.isSatisfiedBy(exercise);
 		
@@ -43,7 +42,7 @@ public class MinimumRepsSpecificationTests {
 		Exercise exercise = new Exercise(description);
 		exercise.setRepsCompleted(6);
 		
-		MinimumRepsSpecification specification = new MinimumRepsSpecification(8);
+		MinimumRepsCompletedSpecification specification = new MinimumRepsCompletedSpecification(8);
 		
 		boolean isSatisfied = specification.isSatisfiedBy(exercise);
 		

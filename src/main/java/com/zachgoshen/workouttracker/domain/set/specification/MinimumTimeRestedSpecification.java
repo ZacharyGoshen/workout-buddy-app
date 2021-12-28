@@ -5,11 +5,11 @@ import java.util.Optional;
 import com.zachgoshen.workouttracker.domain.common.specification.Specification;
 import com.zachgoshen.workouttracker.domain.set.Set;
 
-public class MinimumRestTimeSpecification extends Specification<Set> {
+public class MinimumTimeRestedSpecification extends Specification<Set> {
 	
 	private final float minimumRestTime;
 	
-	public MinimumRestTimeSpecification(float restTime) {
+	public MinimumTimeRestedSpecification(float restTime) {
 		this.minimumRestTime = restTime;
 	}
 

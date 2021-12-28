@@ -3,8 +3,9 @@ package com.zachgoshen.workouttracker.application.set;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,10 +19,13 @@ public class SetController {
 	}
 	
 	@GetMapping("")
-	public List<SetWithWorkoutDetailsDto> findBy(@RequestParam(defaultValue = "") List<String> exerciseNames) {
-		SetQueryParameters parameters = new SetQueryParameters(exerciseNames);
-		
-		return setQueryService.findBy(parameters);
+	public List<SetWithWorkoutDetailsDto> findAll() {
+		return setQueryService.findAll();
+	}
+	
+	@PostMapping("/search")
+	public List<SetWithWorkoutDetailsDto> findByCriteria(@RequestBody SetSearchCriteriaDto criteria) {
+		return setQueryService.findBy(criteria);
 	}
 
 }

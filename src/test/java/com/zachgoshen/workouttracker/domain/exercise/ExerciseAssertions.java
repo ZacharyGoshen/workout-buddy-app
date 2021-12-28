@@ -2,8 +2,6 @@ package com.zachgoshen.workouttracker.domain.exercise;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.zachgoshen.workouttracker.domain.exercise.Exercise;
-
 public class ExerciseAssertions {
 	
 	public static void assertExercisesAreEqual(Exercise exercise1, Exercise exercise2) {

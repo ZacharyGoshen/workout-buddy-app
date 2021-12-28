@@ -5,11 +5,11 @@ import java.util.Optional;
 import com.zachgoshen.workouttracker.domain.common.specification.Specification;
 import com.zachgoshen.workouttracker.domain.exercise.Exercise;
 
-public class MinimumDurationSpecification extends Specification<Exercise> {
+public class MinimumTimePerformedSpecification extends Specification<Exercise> {
 	
 	private final float minimumDuration;
 
-	public MinimumDurationSpecification(float minimumDuration) {
+	public MinimumTimePerformedSpecification(float minimumDuration) {
 		this.minimumDuration = minimumDuration;
 	}
 

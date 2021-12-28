@@ -5,19 +5,19 @@ import java.util.Optional;
 import com.zachgoshen.workouttracker.domain.common.specification.Specification;
 import com.zachgoshen.workouttracker.domain.exercise.Exercise;
 
-public class MaximumRepsSpecification extends Specification<Exercise> {
+public class MinimumRepsCompletedSpecification extends Specification<Exercise> {
 	
-	private final int maximumReps;
+	private final int minimumReps;
 
-	public MaximumRepsSpecification(int maximumReps) {
-		this.maximumReps = maximumReps;
+	public MinimumRepsCompletedSpecification(int minimumReps) {
+		this.minimumReps = minimumReps;
 	}
 
 	@Override
 	public boolean isSatisfiedBy(Exercise candidate) {
 		Optional<Integer> repsCompleted = candidate.getRepsCompleted();
 		
-		return repsCompleted.isPresent() && repsCompleted.get() <= maximumReps;
+		return repsCompleted.isPresent() && repsCompleted.get() >= minimumReps;
 	}
 
 }

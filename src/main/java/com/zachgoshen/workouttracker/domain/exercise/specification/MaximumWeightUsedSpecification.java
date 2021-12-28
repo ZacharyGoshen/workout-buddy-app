@@ -5,11 +5,11 @@ import java.util.Optional;
 import com.zachgoshen.workouttracker.domain.common.specification.Specification;
 import com.zachgoshen.workouttracker.domain.exercise.Exercise;
 
-public class MaximumWeightSpecification extends Specification<Exercise> {
+public class MaximumWeightUsedSpecification extends Specification<Exercise> {
 	
 	private final float maximumWeight;
 
-	public MaximumWeightSpecification(float maximumWeight) {
+	public MaximumWeightUsedSpecification(float maximumWeight) {
 		this.maximumWeight = maximumWeight;
 	}
 

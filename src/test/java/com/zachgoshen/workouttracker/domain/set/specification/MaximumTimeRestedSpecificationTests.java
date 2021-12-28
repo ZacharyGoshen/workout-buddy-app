@@ -9,9 +9,8 @@ import com.zachgoshen.workouttracker.domain.exercise.Exercise;
 import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescription;
 import com.zachgoshen.workouttracker.domain.set.Set;
 import com.zachgoshen.workouttracker.domain.set.SingleExerciseSet;
-import com.zachgoshen.workouttracker.domain.set.specification.MaximumRestTimeSpecification;
 
-public class MaximumRestTimeSpecificationTests {
+public class MaximumTimeRestedSpecificationTests {
 	
 	@Test
 	public void IsSatisfiedBy_SetWithTimeRestedLessThanMaximumRestTime_ReturnsTrue() {
@@ -21,7 +20,7 @@ public class MaximumRestTimeSpecificationTests {
 		Set set = new SingleExerciseSet(exercise);
 		set.setTimeRested(90f);
 		
-		MaximumRestTimeSpecification specification = new MaximumRestTimeSpecification(180f);
+		MaximumTimeRestedSpecification specification = new MaximumTimeRestedSpecification(180f);
 		
 		boolean isSatisfied = specification.isSatisfiedBy(set);
 		
@@ -36,7 +35,7 @@ public class MaximumRestTimeSpecificationTests {
 		Set set = new SingleExerciseSet(exercise);
 		set.setTimeRested(90f);
 		
-		MaximumRestTimeSpecification specification = new MaximumRestTimeSpecification(90f);
+		MaximumTimeRestedSpecification specification = new MaximumTimeRestedSpecification(90f);
 		
 		boolean isSatisfied = specification.isSatisfiedBy(set);
 		
@@ -51,7 +50,7 @@ public class MaximumRestTimeSpecificationTests {
 		Set set = new SingleExerciseSet(exercise);
 		set.setTimeRested(180f);
 		
-		MaximumRestTimeSpecification specification = new MaximumRestTimeSpecification(90f);
+		MaximumTimeRestedSpecification specification = new MaximumTimeRestedSpecification(90f);
 		
 		boolean isSatisfied = specification.isSatisfiedBy(set);
 		

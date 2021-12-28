@@ -1,19 +1,19 @@
 package com.zachgoshen.workouttracker.domain.set.specification;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.zachgoshen.workouttracker.domain.common.specification.Specification;
+import com.zachgoshen.workouttracker.domain.exercise.Exercise;
 import com.zachgoshen.workouttracker.domain.set.Set;
 import com.zachgoshen.workouttracker.domain.set.SingleExerciseSet;
 import com.zachgoshen.workouttracker.domain.set.Superset;
 
-public class ContainsExerciseSpecification extends Specification<Set> {
+public class ContainsSatisfyingExerciseSpecification extends Specification<Set> {
 	
-	private final String exerciseName;
+	private final Specification<Exercise> exerciseSpecification;
 
-	public ContainsExerciseSpecification(String exerciseName) {
-		this.exerciseName = exerciseName;
+	public ContainsSatisfyingExerciseSpecification(Specification<Exercise> exerciseSpecification) {
+		this.exerciseSpecification = exerciseSpecification;
 	}
 
 	@Override
@@ -28,18 +28,21 @@ public class ContainsExerciseSpecification extends Specification<Set> {
 	}
 	
 	private boolean isSatisfiedBy(SingleExerciseSet candidate) {
-		String candidateExerciseName = candidate.getExercise().getDescription().getName();
+		Exercise exercise = candidate.getExercise();
 		
-		return candidateExerciseName.equals(exerciseName);
+		return exerciseSpecification.isSatisfiedBy(exercise);
 	}
 	
 	private boolean isSatisfiedBy(Superset candidate) {
-		List<String> candidateExerciseNames = candidate.getExercises()
-			.stream()
-			.map(exercise -> exercise.getDescription().getName())
-			.collect(Collectors.toList());
+		List<Exercise> exercises = candidate.getExercises();
 		
-		return candidateExerciseNames.contains(exerciseName);
+		for (Exercise exercise : exercises) {
+			if (exerciseSpecification.isSatisfiedBy(exercise)) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 }

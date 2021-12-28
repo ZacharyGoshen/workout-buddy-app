@@ -7,17 +7,16 @@ import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workouttracker.domain.exercise.Exercise;
 import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescription;
-import com.zachgoshen.workouttracker.domain.exercise.specification.MinimumWeightSpecification;
 
-public class MinimumWeightSpecificationTests {
+public class MaximumRepsCompletedSpecificationTests {
 	
 	@Test
-	public void IsSatisfiedBy_ExerciseWithWeightUsedGreaterThanMinimumWeight_ReturnsTrue() {
+	public void IsSatisfiedBy_ExerciseWithRepsCompletedLessThanMaximumReps_ReturnsTrue() {
 		ExerciseDescription description = new ExerciseDescription("Bench Press");
 		Exercise exercise = new Exercise(description);
-		exercise.setWeightUsed(200f);
+		exercise.setRepsCompleted(6);
 		
-		MinimumWeightSpecification specification = new MinimumWeightSpecification(100f);
+		MaximumRepsCompletedSpecification specification = new MaximumRepsCompletedSpecification(8);
 		
 		boolean isSatisfied = specification.isSatisfiedBy(exercise);
 		
@@ -25,12 +24,12 @@ public class MinimumWeightSpecificationTests {
 	}
 	
 	@Test
-	public void IsSatisfiedBy_ExerciseWithWeightUsedEqualToMinimumWeight_ReturnsTrue() {
+	public void IsSatisfiedBy_ExerciseWithRepsCompletedEqualToMaximumReps_ReturnsTrue() {
 		ExerciseDescription description = new ExerciseDescription("Bench Press");
 		Exercise exercise = new Exercise(description);
-		exercise.setWeightUsed(200f);
+		exercise.setRepsCompleted(8);
 		
-		MinimumWeightSpecification specification = new MinimumWeightSpecification(200f);
+		MaximumRepsCompletedSpecification specification = new MaximumRepsCompletedSpecification(8);
 		
 		boolean isSatisfied = specification.isSatisfiedBy(exercise);
 		
@@ -38,12 +37,12 @@ public class MinimumWeightSpecificationTests {
 	}
 
 	@Test
-	public void IsSatisfiedBy_ExerciseWithWeightUsedLessThanMinimumWeight_ReturnsFalse() {
+	public void IsSatisfiedBy_ExerciseWithRepsCompletedGreaterThanMaximumReps_ReturnsFalse() {
 		ExerciseDescription description = new ExerciseDescription("Bench Press");
 		Exercise exercise = new Exercise(description);
-		exercise.setWeightUsed(100f);
+		exercise.setRepsCompleted(8);
 		
-		MinimumWeightSpecification specification = new MinimumWeightSpecification(200f);
+		MaximumRepsCompletedSpecification specification = new MaximumRepsCompletedSpecification(6);
 		
 		boolean isSatisfied = specification.isSatisfiedBy(exercise);
 		

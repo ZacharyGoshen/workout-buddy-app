@@ -5,11 +5,11 @@ import java.util.Optional;
 import com.zachgoshen.workouttracker.domain.common.specification.Specification;
 import com.zachgoshen.workouttracker.domain.set.Set;
 
-public class MaximumRestTimeSpecification extends Specification<Set> {
+public class MaximumTimeRestedSpecification extends Specification<Set> {
 	
 	private final float maximumRestTime;
 	
-	public MaximumRestTimeSpecification(float restTime) {
+	public MaximumTimeRestedSpecification(float restTime) {
 		this.maximumRestTime = restTime;
 	}
 

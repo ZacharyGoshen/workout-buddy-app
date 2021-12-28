@@ -7,9 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workouttracker.domain.exercise.Exercise;
 import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescription;
-import com.zachgoshen.workouttracker.domain.exercise.specification.MaximumWeightSpecification;
 
-public class MaximumWeightSpecificationTests {
+public class MaximumWeightUsedSpecificationTests {
 	
 	@Test
 	public void IsSatisfiedBy_ExerciseWithWeightUsedLessThanMaximumWeight_ReturnsTrue() {
@@ -17,7 +16,7 @@ public class MaximumWeightSpecificationTests {
 		Exercise exercise = new Exercise(description);
 		exercise.setWeightUsed(100f);
 		
-		MaximumWeightSpecification specification = new MaximumWeightSpecification(200f);
+		MaximumWeightUsedSpecification specification = new MaximumWeightUsedSpecification(200f);
 		
 		boolean isSatisfied = specification.isSatisfiedBy(exercise);
 		
@@ -30,7 +29,7 @@ public class MaximumWeightSpecificationTests {
 		Exercise exercise = new Exercise(description);
 		exercise.setWeightUsed(200f);
 		
-		MaximumWeightSpecification specification = new MaximumWeightSpecification(200f);
+		MaximumWeightUsedSpecification specification = new MaximumWeightUsedSpecification(200f);
 		
 		boolean isSatisfied = specification.isSatisfiedBy(exercise);
 		
@@ -43,7 +42,7 @@ public class MaximumWeightSpecificationTests {
 		Exercise exercise = new Exercise(description);
 		exercise.setWeightUsed(200f);
 		
-		MaximumWeightSpecification specification = new MaximumWeightSpecification(100f);
+		MaximumWeightUsedSpecification specification = new MaximumWeightUsedSpecification(100f);
 		
 		boolean isSatisfied = specification.isSatisfiedBy(exercise);
 		

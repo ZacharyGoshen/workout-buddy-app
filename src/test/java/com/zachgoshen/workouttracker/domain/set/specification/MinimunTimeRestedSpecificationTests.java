@@ -9,9 +9,8 @@ import com.zachgoshen.workouttracker.domain.exercise.Exercise;
 import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescription;
 import com.zachgoshen.workouttracker.domain.set.Set;
 import com.zachgoshen.workouttracker.domain.set.SingleExerciseSet;
-import com.zachgoshen.workouttracker.domain.set.specification.MinimumRestTimeSpecification;
 
-public class MinimumRestTimeSpecificationTests {
+public class MinimunTimeRestedSpecificationTests {
 	
 	@Test
 	public void IsSatisfiedBy_SetWithTimeRestedGreaterThanMinimumRestTime_ReturnsTrue() {
@@ -21,7 +20,7 @@ public class MinimumRestTimeSpecificationTests {
 		Set set = new SingleExerciseSet(exercise);
 		set.setTimeRested(90f);
 		
-		MinimumRestTimeSpecification specification = new MinimumRestTimeSpecification(60f);
+		MinimumTimeRestedSpecification specification = new MinimumTimeRestedSpecification(60f);
 		
 		boolean isSatisfied = specification.isSatisfiedBy(set);
 		
@@ -36,7 +35,7 @@ public class MinimumRestTimeSpecificationTests {
 		Set set = new SingleExerciseSet(exercise);
 		set.setTimeRested(90f);
 		
-		MinimumRestTimeSpecification specification = new MinimumRestTimeSpecification(90f);
+		MinimumTimeRestedSpecification specification = new MinimumTimeRestedSpecification(90f);
 		
 		boolean isSatisfied = specification.isSatisfiedBy(set);
 		
@@ -51,7 +50,7 @@ public class MinimumRestTimeSpecificationTests {
 		Set set = new SingleExerciseSet(exercise);
 		set.setTimeRested(90f);
 		
-		MinimumRestTimeSpecification specification = new MinimumRestTimeSpecification(180f);
+		MinimumTimeRestedSpecification specification = new MinimumTimeRestedSpecification(180f);
 		
 		boolean isSatisfied = specification.isSatisfiedBy(set);
 		

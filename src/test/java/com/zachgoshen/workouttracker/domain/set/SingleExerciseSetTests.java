@@ -10,8 +10,6 @@ import org.junit.jupiter.api.Test;
 import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workouttracker.domain.exercise.Exercise;
 import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescription;
-import com.zachgoshen.workouttracker.domain.set.Set;
-import com.zachgoshen.workouttracker.domain.set.SingleExerciseSet;
 
 public class SingleExerciseSetTests extends SetTests {
 	

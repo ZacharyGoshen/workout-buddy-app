@@ -12,7 +12,6 @@ import com.zachgoshen.workouttracker.domain.exercise.Exercise;
 import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescription;
 import com.zachgoshen.workouttracker.domain.set.Set;
 import com.zachgoshen.workouttracker.domain.set.SingleExerciseSet;
-import com.zachgoshen.workouttracker.domain.set.specification.LatestCompletionTimeSpecification;
 
 public class LatestCompletionTimeSpecificationTests {
 	
