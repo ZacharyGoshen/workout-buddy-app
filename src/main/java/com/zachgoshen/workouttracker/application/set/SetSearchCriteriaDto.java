@@ -7,6 +7,9 @@ import com.zachgoshen.workouttracker.application.exercise.ExerciseSearchFilterDt
 
 public class SetSearchCriteriaDto {
 	
+	@JsonProperty("sortBy")
+	private String sortBy;
+	
 	@JsonProperty("exerciseFilters")
 	private List<ExerciseSearchFilterDto> exerciseFilters;
 	
@@ -15,6 +18,14 @@ public class SetSearchCriteriaDto {
 	
 	@JsonProperty("maximumTimeRested")
 	private Float maximumTimeRested;
+
+	public String getSortBy() {
+		return sortBy;
+	}
+
+	public void setSortBy(String sortBy) {
+		this.sortBy = sortBy;
+	}
 
 	public List<ExerciseSearchFilterDto> getExerciseFilters() {
 		return exerciseFilters;

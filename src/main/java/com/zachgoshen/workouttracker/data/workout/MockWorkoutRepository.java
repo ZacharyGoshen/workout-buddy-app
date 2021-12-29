@@ -1,5 +1,9 @@
 package com.zachgoshen.workouttracker.data.workout;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -71,21 +75,27 @@ public class MockWorkoutRepository implements WorkoutRepository {
 
 		Set sumoDeadliftSet = new SingleExerciseSet(sumoDeadlift);
 		sumoDeadliftSet.addMaximumRestTimeConstraint(180);
+		sumoDeadliftSet.setTimeCompleted(buildDateNMinutesAgo(50));
 		
 		Set hamstringCurlSet = new SingleExerciseSet(hamstringCurl);
 		hamstringCurlSet.addMaximumRestTimeConstraint(60);
+		hamstringCurlSet.setTimeCompleted(buildDateNMinutesAgo(40));
 		
 		Set latPulldownAndPullupSuperset = new Superset(Arrays.asList(latPulldown, pullup));
 		latPulldownAndPullupSuperset.addMaximumRestTimeConstraint(60);
+		latPulldownAndPullupSuperset.setTimeCompleted(buildDateNMinutesAgo(30));
 		
 		Set chestSupportedRowSet = new SingleExerciseSet(chestSupportedRow);
 		chestSupportedRowSet.addMaximumRestTimeConstraint(60);
+		chestSupportedRowSet.setTimeCompleted(buildDateNMinutesAgo(20));
 		
 		Set ezBarCurlSet = new SingleExerciseSet(ezBarCurl);
 		ezBarCurlSet.addMaximumRestTimeConstraint(60);
+		ezBarCurlSet.setTimeCompleted(buildDateNMinutesAgo(10));
 		
 		Set dumbbellCurlSet = new SingleExerciseSet(dumbbellCurl);
 		dumbbellCurlSet.addMaximumRestTimeConstraint(60);
+		dumbbellCurlSet.setTimeCompleted(buildDateNMinutesAgo(0));
 		
 		workout.appendSet(sumoDeadliftSet);
 		workout.duplicateLastSet();
@@ -137,6 +147,14 @@ public class MockWorkoutRepository implements WorkoutRepository {
 		if (!workouts.contains(workout)) {
 			workouts.add(workout);
 		}
+	}
+	
+	private static Date buildDateNMinutesAgo(int n) {
+		LocalDateTime localDateTime = LocalDateTime.now().minusMinutes(n);
+		ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.systemDefault());
+		Instant instant = zonedDateTime.toInstant();
+		
+		return Date.from(instant);
 	}
 
 }

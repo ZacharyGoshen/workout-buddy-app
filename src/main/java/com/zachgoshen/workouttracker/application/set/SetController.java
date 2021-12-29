@@ -2,7 +2,6 @@ package com.zachgoshen.workouttracker.application.set;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,11 +15,6 @@ public class SetController {
 	
 	public SetController(SetQueryApplicationService setQueryService) {
 		this.setQueryService = setQueryService;
-	}
-	
-	@GetMapping("")
-	public List<SetWithWorkoutDetailsDto> findAll() {
-		return setQueryService.findAll();
 	}
 	
 	@PostMapping("/search")

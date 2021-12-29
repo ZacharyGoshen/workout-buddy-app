@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.zachgoshen.workouttracker.domain.common.specification.Specification;
 import com.zachgoshen.workouttracker.domain.set.Set;
 import com.zachgoshen.workouttracker.domain.set.SetRepository;
+import com.zachgoshen.workouttracker.domain.set.SetSortOrder;
 import com.zachgoshen.workouttracker.domain.workout.Workout;
 import com.zachgoshen.workouttracker.domain.workout.WorkoutRepository;
 
@@ -25,30 +26,33 @@ public class SetQueryApplicationService {
 		this.workoutRepository = workoutRepository;
 	}
 	
-	public List<SetWithWorkoutDetailsDto> findAll() {
-		List<Set> sets = setRepository.findAll()
+	public List<SetWithWorkoutDetailsDto> findBy(SetSearchCriteriaDto criteria) {
+		Specification<Set> specification = SetSpecificationAssembler.assemble(criteria);
+		SetSortOrder sortOrder = getSortOrder(criteria);
+		
+		List<Set> sets = setRepository.findSortedBy(specification, sortOrder)
 			.stream()
 			.collect(Collectors.toList());
 		
 		return buildSetWithWorkoutDetailsDtos(sets);
 	}
 	
-	public List<SetWithWorkoutDetailsDto> findBy(SetSearchCriteriaDto criteria) {
-		Specification<Set> specification = SetSpecificationAssembler.assemble(criteria);
+	private static SetSortOrder getSortOrder(SetSearchCriteriaDto criteria) {
+		String sortBy = criteria.getSortBy();
 		
-		List<Set> sets = setRepository.findBy(specification)
-			.stream()
-			.collect(Collectors.toList());
-		
-		return buildSetWithWorkoutDetailsDtos(sets);
+		if (sortBy != null && sortBy.equals("leastRecentCompletionTime")) {
+			return SetSortOrder.LEAST_RECENT_COMPLETION_TIME;
+		} else {
+			return SetSortOrder.MOST_RECENT_COMPLETION_TIME;
+		}
 	}
 	
 	private List<SetWithWorkoutDetailsDto> buildSetWithWorkoutDetailsDtos(List<Set> sets) {
 		Map<Set, Workout> setToWorkout = buildSetToWorkoutMap(sets);
 		
-		return setToWorkout.entrySet()
+		return sets
 			.stream()
-			.map(entry -> SetWithWorkoutDetailsDtoAssembler.assemble(entry.getKey(), entry.getValue()))
+			.map(set -> SetWithWorkoutDetailsDtoAssembler.assemble(set, setToWorkout.get(set)))
 			.collect(Collectors.toList());
 	}
 	
