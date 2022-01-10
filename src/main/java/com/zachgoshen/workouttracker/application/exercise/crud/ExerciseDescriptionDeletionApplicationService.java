@@ -1,10 +1,11 @@
-package com.zachgoshen.workouttracker.application.exercise;
+package com.zachgoshen.workouttracker.application.exercise.crud;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.zachgoshen.workouttracker.application.exercise.UndeletableExerciseDescriptionException;
 import com.zachgoshen.workouttracker.domain.common.specification.Specification;
 import com.zachgoshen.workouttracker.domain.exercise.Exercise;
 import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescription;
@@ -15,12 +16,12 @@ import com.zachgoshen.workouttracker.domain.set.SetRepository;
 import com.zachgoshen.workouttracker.domain.set.specification.SetSpecifications;
 
 @Service
-public class ExerciseDescriptionDeleteApplicationService {
+public class ExerciseDescriptionDeletionApplicationService {
 	
 	private final ExerciseDescriptionRepository exerciseDescriptionRepository;
 	private final SetRepository setRepository;
 	
-	public ExerciseDescriptionDeleteApplicationService(
+	public ExerciseDescriptionDeletionApplicationService(
 			ExerciseDescriptionRepository exerciseDescriptionRepository, 
 			SetRepository setRepository) {
 		

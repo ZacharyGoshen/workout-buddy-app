@@ -8,11 +8,7 @@ public class ExerciseDescription {
 	private String name;
 	
 	public ExerciseDescription(String name) {
-		this(UUID.randomUUID().toString(), name);
-	}
-	
-	public ExerciseDescription(String id, String name) {
-		this.id = id;
+		this.id = UUID.randomUUID().toString();
 		this.name = name;
 	}
 

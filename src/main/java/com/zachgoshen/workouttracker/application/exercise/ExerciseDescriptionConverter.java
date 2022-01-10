@@ -24,13 +24,7 @@ public class ExerciseDescriptionConverter {
 			throw new DtoConversionException("Name can't be null");
 		}
 		
-		String id = dto.getId();
-		
-		if (id == null) {
-			return new ExerciseDescription(name);
-		} else {
-			return new ExerciseDescription(id, name);
-		}
+		return new ExerciseDescription(name);
 	}
 
 }

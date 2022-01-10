@@ -1,10 +1,12 @@
-package com.zachgoshen.workouttracker.application.exercise;
+package com.zachgoshen.workouttracker.application.exercise.crud;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.zachgoshen.workouttracker.application.exercise.ExerciseDescriptionConverter;
+import com.zachgoshen.workouttracker.application.exercise.ExerciseDescriptionDto;
 import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescriptionRepository;
 
 @Service

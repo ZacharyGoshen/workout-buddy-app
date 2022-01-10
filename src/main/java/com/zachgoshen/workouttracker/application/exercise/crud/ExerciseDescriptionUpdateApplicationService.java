@@ -1,8 +1,11 @@
-package com.zachgoshen.workouttracker.application.exercise;
+package com.zachgoshen.workouttracker.application.exercise.crud;
 
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+
+import com.zachgoshen.workouttracker.application.exercise.ExerciseDescriptionDto;
+import com.zachgoshen.workouttracker.application.exercise.NonexistentExerciseDescriptionException;
 import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescription;
 import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescriptionRepository;
 
