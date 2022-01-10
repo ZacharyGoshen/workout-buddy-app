@@ -6,7 +6,9 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workouttracker.domain.exercise.Exercise;
 import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescription;
+import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescriptionRepository;
 import com.zachgoshen.workouttracker.domain.set.Set;
 import com.zachgoshen.workouttracker.domain.set.SingleExerciseSet;
 import com.zachgoshen.workouttracker.domain.set.Superset;
@@ -23,28 +26,40 @@ import com.zachgoshen.workouttracker.domain.workout.WorkoutRepository;
 @Repository
 public class MockWorkoutRepository implements WorkoutRepository {
 	
+	private final ExerciseDescriptionRepository exerciseDescriptionRepository;
+	
 	private final List<Workout> workouts;
 	
-	public MockWorkoutRepository() throws InvalidRangeException {
+	public MockWorkoutRepository(ExerciseDescriptionRepository exerciseDescriptionRepository) throws InvalidRangeException {
+		this.exerciseDescriptionRepository = exerciseDescriptionRepository;
+		
 		workouts = buildWorkouts();
 	}
 	
-	private static List<Workout> buildWorkouts() throws InvalidRangeException {
+	private List<Workout> buildWorkouts() throws InvalidRangeException {
 		return Arrays.asList(buildPullDay1());
 	}
 	
-	private static Workout buildPullDay1() throws InvalidRangeException {
+	private Workout buildPullDay1() throws InvalidRangeException {
 		Workout workout = new Workout();
 		workout.setName("Pull Day 1");
 		workout.setTimeCompleted(new Date());
+
+		List<ExerciseDescription> exerciseDescriptions = exerciseDescriptionRepository.findAll();
+		Map<String, ExerciseDescription> nameToExerciseDescription = new HashMap<>();
 		
-		ExerciseDescription sumoDeadliftDescription = new ExerciseDescription("Sumo Deadlift");
-		ExerciseDescription hamstringCurlDescription = new ExerciseDescription("Hamstring Curl");
-		ExerciseDescription latPulldownDescription = new ExerciseDescription("Lat Pulldown");
-		ExerciseDescription pullupDescription = new ExerciseDescription("Pullup");
-		ExerciseDescription chestSupportedRowDescription = new ExerciseDescription("Chest Supported Row");
-		ExerciseDescription ezBarCurlDescription = new ExerciseDescription("EZ Bar Curl");
-		ExerciseDescription dumbbellCurlDescription = new ExerciseDescription("Dumbbell Curl");
+		for (ExerciseDescription exerciseDescription : exerciseDescriptions) {
+			String name = exerciseDescription.getName();
+			nameToExerciseDescription.put(name, exerciseDescription);
+		}
+		
+		ExerciseDescription sumoDeadliftDescription = nameToExerciseDescription.get("Sumo Deadlift");
+		ExerciseDescription hamstringCurlDescription =  nameToExerciseDescription.get("Hamstring Curl");
+		ExerciseDescription latPulldownDescription =  nameToExerciseDescription.get("Lat Pulldown");
+		ExerciseDescription pullupDescription =  nameToExerciseDescription.get("Pullup");
+		ExerciseDescription chestSupportedRowDescription =  nameToExerciseDescription.get("Chest Supported Row");
+		ExerciseDescription ezBarCurlDescription =  nameToExerciseDescription.get("EZ Bar Curl");
+		ExerciseDescription dumbbellCurlDescription =  nameToExerciseDescription.get("Dumbbell Curl");
 
 		Exercise sumoDeadlift = new Exercise(sumoDeadliftDescription);
 		sumoDeadlift.addBoundedRepsConstraint(6, 8);

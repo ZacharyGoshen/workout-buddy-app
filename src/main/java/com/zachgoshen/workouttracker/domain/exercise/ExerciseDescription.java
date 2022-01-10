@@ -5,10 +5,14 @@ import java.util.UUID;
 public class ExerciseDescription {
 
 	private final String id;
-	private final String name;
+	private String name;
 	
 	public ExerciseDescription(String name) {
-		id = UUID.randomUUID().toString();
+		this(UUID.randomUUID().toString(), name);
+	}
+	
+	public ExerciseDescription(String id, String name) {
+		this.id = id;
 		this.name = name;
 	}
 
@@ -18,6 +22,10 @@ public class ExerciseDescription {
 
 	public String getName() {
 		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

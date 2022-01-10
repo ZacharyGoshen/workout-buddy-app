@@ -5,7 +5,6 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.zachgoshen.workouttracker.application.DtoConversionException;
-import com.zachgoshen.workouttracker.application.NonexistentWorkoutException;
 import com.zachgoshen.workouttracker.application.set.SetConverter;
 import com.zachgoshen.workouttracker.application.set.SetDto;
 import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;

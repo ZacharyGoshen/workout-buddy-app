@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zachgoshen.workouttracker.application.DtoConversionException;
-import com.zachgoshen.workouttracker.application.NonexistentWorkoutException;
 import com.zachgoshen.workouttracker.application.set.SetDto;
 import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
 

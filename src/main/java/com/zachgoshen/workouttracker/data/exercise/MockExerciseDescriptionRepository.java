@@ -1,60 +1,76 @@
 package com.zachgoshen.workouttracker.data.exercise;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
-import com.zachgoshen.workouttracker.domain.exercise.Exercise;
 import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescription;
 import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescriptionRepository;
-import com.zachgoshen.workouttracker.domain.set.Set;
-import com.zachgoshen.workouttracker.domain.set.SetRepository;
-import com.zachgoshen.workouttracker.domain.set.SingleExerciseSet;
-import com.zachgoshen.workouttracker.domain.set.Superset;
 
 @Repository
 public class MockExerciseDescriptionRepository implements ExerciseDescriptionRepository {
 	
-	private final SetRepository setRepository;
+	private final List<ExerciseDescription> descriptions;
 
-	public MockExerciseDescriptionRepository(SetRepository setRepository) {
-		this.setRepository = setRepository;
+	public MockExerciseDescriptionRepository() {
+		this.descriptions = buildDescriptions();
+	}
+	
+	private static List<ExerciseDescription> buildDescriptions() {
+		List<ExerciseDescription> descriptions = new ArrayList<>();
+		
+		ExerciseDescription sumoDeadliftDescription = new ExerciseDescription("Sumo Deadlift");
+		descriptions.add(sumoDeadliftDescription);
+		
+		ExerciseDescription hamstringCurlDescription = new ExerciseDescription("Hamstring Curl");
+		descriptions.add(hamstringCurlDescription);
+		
+		ExerciseDescription latPulldownDescription = new ExerciseDescription("Lat Pulldown");
+		descriptions.add(latPulldownDescription);
+		
+		ExerciseDescription pullupDescription = new ExerciseDescription("Pullup");
+		descriptions.add(pullupDescription);
+		
+		ExerciseDescription chestSupportedRowDescription = new ExerciseDescription("Chest Supported Row");
+		descriptions.add(chestSupportedRowDescription);
+		
+		ExerciseDescription ezBarCurlDescription = new ExerciseDescription("EZ Bar Curl");
+		descriptions.add(ezBarCurlDescription);
+		
+		ExerciseDescription dumbbellCurlDescription = new ExerciseDescription("Dumbbell Curl");
+		descriptions.add(dumbbellCurlDescription);
+		
+		return descriptions;
 	}
 
 	@Override
 	public List<ExerciseDescription> findAll() {
-		List<Set> sets = setRepository.findAll();
-		
-		return sets.stream()
-			.flatMap(set -> getUniqueExerciseDescriptionsFromSet(set).stream())
-			.distinct()
-			.collect(Collectors.toList());
-	}
-	
-	private static List<ExerciseDescription> getUniqueExerciseDescriptionsFromSet(Set set) {
-		List<Exercise> exercises = new ArrayList<>();
-		
-		if (set instanceof SingleExerciseSet) {
-			SingleExerciseSet singleExerciseSet = (SingleExerciseSet) set;
-			exercises = Arrays.asList(singleExerciseSet.getExercise());
-		} else if (set instanceof Superset) {
-			Superset superset = (Superset) set;
-			exercises = superset.getExercises();
-		}
-
-		List<ExerciseDescription> descriptions = new ArrayList<>();
-		
-		for (Exercise exercise : exercises) {
-			ExerciseDescription description = exercise.getDescription();
-			if (!descriptions.contains(description)) {
-				descriptions.add(description);
-			}
-		}
-		
 		return descriptions;
+	}
+
+	@Override
+	public Optional<ExerciseDescription> findById(String id) {
+		return descriptions.stream()
+			.filter(description -> description.getId().equals(id))
+			.findFirst();
+	}
+
+	@Override
+	public void save(ExerciseDescription description) {
+		if (!descriptions.contains(description)) {
+			descriptions.add(description);
+		}
+	}
+
+	@Override
+	public void deleteById(String id) {
+		Optional<ExerciseDescription> description = findById(id);
+		
+		if (description.isPresent()) {
+			descriptions.remove(description.get());
+		}
 	}
 
 }

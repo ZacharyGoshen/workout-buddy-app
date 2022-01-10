@@ -19,7 +19,7 @@ public class ExerciseDescriptionQueryApplicationService {
 	public List<ExerciseDescriptionDto> findAll() {
 		return repository.findAll()
 			.stream()
-			.map(description -> ExerciseDescriptionDtoAssembler.assemble(description))
+			.map(description -> ExerciseDescriptionConverter.toDto(description))
 			.collect(Collectors.toList());
 	}
 
