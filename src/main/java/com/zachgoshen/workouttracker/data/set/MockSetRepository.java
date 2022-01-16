@@ -3,6 +3,7 @@ package com.zachgoshen.workouttracker.data.set;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
@@ -57,10 +58,18 @@ public class MockSetRepository implements SetRepository {
 	private static Comparator<Set> buildLeastRecentCompletionTimeComparator() {
 		return new Comparator<Set>() {
 		    public int compare(Set set1, Set set2) {
-		        Date timeCompleted1 = set1.getTimeCompleted().get();
-		        Date timeCompleted2 = set2.getTimeCompleted().get();
-		        
-		        return timeCompleted1.compareTo(timeCompleted2);
+		    	Optional<Date> timeCompleted1 = set1.getTimeCompleted();
+		    	Optional<Date> timeCompleted2 = set2.getTimeCompleted();
+		    	
+		    	if (timeCompleted1.isPresent() && timeCompleted2.isPresent()) {
+		    		return timeCompleted1.get().compareTo(timeCompleted2.get());
+		    	} else if (timeCompleted1.isPresent()) {
+		    		return -1;
+		    	} else if (timeCompleted2.isPresent()) {
+		    		return 1;
+		    	} else {
+		    		return 0;
+		    	}
 		    }
 		};
 	}
@@ -68,10 +77,18 @@ public class MockSetRepository implements SetRepository {
 	private static Comparator<Set> buildMostRecentCompletionTimeComparator() {
 		return new Comparator<Set>() {
 		    public int compare(Set set1, Set set2) {
-		        Date timeCompleted1 = set1.getTimeCompleted().get();
-		        Date timeCompleted2 = set2.getTimeCompleted().get();
-		        
-		        return timeCompleted2.compareTo(timeCompleted1);
+		    	Optional<Date> timeCompleted1 = set1.getTimeCompleted();
+		    	Optional<Date> timeCompleted2 = set2.getTimeCompleted();
+		    	
+		    	if (timeCompleted1.isPresent() && timeCompleted2.isPresent()) {
+		    		return timeCompleted2.get().compareTo(timeCompleted1.get());
+		    	} else if (timeCompleted1.isPresent()) {
+		    		return -1;
+		    	} else if (timeCompleted2.isPresent()) {
+		    		return 1;
+		    	} else {
+		    		return 0;
+		    	}
 		    }
 		};
 	}

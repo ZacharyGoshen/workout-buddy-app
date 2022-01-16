@@ -55,6 +55,11 @@ public class WorkoutController {
 		return creationService.createAndReturnId(workout);
 	}
 	
+	@PostMapping("/{id}/copy")
+	public String createNotCompletedCopy(@PathVariable("id") String idOfWorkoutToCopy) throws NonexistentWorkoutException {
+		return creationService.createNotCompletedCopyAndReturnId(idOfWorkoutToCopy);
+	}
+	
 	@PutMapping("/{id}")
 	public void update(@PathVariable("id") String id, @RequestBody WorkoutDto workout) throws NonexistentWorkoutException {
 		updateService.update(id, workout);

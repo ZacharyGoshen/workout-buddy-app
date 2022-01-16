@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import com.zachgoshen.workouttracker.domain.set.Set;
 
@@ -20,6 +21,17 @@ public class Workout {
 		name = Optional.empty();
 		timeCompleted = Optional.empty();
 		sets = new ArrayList<>();
+	}
+	
+	public Workout(Workout workout) {
+		id = UUID.randomUUID().toString();
+		name = workout.getName();
+		timeCompleted = workout.getTimeCompleted();
+		
+		sets = workout.getSets()
+			.stream()
+			.map(set -> set.clone())
+			.collect(Collectors.toList());
 	}
 
 	public String getId() {
