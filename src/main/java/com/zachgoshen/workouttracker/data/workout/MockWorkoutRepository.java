@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -37,7 +38,11 @@ public class MockWorkoutRepository implements WorkoutRepository {
 	}
 	
 	private List<Workout> buildWorkouts() throws InvalidRangeException {
-		return Arrays.asList(buildPullDay1());
+		List<Workout> workouts = new ArrayList<>();
+		
+		workouts.add(buildPullDay1());
+		
+		return workouts;
 	}
 	
 	private Workout buildPullDay1() throws InvalidRangeException {
@@ -161,6 +166,15 @@ public class MockWorkoutRepository implements WorkoutRepository {
 	public void save(Workout workout) {
 		if (!workouts.contains(workout)) {
 			workouts.add(workout);
+		}
+	}
+
+	@Override
+	public void deleteById(String id) {
+		Optional<Workout> workout = findById(id);
+		
+		if (workout.isPresent()) {
+			workouts.remove(workout.get());
 		}
 	}
 	

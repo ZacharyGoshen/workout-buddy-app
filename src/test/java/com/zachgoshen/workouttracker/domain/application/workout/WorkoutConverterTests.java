@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workouttracker.application.workout.WorkoutDto;
-import com.zachgoshen.workouttracker.application.workout.WorkoutDtoAssembler;
+import com.zachgoshen.workouttracker.application.workout.WorkoutConverter;
 import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workouttracker.domain.exercise.Exercise;
 import com.zachgoshen.workouttracker.domain.exercise.ExerciseDescription;
@@ -17,7 +17,7 @@ import com.zachgoshen.workouttracker.domain.set.SingleExerciseSet;
 import com.zachgoshen.workouttracker.domain.set.Superset;
 import com.zachgoshen.workouttracker.domain.workout.Workout;
 
-public class WorkoutDtoAssemblerTests {
+public class WorkoutConverterTests {
 	
 	@Test
 	public void Assemble_WorkoutWithAllFieldsSet_DtoHasAllFieldsSet() throws InvalidRangeException {
@@ -27,7 +27,7 @@ public class WorkoutDtoAssemblerTests {
 		workout.appendSet(buildSingleExerciseSet());
 		workout.appendSet(buildSuperset());
 		
-		WorkoutDto dto = WorkoutDtoAssembler.assemble(workout);
+		WorkoutDto dto = WorkoutConverter.toDto(workout);
 		
 		assertWorkoutDtoMatchesWorkout(dto, workout);
 	}

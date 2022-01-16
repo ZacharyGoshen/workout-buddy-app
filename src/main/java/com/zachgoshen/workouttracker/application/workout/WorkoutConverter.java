@@ -9,9 +9,9 @@ import com.zachgoshen.workouttracker.application.set.SetDto;
 import com.zachgoshen.workouttracker.application.set.SetConverter;
 import com.zachgoshen.workouttracker.domain.workout.Workout;
 
-public class WorkoutDtoAssembler {
+public class WorkoutConverter {
 	
-	public static WorkoutDto assemble(Workout workout) {
+	public static WorkoutDto toDto(Workout workout) {
 		WorkoutDto dto = new WorkoutDto();
 		
 		dto.setId(workout.getId());
@@ -33,6 +33,10 @@ public class WorkoutDtoAssembler {
 		dto.setSets(sets);
 		
 		return dto;
+	}
+	
+	public static Workout toEntity(WorkoutDto dto) {
+		return null;
 	}
 
 }

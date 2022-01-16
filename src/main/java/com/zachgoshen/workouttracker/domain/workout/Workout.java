@@ -31,7 +31,7 @@ public class Workout {
 	}
 
 	public void setName(String name) {
-		this.name = Optional.of(name);
+		this.name = Optional.ofNullable(name);
 	}
 
 	public Optional<Date> getTimeCompleted() {
@@ -39,7 +39,7 @@ public class Workout {
 	}
 
 	public void setTimeCompleted(Date timeCompleted) {
-		this.timeCompleted = Optional.of(timeCompleted);
+		this.timeCompleted = Optional.ofNullable(timeCompleted);
 	}
 
 	public List<Set> getSets() {

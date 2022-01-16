@@ -54,7 +54,7 @@ public class ExerciseDescriptionController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable("id") String id) throws UndeletableExerciseDescriptionException {
+	public void deleteById(@PathVariable("id") String id) throws UndeletableExerciseDescriptionException {
 		exerciseDescriptionDeleteService.deleteById(id);
 	}
 

@@ -13,4 +13,6 @@ public interface WorkoutRepository {
 	
 	public void save(Workout workout);
 	
+	public void deleteById(String id);
+	
 }

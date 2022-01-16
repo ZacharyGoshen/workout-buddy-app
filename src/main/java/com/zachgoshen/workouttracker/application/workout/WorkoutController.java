@@ -2,15 +2,20 @@ package com.zachgoshen.workouttracker.application.workout;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zachgoshen.workouttracker.application.DtoConversionException;
 import com.zachgoshen.workouttracker.application.set.SetDto;
+import com.zachgoshen.workouttracker.application.workout.crud.WorkoutDeletionApplicationService;
+import com.zachgoshen.workouttracker.application.workout.crud.WorkoutQueryApplicationService;
+import com.zachgoshen.workouttracker.application.workout.crud.WorkoutUpdateApplicationService;
 import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
 
 @RestController
@@ -19,10 +24,16 @@ public class WorkoutController {
 
 	private final WorkoutQueryApplicationService queryService;
 	private final WorkoutUpdateApplicationService updateService;
+	private final WorkoutDeletionApplicationService deletionService;
 	
-	public WorkoutController(WorkoutQueryApplicationService queryService, WorkoutUpdateApplicationService updateService) {
+	public WorkoutController(
+			WorkoutQueryApplicationService queryService, 
+			WorkoutUpdateApplicationService updateService, 
+			WorkoutDeletionApplicationService deletionService) {
+		
 		this.queryService = queryService;
 		this.updateService = updateService;
+		this.deletionService = deletionService;
 	}
 	
 	@GetMapping("")
@@ -33,6 +44,16 @@ public class WorkoutController {
 	@GetMapping("/{id}")
 	public WorkoutDto findById(@PathVariable("id") String id) {
 		return queryService.findById(id);
+	}
+	
+	@PutMapping("/{id}")
+	public void update(@PathVariable("id") String id, @RequestBody WorkoutDto workout) throws NonexistentWorkoutException {
+		updateService.update(id, workout);
+	}
+	
+	@DeleteMapping("/{id}")
+	public void deleteById(@PathVariable("id") String id) {
+		deletionService.deleteById(id);
 	}
 	
 	@PostMapping("/{id}/addSet/{index}")

@@ -1,5 +1,6 @@
-package com.zachgoshen.workouttracker.application.workout;
+package com.zachgoshen.workouttracker.application.workout.crud;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -7,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.zachgoshen.workouttracker.application.DtoConversionException;
 import com.zachgoshen.workouttracker.application.set.SetConverter;
 import com.zachgoshen.workouttracker.application.set.SetDto;
+import com.zachgoshen.workouttracker.application.workout.NonexistentWorkoutException;
+import com.zachgoshen.workouttracker.application.workout.WorkoutDto;
 import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workouttracker.domain.set.Set;
 import com.zachgoshen.workouttracker.domain.workout.Workout;
@@ -19,6 +22,18 @@ public class WorkoutUpdateApplicationService {
 	
 	public WorkoutUpdateApplicationService(WorkoutRepository repository) {
 		this.repository = repository;
+	}
+	
+	public void update(String id, WorkoutDto dto) throws NonexistentWorkoutException {
+		Workout workout = tryToFindWorkoutById(id);
+		
+		String name = dto.getName();
+		workout.setName(name);
+		
+		Date timeCompleted = dto.getTimeCompleted();
+		workout.setTimeCompleted(timeCompleted);
+		
+		repository.save(workout);
 	}
 	
 	public void addSet(String workoutId, int setIndex, SetDto setDto) throws NonexistentWorkoutException, InvalidRangeException, DtoConversionException {
