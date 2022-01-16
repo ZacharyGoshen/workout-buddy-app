@@ -1,6 +1,7 @@
 package com.zachgoshen.workouttracker.domain.application.workout;
 
 import static com.zachgoshen.workouttracker.domain.application.workout.WorkoutDtoAssertions.assertWorkoutDtoMatchesWorkout;
+import static com.zachgoshen.workouttracker.domain.application.workout.WorkoutDtoAssertions.assertWorkoutDtoMatchesWorkoutWithoutComparingIds;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -9,6 +10,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workouttracker.application.workout.WorkoutDto;
+import com.zachgoshen.workouttracker.application.DtoConversionException;
+import com.zachgoshen.workouttracker.application.exercise.ExerciseDto;
+import com.zachgoshen.workouttracker.application.set.SetDto;
 import com.zachgoshen.workouttracker.application.workout.WorkoutConverter;
 import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workouttracker.domain.exercise.Exercise;
@@ -30,6 +34,22 @@ public class WorkoutConverterTests {
 		WorkoutDto dto = WorkoutConverter.toDto(workout);
 		
 		assertWorkoutDtoMatchesWorkout(dto, workout);
+	}
+	
+	@Test
+	public void Assemble_DtoWithAllFieldsSet_WorkoutHasAllFieldsSet() throws InvalidRangeException, DtoConversionException {
+		WorkoutDto workoutDto = new WorkoutDto();
+		workoutDto.setName("Push Day");
+		workoutDto.setTimeCompleted(new Date());
+		
+		SetDto singleExerciseSetDto = buildSingleExerciseSetDto();
+		SetDto supersetDto = buildSupersetDto();
+		List<SetDto> setDtos = Arrays.asList(singleExerciseSetDto, supersetDto);
+		workoutDto.setSets(setDtos);
+		
+		Workout workout = WorkoutConverter.toEntity(workoutDto);
+		
+		assertWorkoutDtoMatchesWorkoutWithoutComparingIds(workoutDto, workout);
 	}
 	
 	private static SingleExerciseSet buildSingleExerciseSet() throws InvalidRangeException {
@@ -78,6 +98,67 @@ public class WorkoutConverterTests {
 		exercise2.addBoundedDurationConstraint(30f, 90f);
 		
 		return exercise2;
+	}
+	
+	private static SetDto buildSingleExerciseSetDto() throws InvalidRangeException {
+		SetDto set = new SetDto();
+
+		set.setType("Single Exercise Set");
+		set.setTimeCompleted(new Date());
+		set.setTimeRested(180f);
+		set.setMinimumRestTimeAllowed(120f);
+		set.setMaximumRestTimeAllowed(240f);
+		
+		ExerciseDto exercise = buildExerciseDto1();
+		List<ExerciseDto> exercises = Arrays.asList(exercise);
+		set.setExercises(exercises);
+		
+		return set;
+	}
+	
+	private static SetDto buildSupersetDto() throws InvalidRangeException {
+		SetDto set = new SetDto();
+		
+		set.setType("Superset");
+		set.setTimeCompleted(new Date());
+		set.setTimeRested(180f);
+		set.setMinimumRestTimeAllowed(120f);
+		set.setMaximumRestTimeAllowed(240f);
+		
+		ExerciseDto exercise1 = buildExerciseDto1();
+		ExerciseDto exercise2 = buildExerciseDto2();
+		List<ExerciseDto> exercises = Arrays.asList(exercise1, exercise2);
+		set.setExercises(exercises);
+		
+		return set;
+	}
+	
+	private static ExerciseDto buildExerciseDto1() throws InvalidRangeException {
+		ExerciseDto exercise = new ExerciseDto();
+		
+		exercise.setName("Bench Press");
+		exercise.setWeightUsed(225f);
+		exercise.setMinimumWeightAllowed(220f);
+		exercise.setMaximumWeightAllowed(230f);
+		exercise.setRepsCompleted(5);
+		exercise.setMinimumRepsAllowed(4);
+		exercise.setMaximumRepsAllowed(6);
+		
+		return exercise;
+	}
+	
+	private static ExerciseDto buildExerciseDto2() throws InvalidRangeException {
+		ExerciseDto exercise = new ExerciseDto();
+		
+		exercise.setName("Pushup");
+		exercise.setRepsCompleted(20);
+		exercise.setMinimumRepsAllowed(15);
+		exercise.setMaximumRepsAllowed(25);
+		exercise.setTimePerformed(60f);
+		exercise.setMinimumDurationAllowed(30f);
+		exercise.setMaximumDurationAllowed(90f);
+		
+		return exercise;
 	}
 
 }

@@ -6,7 +6,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.zachgoshen.workouttracker.application.set.SetDto;
+import com.zachgoshen.workouttracker.application.DtoConversionException;
 import com.zachgoshen.workouttracker.application.set.SetConverter;
+import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
+import com.zachgoshen.workouttracker.domain.set.Set;
 import com.zachgoshen.workouttracker.domain.workout.Workout;
 
 public class WorkoutConverter {
@@ -35,8 +38,21 @@ public class WorkoutConverter {
 		return dto;
 	}
 	
-	public static Workout toEntity(WorkoutDto dto) {
-		return null;
+	public static Workout toEntity(WorkoutDto workoutDto) throws DtoConversionException, InvalidRangeException {
+		Workout workout = new Workout();
+		
+		String name = workoutDto.getName();
+		workout.setName(name);
+		
+		Date timeCompleted = workoutDto.getTimeCompleted();
+		workout.setTimeCompleted(timeCompleted);
+		
+		for (SetDto setDto : workoutDto.getSets()) {
+			Set set = SetConverter.toEntity(setDto);
+			workout.appendSet(set);
+		}
+		
+		return workout;
 	}
 
 }

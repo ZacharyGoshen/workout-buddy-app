@@ -10,6 +10,10 @@ public class WorkoutDtoAssertions {
 	
 	public static void assertWorkoutDtoMatchesWorkout(WorkoutDto dto, Workout workout) {
 		assertEquals(workout.getId(), dto.getId());
+		assertWorkoutDtoMatchesWorkoutWithoutComparingIds(dto, workout);
+	}
+	
+	public static void assertWorkoutDtoMatchesWorkoutWithoutComparingIds(WorkoutDto dto, Workout workout) {
 		assertEquals(workout.getName().orElse(null), dto.getName());
 		assertEquals(workout.getTimeCompleted().orElse(null), dto.getTimeCompleted());
 		

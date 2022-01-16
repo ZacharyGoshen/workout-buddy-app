@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zachgoshen.workouttracker.application.DtoConversionException;
 import com.zachgoshen.workouttracker.application.set.SetDto;
+import com.zachgoshen.workouttracker.application.workout.crud.WorkoutCreationApplicationService;
 import com.zachgoshen.workouttracker.application.workout.crud.WorkoutDeletionApplicationService;
 import com.zachgoshen.workouttracker.application.workout.crud.WorkoutQueryApplicationService;
 import com.zachgoshen.workouttracker.application.workout.crud.WorkoutUpdateApplicationService;
@@ -23,15 +24,18 @@ import com.zachgoshen.workouttracker.domain.common.math.InvalidRangeException;
 public class WorkoutController {
 
 	private final WorkoutQueryApplicationService queryService;
+	private final WorkoutCreationApplicationService creationService;
 	private final WorkoutUpdateApplicationService updateService;
 	private final WorkoutDeletionApplicationService deletionService;
 	
 	public WorkoutController(
 			WorkoutQueryApplicationService queryService, 
+			WorkoutCreationApplicationService creationService,
 			WorkoutUpdateApplicationService updateService, 
 			WorkoutDeletionApplicationService deletionService) {
 		
 		this.queryService = queryService;
+		this.creationService = creationService;
 		this.updateService = updateService;
 		this.deletionService = deletionService;
 	}
@@ -44,6 +48,11 @@ public class WorkoutController {
 	@GetMapping("/{id}")
 	public WorkoutDto findById(@PathVariable("id") String id) {
 		return queryService.findById(id);
+	}
+	
+	@PostMapping("")
+	public String create(@RequestBody WorkoutDto workout) throws DtoConversionException, InvalidRangeException {
+		return creationService.createAndReturnId(workout);
 	}
 	
 	@PutMapping("/{id}")
