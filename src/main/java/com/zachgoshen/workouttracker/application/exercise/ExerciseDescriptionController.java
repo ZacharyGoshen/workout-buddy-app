@@ -48,9 +48,9 @@ public class ExerciseDescriptionController {
 		exerciseDescriptionCreationService.create(description);
 	}
 	
-	@PutMapping("")
-	public void update(@RequestBody ExerciseDescriptionDto description) throws NonexistentExerciseDescriptionException {
-		exerciseDescriptionUpdateService.update(description);
+	@PutMapping("/{id}")
+	public void update(@PathVariable("id") String id, @RequestBody ExerciseDescriptionDto description) throws NonexistentExerciseDescriptionException {
+		exerciseDescriptionUpdateService.update(id, description);
 	}
 	
 	@DeleteMapping("/{id}")

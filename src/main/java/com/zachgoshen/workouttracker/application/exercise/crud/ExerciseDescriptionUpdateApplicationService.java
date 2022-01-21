@@ -18,8 +18,7 @@ public class ExerciseDescriptionUpdateApplicationService {
 		this.repository = repository;
 	}
 	
-	public void update(ExerciseDescriptionDto dto) throws NonexistentExerciseDescriptionException {
-		String id = dto.getId();
+	public void update(String id, ExerciseDescriptionDto dto) throws NonexistentExerciseDescriptionException {
 		ExerciseDescription description = tryToFindExerciseDescriptionById(id);
 		
 		String name = dto.getName();
