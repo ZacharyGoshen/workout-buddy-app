@@ -1,6 +1,6 @@
-package com.zachgoshen.workouttracker.domain.application.set;
+package com.zachgoshen.workouttracker.application.set;
 
-import static com.zachgoshen.workouttracker.domain.application.set.SetDtoAssertions.assertSetDtoMatchesSet;
+import static com.zachgoshen.workouttracker.application.set.SetDtoAssertions.assertSetDtoMatchesSet;
 
 import java.util.Arrays;
 import java.util.Date;

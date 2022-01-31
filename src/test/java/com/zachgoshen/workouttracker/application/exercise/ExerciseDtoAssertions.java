@@ -1,4 +1,4 @@
-package com.zachgoshen.workouttracker.domain.application.exercise;
+package com.zachgoshen.workouttracker.application.exercise;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

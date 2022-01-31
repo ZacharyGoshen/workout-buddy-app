@@ -1,7 +1,7 @@
-package com.zachgoshen.workouttracker.domain.application.workout;
+package com.zachgoshen.workouttracker.application.workout;
 
-import static com.zachgoshen.workouttracker.domain.application.workout.WorkoutDtoAssertions.assertWorkoutDtoMatchesWorkout;
-import static com.zachgoshen.workouttracker.domain.application.workout.WorkoutDtoAssertions.assertWorkoutDtoMatchesWorkoutWithoutComparingIds;
+import static com.zachgoshen.workouttracker.application.workout.WorkoutDtoAssertions.assertWorkoutDtoMatchesWorkout;
+import static com.zachgoshen.workouttracker.application.workout.WorkoutDtoAssertions.assertWorkoutDtoMatchesWorkoutWithoutComparingIds;
 
 import java.util.Arrays;
 import java.util.Date;

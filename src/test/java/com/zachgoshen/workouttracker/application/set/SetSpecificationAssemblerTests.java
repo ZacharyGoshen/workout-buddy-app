@@ -1,4 +1,4 @@
-package com.zachgoshen.workouttracker.domain.application.set;
+package com.zachgoshen.workouttracker.application.set;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

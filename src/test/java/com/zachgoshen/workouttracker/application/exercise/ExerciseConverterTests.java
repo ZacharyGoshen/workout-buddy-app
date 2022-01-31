@@ -1,6 +1,6 @@
-package com.zachgoshen.workouttracker.domain.application.exercise;
+package com.zachgoshen.workouttracker.application.exercise;
 
-import static com.zachgoshen.workouttracker.domain.application.exercise.ExerciseDtoAssertions.assertExerciseDtoMatchesExercise;
+import static com.zachgoshen.workouttracker.application.exercise.ExerciseDtoAssertions.assertExerciseDtoMatchesExercise;
 
 import org.junit.jupiter.api.Test;
 
