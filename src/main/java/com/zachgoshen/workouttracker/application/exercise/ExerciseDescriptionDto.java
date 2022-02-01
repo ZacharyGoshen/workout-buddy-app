@@ -1,5 +1,7 @@
 package com.zachgoshen.workouttracker.application.exercise;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ExerciseDescriptionDto {
@@ -9,6 +11,9 @@ public class ExerciseDescriptionDto {
 	
 	@JsonProperty("name")
 	private String name;
+	
+	@JsonProperty("muscleGroups")
+	private List<String> muscleGroups; 
 
 	public String getId() {
 		return id;
@@ -24,6 +29,14 @@ public class ExerciseDescriptionDto {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<String> getMuscleGroups() {
+		return muscleGroups;
+	}
+
+	public void setMuscleGroups(List<String> muscleGroups) {
+		this.muscleGroups = muscleGroups;
 	}
 
 }

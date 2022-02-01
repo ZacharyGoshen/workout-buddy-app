@@ -49,7 +49,7 @@ public class ExerciseDescriptionController {
 	}
 	
 	@PutMapping("/{id}")
-	public void update(@PathVariable("id") String id, @RequestBody ExerciseDescriptionDto description) throws NonexistentExerciseDescriptionException {
+	public void update(@PathVariable("id") String id, @RequestBody ExerciseDescriptionDto description) throws DtoConversionException, NonexistentExerciseDescriptionException {
 		exerciseDescriptionUpdateService.update(id, description);
 	}
 	

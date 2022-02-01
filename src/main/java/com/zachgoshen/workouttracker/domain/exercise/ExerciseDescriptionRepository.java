@@ -11,6 +11,8 @@ public interface ExerciseDescriptionRepository {
 	
 	public void save(ExerciseDescription description);
 	
-	public void deleteById(String name);
+	public void deleteById(String id);
+	
+	public boolean existsById(String id);
 
 }
