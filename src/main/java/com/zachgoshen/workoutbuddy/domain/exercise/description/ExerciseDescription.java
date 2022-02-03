@@ -8,6 +8,7 @@ public class ExerciseDescription {
 
 	private final String id;
 	private String name;
+	private String notes;
 	private List<MuscleGroup> muscleGroups;
 	
 	public ExerciseDescription(String name) {
@@ -26,6 +27,14 @@ public class ExerciseDescription {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 
 	public List<MuscleGroup> getMuscleGroups() {

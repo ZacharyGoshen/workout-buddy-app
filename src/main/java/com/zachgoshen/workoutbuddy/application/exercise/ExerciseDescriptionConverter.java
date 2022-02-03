@@ -18,6 +18,9 @@ public class ExerciseDescriptionConverter {
 		String name = description.getName();
 		dto.setName(name);
 		
+		String notes = description.getNotes();
+		dto.setNotes(notes);
+		
 		List<MuscleGroup> muscleGroups = description.getMuscleGroups();
 		List<String> muscleGroupStrings = buildMuscleGroupStrings(muscleGroups);
 		dto.setMuscleGroups(muscleGroupStrings);
@@ -43,16 +46,19 @@ public class ExerciseDescriptionConverter {
 			throw new DtoConversionException("Name can't be null");
 		}
 		
-		ExerciseDescription exerciseDescription = new ExerciseDescription(name);
+		ExerciseDescription description = new ExerciseDescription(name);
+		
+		String notes = dto.getNotes();
+		description.setNotes(notes);
 		
 		List<String> muscleGroupStrings = dto.getMuscleGroups();
 		
 		for (String muscleGroupString : muscleGroupStrings) {
 			MuscleGroup muscleGroup = MuscleGroupConverter.toEnum(muscleGroupString);
-			exerciseDescription.addMuscleGroup(muscleGroup);
+			description.addMuscleGroup(muscleGroup);
 		}
 		
-		return exerciseDescription;
+		return description;
 	}
 
 }

@@ -34,10 +34,12 @@ public class MockExerciseDescriptionRepository implements ExerciseDescriptionRep
 		descriptions.add(sumoDeadliftDescription);
 		
 		ExerciseDescription hamstringCurlDescription = new ExerciseDescription("Hamstring Curl");
+		hamstringCurlDescription.setNotes("Fully extend legs.");
 		hamstringCurlDescription.addMuscleGroup(MuscleGroup.BICEPS);
 		descriptions.add(hamstringCurlDescription);
 		
 		ExerciseDescription latPulldownDescription = new ExerciseDescription("Lat Pulldown");
+		latPulldownDescription.setNotes("Use wrist straps.");
 		latPulldownDescription.addMuscleGroup(MuscleGroup.BICEPS);
 		latPulldownDescription.addMuscleGroup(MuscleGroup.LATS);
 		descriptions.add(latPulldownDescription);
@@ -48,6 +50,7 @@ public class MockExerciseDescriptionRepository implements ExerciseDescriptionRep
 		descriptions.add(pullupDescription);
 		
 		ExerciseDescription chestSupportedRowDescription = new ExerciseDescription("Chest Supported Row");
+		chestSupportedRowDescription.setNotes("Use wrist straps.");
 		chestSupportedRowDescription.addMuscleGroup(MuscleGroup.BICEPS);
 		chestSupportedRowDescription.addMuscleGroup(MuscleGroup.LATS);
 		descriptions.add(chestSupportedRowDescription);

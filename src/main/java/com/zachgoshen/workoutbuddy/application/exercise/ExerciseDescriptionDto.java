@@ -12,6 +12,9 @@ public class ExerciseDescriptionDto {
 	@JsonProperty("name")
 	private String name;
 	
+	@JsonProperty("notes")
+	private String notes;
+	
 	@JsonProperty("muscleGroups")
 	private List<String> muscleGroups; 
 
@@ -29,6 +32,14 @@ public class ExerciseDescriptionDto {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 
 	public List<String> getMuscleGroups() {

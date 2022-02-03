@@ -9,8 +9,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workoutbuddy.application.DtoConversionException;
-import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionConverter;
-import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionDto;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.MuscleGroup;
 
@@ -19,6 +17,7 @@ public class ExerciseDescriptionConverterTests {
 	@Test
 	public void ToDto_ExerciseDescriptionWithAllFieldsSet_DtoHasAllFieldsSet() throws DtoConversionException {
 		ExerciseDescription description = new ExerciseDescription("Bench Press");
+		description.setNotes("Arch back and keep feet planted.");
 		description.addMuscleGroup(MuscleGroup.PECS);
 		description.addMuscleGroup(MuscleGroup.TRICEPS);
 		description.addMuscleGroup(MuscleGroup.DELTS);
@@ -27,6 +26,7 @@ public class ExerciseDescriptionConverterTests {
 
 		assertEquals(description.getId(), dto.getId());
 		assertEquals(description.getName(), dto.getName());
+		assertEquals(description.getNotes(), dto.getNotes());
 		assertEquals(3, dto.getMuscleGroups().size());
 		assertTrue(dto.getMuscleGroups().contains("Pecs"));
 		assertTrue(dto.getMuscleGroups().contains("Triceps"));
@@ -37,6 +37,7 @@ public class ExerciseDescriptionConverterTests {
 	public void ToEntity_DtoWithAllFieldsSet_ExerciseDescriptionHasAllFieldsSet() throws DtoConversionException {
 		ExerciseDescriptionDto dto = new ExerciseDescriptionDto();
 		dto.setName("Bench Press");
+		dto.setNotes("Arch back and keep feet planted.");
 		
 		List<String> muscleGroups = Arrays.asList("Pecs", "Triceps", "Delts");
 		dto.setMuscleGroups(muscleGroups);
@@ -44,6 +45,7 @@ public class ExerciseDescriptionConverterTests {
 		ExerciseDescription description = ExerciseDescriptionConverter.toEntity(dto);
 
 		assertEquals(dto.getName(), description.getName());
+		assertEquals(dto.getNotes(), description.getNotes());
 		assertEquals(3, description.getMuscleGroups().size());
 		assertTrue(description.getMuscleGroups().contains(MuscleGroup.PECS));
 		assertTrue(description.getMuscleGroups().contains(MuscleGroup.TRICEPS));
