@@ -16,8 +16,8 @@ import org.springframework.stereotype.Repository;
 
 import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
-import com.zachgoshen.workoutbuddy.domain.exercise.ExerciseDescription;
-import com.zachgoshen.workoutbuddy.domain.exercise.ExerciseDescriptionRepository;
+import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
+import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionRepository;
 import com.zachgoshen.workoutbuddy.domain.set.Set;
 import com.zachgoshen.workoutbuddy.domain.set.SingleExerciseSet;
 import com.zachgoshen.workoutbuddy.domain.set.Superset;

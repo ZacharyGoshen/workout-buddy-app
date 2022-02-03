@@ -1,11 +1,15 @@
-package com.zachgoshen.workoutbuddy.domain.exercise;
+package com.zachgoshen.workoutbuddy.domain.exercise.description;
 
 import java.util.List;
 import java.util.Optional;
 
+import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
+
 public interface ExerciseDescriptionRepository {
 	
 	public List<ExerciseDescription> findAll();
+	
+	public List<ExerciseDescription> findSortedBy(Specification<ExerciseDescription> specification, ExerciseDescriptionSortOrder sortOrder);
 	
 	public Optional<ExerciseDescription> findById(String id);
 	

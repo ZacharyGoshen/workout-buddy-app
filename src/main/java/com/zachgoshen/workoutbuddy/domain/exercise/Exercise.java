@@ -3,6 +3,7 @@ package com.zachgoshen.workoutbuddy.domain.exercise;
 import java.util.Optional;
 
 import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;
+import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
 
 public class Exercise {
 	

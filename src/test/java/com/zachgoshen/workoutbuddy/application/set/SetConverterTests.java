@@ -14,7 +14,7 @@ import com.zachgoshen.workoutbuddy.application.set.SetConverter;
 import com.zachgoshen.workoutbuddy.application.set.SetDto;
 import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
-import com.zachgoshen.workoutbuddy.domain.exercise.ExerciseDescription;
+import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
 import com.zachgoshen.workoutbuddy.domain.set.Set;
 import com.zachgoshen.workoutbuddy.domain.set.SingleExerciseSet;
 import com.zachgoshen.workoutbuddy.domain.set.Superset;

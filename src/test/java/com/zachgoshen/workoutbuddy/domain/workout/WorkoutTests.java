@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
-import com.zachgoshen.workoutbuddy.domain.exercise.ExerciseDescription;
+import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
 import com.zachgoshen.workoutbuddy.domain.set.Set;
 import com.zachgoshen.workoutbuddy.domain.set.SingleExerciseSet;
 import com.zachgoshen.workoutbuddy.domain.workout.Workout;

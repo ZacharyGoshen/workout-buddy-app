@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workoutbuddy.application.DtoConversionException;
 import com.zachgoshen.workoutbuddy.application.exercise.MuscleGroupConverter;
-import com.zachgoshen.workoutbuddy.domain.exercise.MuscleGroup;
+import com.zachgoshen.workoutbuddy.domain.exercise.description.MuscleGroup;
 
 public class MuscleGroupConverterTests {
 	

@@ -5,7 +5,7 @@ import java.util.Optional;
 import com.zachgoshen.workoutbuddy.application.DtoConversionException;
 import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
-import com.zachgoshen.workoutbuddy.domain.exercise.ExerciseDescription;
+import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
 
 public class ExerciseConverter {
 	

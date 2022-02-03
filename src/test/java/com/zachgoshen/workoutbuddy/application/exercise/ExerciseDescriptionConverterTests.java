@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import com.zachgoshen.workoutbuddy.application.DtoConversionException;
 import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionConverter;
 import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionDto;
-import com.zachgoshen.workoutbuddy.domain.exercise.ExerciseDescription;
-import com.zachgoshen.workoutbuddy.domain.exercise.MuscleGroup;
+import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
+import com.zachgoshen.workoutbuddy.domain.exercise.description.MuscleGroup;
 
 public class ExerciseDescriptionConverterTests {
 	

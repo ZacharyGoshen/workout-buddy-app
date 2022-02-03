@@ -9,7 +9,7 @@ import com.zachgoshen.workoutbuddy.application.exercise.ExerciseSearchFilterDto;
 import com.zachgoshen.workoutbuddy.application.exercise.ExerciseSpecificationAssembler;
 import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
-import com.zachgoshen.workoutbuddy.domain.exercise.ExerciseDescription;
+import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
 
 public class ExerciseSpecificationAssemblerTests {
 	

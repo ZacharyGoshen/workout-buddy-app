@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import com.zachgoshen.workoutbuddy.application.DtoConversionException;
 import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionConverter;
 import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionDto;
-import com.zachgoshen.workoutbuddy.domain.exercise.ExerciseDescription;
-import com.zachgoshen.workoutbuddy.domain.exercise.ExerciseDescriptionRepository;
+import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
+import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionRepository;
 
 @Service
 public class ExerciseDescriptionCreationApplicationService {

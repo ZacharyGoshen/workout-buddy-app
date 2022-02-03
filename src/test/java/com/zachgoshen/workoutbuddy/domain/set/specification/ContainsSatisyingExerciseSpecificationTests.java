@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
-import com.zachgoshen.workoutbuddy.domain.exercise.ExerciseDescription;
+import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
 import com.zachgoshen.workoutbuddy.domain.exercise.specification.ExerciseSpecifications;
 import com.zachgoshen.workoutbuddy.domain.set.Set;
 import com.zachgoshen.workoutbuddy.domain.set.SingleExerciseSet;

@@ -1,4 +1,4 @@
-package com.zachgoshen.workoutbuddy.domain.exercise;
+package com.zachgoshen.workoutbuddy.domain.exercise.description;
 
 import java.util.ArrayList;
 import java.util.List;

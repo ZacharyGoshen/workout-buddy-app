@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
-import com.zachgoshen.workoutbuddy.domain.exercise.ExerciseDescription;
-import com.zachgoshen.workoutbuddy.domain.exercise.ExerciseDescriptionRepository;
-import com.zachgoshen.workoutbuddy.domain.exercise.MuscleGroup;
+import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
+import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
+import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionRepository;
+import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionSortOrder;
+import com.zachgoshen.workoutbuddy.domain.exercise.description.MuscleGroup;
 
 @Repository
 public class MockExerciseDescriptionRepository implements ExerciseDescriptionRepository {
@@ -62,8 +65,22 @@ public class MockExerciseDescriptionRepository implements ExerciseDescriptionRep
 
 	@Override
 	public List<ExerciseDescription> findAll() {
-		descriptions.sort(buildAlphabeticalNameComparator());
 		return descriptions;
+	}
+
+	@Override
+	public List<ExerciseDescription> findSortedBy(Specification<ExerciseDescription> specification, ExerciseDescriptionSortOrder sortOrder) {
+		List<ExerciseDescription> satisfyingDescriptions = descriptions.stream()
+			.filter(description -> specification.isSatisfiedBy(description))
+			.collect(Collectors.toList());
+		
+		if (sortOrder.equals(ExerciseDescriptionSortOrder.NAME_ALPHABETICALLY)) {
+			satisfyingDescriptions.sort(buildAlphabeticalNameComparator());
+		} else {
+			satisfyingDescriptions.sort(buildReverseAlphabeticalNameComparator());
+		}
+		
+		return satisfyingDescriptions;
 	}
 
 	@Override
@@ -103,6 +120,17 @@ public class MockExerciseDescriptionRepository implements ExerciseDescriptionRep
 		    	String name2 = decription2.getName();
 		    	
 		    	return name1.compareTo(name2);
+		    }
+		};
+	}
+	
+	private static Comparator<ExerciseDescription> buildReverseAlphabeticalNameComparator() {
+		return new Comparator<ExerciseDescription>() {
+		    public int compare(ExerciseDescription decription1, ExerciseDescription decription2) {
+		    	String name1 = decription1.getName();
+		    	String name2 = decription2.getName();
+		    	
+		    	return name2.compareTo(name1);
 		    }
 		};
 	}

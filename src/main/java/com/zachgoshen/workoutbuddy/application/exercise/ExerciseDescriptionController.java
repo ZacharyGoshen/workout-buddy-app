@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zachgoshen.workoutbuddy.application.DtoConversionException;
@@ -39,8 +40,10 @@ public class ExerciseDescriptionController {
 	}
 	
 	@GetMapping("")
-	public List<ExerciseDescriptionDto> findAll() {
-		return exerciseDescriptionQueryService.findAll();
+	public List<ExerciseDescriptionDto> findAll(
+			@RequestParam(name = "name", required = false) String name,
+			@RequestParam(name = "sortBy", required = false) String sortBy) {
+		return exerciseDescriptionQueryService.findAll(name, sortBy);
 	}
 	
 	@PostMapping("")
