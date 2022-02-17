@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.springframework.stereotype.Repository;
-
 import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
 import com.zachgoshen.workoutbuddy.domain.set.Set;
 import com.zachgoshen.workoutbuddy.domain.set.SetRepository;
@@ -15,7 +13,6 @@ import com.zachgoshen.workoutbuddy.domain.set.SetSortOrder;
 import com.zachgoshen.workoutbuddy.domain.workout.Workout;
 import com.zachgoshen.workoutbuddy.domain.workout.WorkoutRepository;
 
-@Repository
 public class MockSetRepository implements SetRepository {
 	
 	private final WorkoutRepository workoutRepository;

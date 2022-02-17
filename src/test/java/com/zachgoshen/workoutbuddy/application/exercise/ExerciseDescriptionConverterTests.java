@@ -8,7 +8,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.zachgoshen.workoutbuddy.application.DtoConversionException;
+import com.zachgoshen.workoutbuddy.api.DtoConversionException;
+import com.zachgoshen.workoutbuddy.api.exercise.ExerciseDescriptionConverter;
+import com.zachgoshen.workoutbuddy.api.exercise.ExerciseDescriptionDto;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.MuscleGroup;
 

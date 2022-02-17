@@ -3,7 +3,7 @@ package com.zachgoshen.workoutbuddy.application.set;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.zachgoshen.workoutbuddy.application.exercise.ExerciseSearchFilterDto;
+import com.zachgoshen.workoutbuddy.api.exercise.ExerciseSearchFilterDto;
 
 public class SetSearchCriteriaDto {
 	

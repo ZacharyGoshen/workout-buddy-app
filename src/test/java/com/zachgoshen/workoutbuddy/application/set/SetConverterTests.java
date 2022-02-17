@@ -8,8 +8,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.zachgoshen.workoutbuddy.application.DtoConversionException;
-import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDto;
+import com.zachgoshen.workoutbuddy.api.DtoConversionException;
+import com.zachgoshen.workoutbuddy.api.exercise.ExerciseDto;
 import com.zachgoshen.workoutbuddy.application.set.SetConverter;
 import com.zachgoshen.workoutbuddy.application.set.SetDto;
 import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;

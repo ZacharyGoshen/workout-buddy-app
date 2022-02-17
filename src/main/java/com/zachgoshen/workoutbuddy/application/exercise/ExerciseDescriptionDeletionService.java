@@ -1,11 +1,8 @@
-package com.zachgoshen.workoutbuddy.application.exercise.crud;
+package com.zachgoshen.workoutbuddy.application.exercise;
 
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.stereotype.Service;
-
-import com.zachgoshen.workoutbuddy.application.exercise.UndeletableExerciseDescriptionException;
 import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
@@ -15,13 +12,12 @@ import com.zachgoshen.workoutbuddy.domain.set.Set;
 import com.zachgoshen.workoutbuddy.domain.set.SetRepository;
 import com.zachgoshen.workoutbuddy.domain.set.specification.SetSpecifications;
 
-@Service
-public class ExerciseDescriptionDeletionApplicationService {
+public class ExerciseDescriptionDeletionService implements ExerciseDescriptionDeletionUseCase {
 	
 	private final ExerciseDescriptionRepository exerciseDescriptionRepository;
 	private final SetRepository setRepository;
 	
-	public ExerciseDescriptionDeletionApplicationService(
+	public ExerciseDescriptionDeletionService(
 			ExerciseDescriptionRepository exerciseDescriptionRepository, 
 			SetRepository setRepository) {
 		
@@ -29,6 +25,7 @@ public class ExerciseDescriptionDeletionApplicationService {
 		this.setRepository = setRepository;
 	}
 	
+	@Override
 	public void deleteById(String id) throws UndeletableExerciseDescriptionException {
 		boolean exerciseDescriptionIsUsedByAtLeastOneWorkout = isExerciseDescriptionUsedByAnyWorkouts(id);
 		if (exerciseDescriptionIsUsedByAtLeastOneWorkout) {

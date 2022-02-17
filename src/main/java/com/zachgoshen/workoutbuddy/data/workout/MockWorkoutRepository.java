@@ -12,8 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.springframework.stereotype.Repository;
-
 import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
@@ -24,7 +22,6 @@ import com.zachgoshen.workoutbuddy.domain.set.Superset;
 import com.zachgoshen.workoutbuddy.domain.workout.Workout;
 import com.zachgoshen.workoutbuddy.domain.workout.WorkoutRepository;
 
-@Repository
 public class MockWorkoutRepository implements WorkoutRepository {
 	
 	private final ExerciseDescriptionRepository exerciseDescriptionRepository;

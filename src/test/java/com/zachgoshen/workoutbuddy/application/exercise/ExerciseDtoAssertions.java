@@ -2,7 +2,7 @@ package com.zachgoshen.workoutbuddy.application.exercise;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDto;
+import com.zachgoshen.workoutbuddy.api.exercise.ExerciseDto;
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
 
 public class ExerciseDtoAssertions {

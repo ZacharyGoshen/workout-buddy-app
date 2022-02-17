@@ -1,4 +1,4 @@
-package com.zachgoshen.workoutbuddy.application;
+package com.zachgoshen.workoutbuddy.api;
 
 @SuppressWarnings("serial")
 public class DtoConversionException extends Exception {

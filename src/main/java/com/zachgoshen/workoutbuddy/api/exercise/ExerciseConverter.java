@@ -1,8 +1,8 @@
-package com.zachgoshen.workoutbuddy.application.exercise;
+package com.zachgoshen.workoutbuddy.api.exercise;
 
 import java.util.Optional;
 
-import com.zachgoshen.workoutbuddy.application.DtoConversionException;
+import com.zachgoshen.workoutbuddy.api.DtoConversionException;
 import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;

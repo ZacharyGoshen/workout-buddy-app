@@ -1,6 +1,6 @@
-package com.zachgoshen.workoutbuddy.application.exercise;
+package com.zachgoshen.workoutbuddy.api.exercise;
 
-import com.zachgoshen.workoutbuddy.application.DtoConversionException;
+import com.zachgoshen.workoutbuddy.api.DtoConversionException;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.MuscleGroup;
 
 public class MuscleGroupConverter {

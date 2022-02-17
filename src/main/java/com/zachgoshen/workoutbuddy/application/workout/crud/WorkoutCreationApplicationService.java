@@ -7,7 +7,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.zachgoshen.workoutbuddy.application.DtoConversionException;
+import com.zachgoshen.workoutbuddy.api.DtoConversionException;
 import com.zachgoshen.workoutbuddy.application.workout.NonexistentWorkoutException;
 import com.zachgoshen.workoutbuddy.application.workout.WorkoutConverter;
 import com.zachgoshen.workoutbuddy.application.workout.WorkoutDto;

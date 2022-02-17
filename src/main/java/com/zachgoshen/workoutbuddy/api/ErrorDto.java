@@ -1,4 +1,4 @@
-package com.zachgoshen.workoutbuddy.application;
+package com.zachgoshen.workoutbuddy.api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

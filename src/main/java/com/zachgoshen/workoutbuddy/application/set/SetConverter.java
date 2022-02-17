@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.zachgoshen.workoutbuddy.application.DtoConversionException;
-import com.zachgoshen.workoutbuddy.application.exercise.ExerciseConverter;
-import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDto;
+import com.zachgoshen.workoutbuddy.api.DtoConversionException;
+import com.zachgoshen.workoutbuddy.api.exercise.ExerciseConverter;
+import com.zachgoshen.workoutbuddy.api.exercise.ExerciseDto;
 import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
 import com.zachgoshen.workoutbuddy.domain.set.Set;

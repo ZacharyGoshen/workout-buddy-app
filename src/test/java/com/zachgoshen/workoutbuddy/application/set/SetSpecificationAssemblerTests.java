@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import com.zachgoshen.workoutbuddy.application.exercise.ExerciseSearchFilterDto;
+import com.zachgoshen.workoutbuddy.api.exercise.ExerciseSearchFilterDto;
 import com.zachgoshen.workoutbuddy.application.set.SetSearchCriteriaDto;
 import com.zachgoshen.workoutbuddy.application.set.SetSpecificationAssembler;
 import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.zachgoshen.workoutbuddy.application.exercise.ExerciseSearchFilterDto;
-import com.zachgoshen.workoutbuddy.application.exercise.ExerciseSpecificationAssembler;
+import com.zachgoshen.workoutbuddy.api.exercise.ExerciseSearchFilterDto;
+import com.zachgoshen.workoutbuddy.api.exercise.ExerciseSpecificationAssembler;
 import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
 import com.zachgoshen.workoutbuddy.domain.set.Set;
 import com.zachgoshen.workoutbuddy.domain.set.specification.SetSpecifications;

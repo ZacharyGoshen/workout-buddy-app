@@ -9,8 +9,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.zachgoshen.workoutbuddy.application.DtoConversionException;
-import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDto;
+import com.zachgoshen.workoutbuddy.api.DtoConversionException;
+import com.zachgoshen.workoutbuddy.api.exercise.ExerciseDto;
 import com.zachgoshen.workoutbuddy.application.set.SetDto;
 import com.zachgoshen.workoutbuddy.application.workout.WorkoutConverter;
 import com.zachgoshen.workoutbuddy.application.workout.WorkoutDto;

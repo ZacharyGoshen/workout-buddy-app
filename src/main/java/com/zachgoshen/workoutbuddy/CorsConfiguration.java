@@ -1,4 +1,4 @@
-package com.zachgoshen.workoutbuddy.application.security;
+package com.zachgoshen.workoutbuddy;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

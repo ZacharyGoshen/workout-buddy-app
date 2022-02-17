@@ -1,4 +1,4 @@
-package com.zachgoshen.workoutbuddy.application;
+package com.zachgoshen.workoutbuddy.api;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

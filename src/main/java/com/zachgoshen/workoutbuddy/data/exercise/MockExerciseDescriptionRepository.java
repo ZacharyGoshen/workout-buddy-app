@@ -6,15 +6,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.springframework.stereotype.Repository;
-
 import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionRepository;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionSortOrder;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.MuscleGroup;
 
-@Repository
 public class MockExerciseDescriptionRepository implements ExerciseDescriptionRepository {
 	
 	private final List<ExerciseDescription> descriptions;
