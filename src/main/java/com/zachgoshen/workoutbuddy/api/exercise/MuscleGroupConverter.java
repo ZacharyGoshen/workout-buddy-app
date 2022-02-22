@@ -3,7 +3,9 @@ package com.zachgoshen.workoutbuddy.api.exercise;
 import com.zachgoshen.workoutbuddy.api.DtoConversionException;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.MuscleGroup;
 
-public class MuscleGroupConverter {
+public final class MuscleGroupConverter {
+	
+	private MuscleGroupConverter() {}
 	
 	public static String toString(MuscleGroup muscleGroup) {
 		switch (muscleGroup) {

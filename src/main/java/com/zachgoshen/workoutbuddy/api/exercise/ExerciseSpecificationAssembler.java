@@ -4,7 +4,9 @@ import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
 import com.zachgoshen.workoutbuddy.domain.exercise.specification.ExerciseSpecifications;
 
-public class ExerciseSpecificationAssembler {
+public final class ExerciseSpecificationAssembler {
+	
+	private ExerciseSpecificationAssembler() {}
 	
 	public static Specification<Exercise> assemble(ExerciseSearchFilterDto filter) {
 		Specification<Exercise> specification = ExerciseSpecifications.alwaysSatisfied();

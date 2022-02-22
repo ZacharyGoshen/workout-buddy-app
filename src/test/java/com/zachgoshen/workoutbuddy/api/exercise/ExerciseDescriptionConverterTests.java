@@ -1,6 +1,7 @@
-package com.zachgoshen.workoutbuddy.application.exercise;
+package com.zachgoshen.workoutbuddy.api.exercise;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -9,8 +10,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workoutbuddy.api.DtoConversionException;
-import com.zachgoshen.workoutbuddy.api.exercise.ExerciseDescriptionConverter;
-import com.zachgoshen.workoutbuddy.api.exercise.ExerciseDescriptionDto;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.MuscleGroup;
 
@@ -52,6 +51,17 @@ public class ExerciseDescriptionConverterTests {
 		assertTrue(description.getMuscleGroups().contains(MuscleGroup.PECS));
 		assertTrue(description.getMuscleGroups().contains(MuscleGroup.TRICEPS));
 		assertTrue(description.getMuscleGroups().contains(MuscleGroup.DELTS));
+	}
+	
+	@Test
+	public void ToEntity_NameIsNull_ThrowsDtoConversionException() throws DtoConversionException {
+		ExerciseDescriptionDto dto = new ExerciseDescriptionDto();
+		
+		DtoConversionException exception = assertThrows(
+			DtoConversionException.class, 
+			() -> ExerciseDescriptionConverter.toEntity(dto));
+		
+		assertEquals("Name can't be null", exception.getMessage());
 	}
 
 }

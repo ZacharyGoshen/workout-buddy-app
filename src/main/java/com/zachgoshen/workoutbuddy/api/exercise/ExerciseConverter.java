@@ -7,7 +7,9 @@ import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
 
-public class ExerciseConverter {
+public final class ExerciseConverter {
+	
+	private ExerciseConverter() {}
 	
 	public static ExerciseDto toDto(Exercise exercise) {
 		ExerciseDto dto = new ExerciseDto();

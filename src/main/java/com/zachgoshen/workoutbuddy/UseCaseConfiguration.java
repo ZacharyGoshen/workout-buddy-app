@@ -3,12 +3,12 @@ package com.zachgoshen.workoutbuddy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.zachgoshen.workoutbuddy.api.exercise.ExerciseDescriptionQueryUseCase;
 import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionCreationService;
 import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionCreationUseCase;
 import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionDeletionService;
 import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionDeletionUseCase;
 import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionQueryService;
+import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionQueryUseCase;
 import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionUpdateService;
 import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionUpdateUseCase;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionRepository;

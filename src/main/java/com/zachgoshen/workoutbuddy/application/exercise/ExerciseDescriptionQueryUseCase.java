@@ -1,4 +1,4 @@
-package com.zachgoshen.workoutbuddy.api.exercise;
+package com.zachgoshen.workoutbuddy.application.exercise;
 
 import java.util.List;
 

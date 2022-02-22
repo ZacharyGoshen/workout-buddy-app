@@ -7,7 +7,9 @@ import com.zachgoshen.workoutbuddy.api.DtoConversionException;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.MuscleGroup;
 
-public class ExerciseDescriptionConverter {
+public final class ExerciseDescriptionConverter {
+	
+	private ExerciseDescriptionConverter() {}
 	
 	public static ExerciseDescriptionDto toDto(ExerciseDescription description) {
 		ExerciseDescriptionDto dto = new ExerciseDescriptionDto();

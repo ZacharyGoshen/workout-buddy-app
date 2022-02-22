@@ -1,14 +1,15 @@
-package com.zachgoshen.workoutbuddy.application.exercise;
+package com.zachgoshen.workoutbuddy.api.exercise;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.zachgoshen.workoutbuddy.api.DtoConversionException;
-import com.zachgoshen.workoutbuddy.api.exercise.ExerciseDescriptionDto;
-import com.zachgoshen.workoutbuddy.api.exercise.MuscleGroupConverter;
+import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionUpdate;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.MuscleGroup;
 
-public class ExerciseDescriptionUpdateAssembler {
+public final class ExerciseDescriptionUpdateAssembler {
+	
+	private ExerciseDescriptionUpdateAssembler() {}
 	
 	public static ExerciseDescriptionUpdate assemble(ExerciseDescriptionDto dto) throws DtoConversionException {
 		ExerciseDescriptionUpdate update = new ExerciseDescriptionUpdate();
@@ -24,6 +25,11 @@ public class ExerciseDescriptionUpdateAssembler {
 	
 	private static List<MuscleGroup> buildMuscleGroups(ExerciseDescriptionDto dto) throws DtoConversionException {
 		List<String> muscleGroupStrings = dto.getMuscleGroups();
+		
+		if (muscleGroupStrings == null) {
+			return null;
+		}
+		
 		List<MuscleGroup> muscleGroups = new ArrayList<>();
 		
 		for (String muscleGroupString: muscleGroupStrings) {

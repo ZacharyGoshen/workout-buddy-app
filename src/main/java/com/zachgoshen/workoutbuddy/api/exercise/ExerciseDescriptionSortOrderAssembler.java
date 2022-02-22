@@ -3,7 +3,9 @@ package com.zachgoshen.workoutbuddy.api.exercise;
 import com.zachgoshen.workoutbuddy.api.DtoConversionException;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionSortOrder;
 
-public class ExerciseDescriptionSortOrderAssembler {
+public final class ExerciseDescriptionSortOrderAssembler {
+	
+	private ExerciseDescriptionSortOrderAssembler() {}
 	
 	public static ExerciseDescriptionSortOrder assemble(String sortOrder) throws DtoConversionException {
 		switch (sortOrder) {

@@ -2,7 +2,6 @@ package com.zachgoshen.workoutbuddy.application.exercise;
 
 import java.util.List;
 
-import com.zachgoshen.workoutbuddy.api.exercise.ExerciseDescriptionQueryUseCase;
 import com.zachgoshen.workoutbuddy.domain.common.specification.AlwaysSatisfiedSpecification;
 import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
