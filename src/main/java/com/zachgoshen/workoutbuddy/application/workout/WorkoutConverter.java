@@ -1,20 +1,20 @@
 package com.zachgoshen.workoutbuddy.application.workout;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import com.zachgoshen.workoutbuddy.api.DtoConversionException;
-import com.zachgoshen.workoutbuddy.application.set.SetConverter;
-import com.zachgoshen.workoutbuddy.application.set.SetDto;
+import com.zachgoshen.workoutbuddy.api.set.SetConverter;
+import com.zachgoshen.workoutbuddy.api.set.SetDto;
 import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workoutbuddy.domain.set.Set;
 import com.zachgoshen.workoutbuddy.domain.workout.Workout;
 
 public class WorkoutConverter {
 	
-	public static WorkoutDto toDto(Workout workout) {
+	public static WorkoutDto toDto(Workout workout) throws DtoConversionException {
 		WorkoutDto dto = new WorkoutDto();
 		
 		dto.setId(workout.getId());
@@ -29,11 +29,14 @@ public class WorkoutConverter {
 			dto.setTimeCompleted(timeCompleted.get());
 		}
 		
-		List<SetDto> sets = workout.getSets()
-			.stream()
-			.map(set -> SetConverter.toDto(set))
-			.collect(Collectors.toList());
-		dto.setSets(sets);
+		List<SetDto> setDtos = new ArrayList<>();
+		
+		for (Set set: workout.getSets()) {
+			SetDto setDto = SetConverter.toDto(set);
+			setDtos.add(setDto);
+		}
+		
+		dto.setSets(setDtos);
 		
 		return dto;
 	}

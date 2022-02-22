@@ -1,13 +1,16 @@
-package com.zachgoshen.workoutbuddy.application.set;
+package com.zachgoshen.workoutbuddy.api.set;
 
 import java.util.Date;
 
+import com.zachgoshen.workoutbuddy.api.DtoConversionException;
 import com.zachgoshen.workoutbuddy.domain.set.Set;
 import com.zachgoshen.workoutbuddy.domain.workout.Workout;
 
-public class SetWithWorkoutDetailsDtoAssembler {
+public final class SetWithWorkoutDetailsDtoAssembler {
+	
+	private SetWithWorkoutDetailsDtoAssembler() {}
 
-	public static SetWithWorkoutDetailsDto assemble(Set set, Workout workout) {
+	public static SetWithWorkoutDetailsDto assemble(Set set, Workout workout) throws DtoConversionException {
 		SetDto setDto = SetConverter.toDto(set);
 		SetWithWorkoutDetailsDto setWithWorkoutDetailsDto = new SetWithWorkoutDetailsDto(setDto);
 		

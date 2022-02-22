@@ -11,9 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workoutbuddy.api.DtoConversionException;
 import com.zachgoshen.workoutbuddy.api.exercise.ExerciseDto;
-import com.zachgoshen.workoutbuddy.application.set.SetDto;
-import com.zachgoshen.workoutbuddy.application.workout.WorkoutConverter;
-import com.zachgoshen.workoutbuddy.application.workout.WorkoutDto;
+import com.zachgoshen.workoutbuddy.api.set.SetDto;
 import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
@@ -24,7 +22,7 @@ import com.zachgoshen.workoutbuddy.domain.workout.Workout;
 public class WorkoutConverterTests {
 	
 	@Test
-	public void Assemble_WorkoutWithAllFieldsSet_DtoHasAllFieldsSet() throws InvalidRangeException {
+	public void Assemble_WorkoutWithAllFieldsSet_DtoHasAllFieldsSet() throws InvalidRangeException, DtoConversionException {
 		Workout workout = new Workout();
 		workout.setName("Push Day");
 		workout.setTimeCompleted(new Date());

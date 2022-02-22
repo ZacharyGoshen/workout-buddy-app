@@ -1,4 +1,4 @@
-package com.zachgoshen.workoutbuddy.application.set;
+package com.zachgoshen.workoutbuddy.api.set;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -8,8 +8,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workoutbuddy.api.exercise.ExerciseSearchFilterDto;
-import com.zachgoshen.workoutbuddy.application.set.SetSearchCriteriaDto;
-import com.zachgoshen.workoutbuddy.application.set.SetSpecificationAssembler;
+import com.zachgoshen.workoutbuddy.api.set.SetSearchCriteriaDto;
+import com.zachgoshen.workoutbuddy.api.set.SetSpecificationAssembler;
 import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;

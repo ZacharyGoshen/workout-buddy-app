@@ -1,6 +1,6 @@
-package com.zachgoshen.workoutbuddy.application.set;
+package com.zachgoshen.workoutbuddy.api.set;
 
-import static com.zachgoshen.workoutbuddy.application.set.SetDtoAssertions.assertSetDtoMatchesSet;
+import static com.zachgoshen.workoutbuddy.api.set.SetDtoAssertions.assertSetDtoMatchesSet;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
@@ -9,8 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.zachgoshen.workoutbuddy.application.set.SetWithWorkoutDetailsDto;
-import com.zachgoshen.workoutbuddy.application.set.SetWithWorkoutDetailsDtoAssembler;
+import com.zachgoshen.workoutbuddy.api.DtoConversionException;
 import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
@@ -21,7 +20,7 @@ import com.zachgoshen.workoutbuddy.domain.workout.Workout;
 public class SetWithWorkoutDetailsDtoAssemblerTests {
 	
 	@Test
-	public void Assemble_SingleExerciseSetWithAllFieldsSet_DtoHasAllFieldsSet() throws InvalidRangeException {
+	public void Assemble_SingleExerciseSetWithAllFieldsSet_DtoHasAllFieldsSet() throws InvalidRangeException, DtoConversionException {
 		Exercise exercise = buildExercise1();
 		
 		SingleExerciseSet set = new SingleExerciseSet(exercise);
@@ -42,7 +41,7 @@ public class SetWithWorkoutDetailsDtoAssemblerTests {
 	}
 	
 	@Test
-	public void Assemble_SupersetWithAllFieldsSet_DtoHasAllFieldsSet() throws InvalidRangeException {
+	public void Assemble_SupersetWithAllFieldsSet_DtoHasAllFieldsSet() throws InvalidRangeException, DtoConversionException {
 		Exercise exercise1 = buildExercise1();
 		Exercise exercise2 = buildExercise2();
 		List<Exercise> exercises = Arrays.asList(exercise1, exercise2);

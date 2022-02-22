@@ -26,10 +26,11 @@ public class ExerciseDescriptionSortOrderAssemblerTests {
 	
 	@Test
 	public void Assemble_InvalidSortOrder_ThrowsDtoConversionException() throws DtoConversionException {
-		assertThrows(
+		DtoConversionException exception = assertThrows(
 			DtoConversionException.class, 
-			() -> ExerciseDescriptionSortOrderAssembler.assemble("invalidSortOrder"),
-			"'invalidSortOrder' is not a valid sorting order for exercise descriptions");
+			() -> ExerciseDescriptionSortOrderAssembler.assemble("invalidSortOrder"));
+		
+		assertEquals("'invalidSortOrder' is not a valid sorting order for exercise descriptions", exception.getMessage());
 	}
 
 }

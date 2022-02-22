@@ -1,6 +1,6 @@
 package com.zachgoshen.workoutbuddy.application.workout;
 
-import static com.zachgoshen.workoutbuddy.application.set.SetDtoAssertions.assertSetDtoMatchesSet;
+import static com.zachgoshen.workoutbuddy.api.set.SetDtoAssertions.assertSetDtoMatchesSet;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.zachgoshen.workoutbuddy.application.workout.WorkoutDto;

@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.zachgoshen.workoutbuddy.api.DtoConversionException;
-import com.zachgoshen.workoutbuddy.application.set.SetConverter;
-import com.zachgoshen.workoutbuddy.application.set.SetDto;
+import com.zachgoshen.workoutbuddy.api.set.SetConverter;
+import com.zachgoshen.workoutbuddy.api.set.SetDto;
 import com.zachgoshen.workoutbuddy.application.workout.NonexistentWorkoutException;
 import com.zachgoshen.workoutbuddy.application.workout.WorkoutDto;
 import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;

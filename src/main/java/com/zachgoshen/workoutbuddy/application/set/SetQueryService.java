@@ -16,44 +16,23 @@ import com.zachgoshen.workoutbuddy.domain.workout.Workout;
 import com.zachgoshen.workoutbuddy.domain.workout.WorkoutRepository;
 
 @Service
-public class SetQueryApplicationService {
+public class SetQueryService implements SetQueryUseCase {
 	
 	private final SetRepository setRepository;
 	private final WorkoutRepository workoutRepository;
 	
-	public SetQueryApplicationService(SetRepository repository, WorkoutRepository workoutRepository) {
+	public SetQueryService(SetRepository repository, WorkoutRepository workoutRepository) {
 		this.setRepository = repository;
 		this.workoutRepository = workoutRepository;
 	}
 	
-	public List<SetWithWorkoutDetailsDto> findBy(SetSearchCriteriaDto criteria) {
-		Specification<Set> specification = SetSpecificationAssembler.assemble(criteria);
-		SetSortOrder sortOrder = getSortOrder(criteria);
-		
+	@Override
+	public Map<Set, Workout> findSortedBySpecification(Specification<Set> specification, SetSortOrder sortOrder) {
 		List<Set> sets = setRepository.findSortedBy(specification, sortOrder)
 			.stream()
 			.collect(Collectors.toList());
 		
-		return buildSetWithWorkoutDetailsDtos(sets);
-	}
-	
-	private static SetSortOrder getSortOrder(SetSearchCriteriaDto criteria) {
-		String sortBy = criteria.getSortBy();
-		
-		if (sortBy != null && sortBy.equals("leastRecentCompletionTime")) {
-			return SetSortOrder.LEAST_RECENT_COMPLETION_TIME;
-		} else {
-			return SetSortOrder.MOST_RECENT_COMPLETION_TIME;
-		}
-	}
-	
-	private List<SetWithWorkoutDetailsDto> buildSetWithWorkoutDetailsDtos(List<Set> sets) {
-		Map<Set, Workout> setToWorkout = buildSetToWorkoutMap(sets);
-		
-		return sets
-			.stream()
-			.map(set -> SetWithWorkoutDetailsDtoAssembler.assemble(set, setToWorkout.get(set)))
-			.collect(Collectors.toList());
+		return buildSetToWorkoutMap(sets);
 	}
 	
 	private Map<Set, Workout> buildSetToWorkoutMap(List<Set> sets) {

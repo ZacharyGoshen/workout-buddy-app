@@ -1,4 +1,4 @@
-package com.zachgoshen.workoutbuddy.application.set;
+package com.zachgoshen.workoutbuddy.api.set;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,9 @@ import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
 import com.zachgoshen.workoutbuddy.domain.set.Set;
 import com.zachgoshen.workoutbuddy.domain.set.specification.SetSpecifications;
 
-public class SetSpecificationAssembler {
+public final class SetSpecificationAssembler {
+	
+	private SetSpecificationAssembler() {}
 	
 	public static Specification<Set> assemble(SetSearchCriteriaDto criteria) {
 		Specification<Set> specification = SetSpecifications.alwaysSatisfied();

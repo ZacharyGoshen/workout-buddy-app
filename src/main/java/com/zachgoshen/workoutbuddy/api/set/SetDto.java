@@ -1,4 +1,4 @@
-package com.zachgoshen.workoutbuddy.application.set;
+package com.zachgoshen.workoutbuddy.api.set;
 
 import java.util.Date;
 import java.util.List;

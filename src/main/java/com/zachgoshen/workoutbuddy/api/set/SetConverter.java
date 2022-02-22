@@ -1,4 +1,4 @@
-package com.zachgoshen.workoutbuddy.application.set;
+package com.zachgoshen.workoutbuddy.api.set;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,9 +16,11 @@ import com.zachgoshen.workoutbuddy.domain.set.Set;
 import com.zachgoshen.workoutbuddy.domain.set.SingleExerciseSet;
 import com.zachgoshen.workoutbuddy.domain.set.Superset;
 
-public class SetConverter {
+public final class SetConverter {
 	
-	public static SetDto toDto(Set set) {
+	private SetConverter() {}
+	
+	public static SetDto toDto(Set set) throws DtoConversionException {
 		SetDto setDto = assembleDtoWithoutExercises(set);
 
 		String type = getSetType(set);
@@ -56,13 +58,13 @@ public class SetConverter {
 		return dto;
 	}
 	
-	private static String getSetType(Set set) {
+	private static String getSetType(Set set) throws DtoConversionException {
 		if (set instanceof SingleExerciseSet) {
 			return "Single Exercise Set";
 		} else if (set instanceof Superset) {
 			return "Superset";
 		} else {
-			return "";
+			throw new DtoConversionException("Set can't be converted");
 		}
 	}
 	
@@ -95,7 +97,8 @@ public class SetConverter {
 		} else if (type.equals("Superset")) {
 			set = assembleSupersetWithExercisesOnly(dto);
 		} else {
-			throw new DtoConversionException("Invalid set type: " + type);
+			String message = String.format("'%s' is not a valid set type", type);
+			throw new DtoConversionException(message);
 		}
 		
 		set.setTimeCompleted(dto.getTimeCompleted());

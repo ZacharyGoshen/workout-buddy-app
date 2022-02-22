@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zachgoshen.workoutbuddy.api.DtoConversionException;
-import com.zachgoshen.workoutbuddy.application.set.SetDto;
+import com.zachgoshen.workoutbuddy.api.set.SetDto;
 import com.zachgoshen.workoutbuddy.application.workout.crud.WorkoutCreationApplicationService;
 import com.zachgoshen.workoutbuddy.application.workout.crud.WorkoutDeletionApplicationService;
 import com.zachgoshen.workoutbuddy.application.workout.crud.WorkoutQueryApplicationService;
@@ -41,12 +41,12 @@ public class WorkoutController {
 	}
 	
 	@GetMapping("")
-	public List<WorkoutDto> findAll() {
+	public List<WorkoutDto> findAll() throws DtoConversionException {
 		return queryService.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public WorkoutDto findById(@PathVariable("id") String id) {
+	public WorkoutDto findById(@PathVariable("id") String id) throws DtoConversionException {
 		return queryService.findById(id);
 	}
 	

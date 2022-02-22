@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.zachgoshen.workoutbuddy.application.set.SetDto;
+import com.zachgoshen.workoutbuddy.api.set.SetDto;
 
 public class WorkoutDto {
 	

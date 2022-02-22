@@ -1,9 +1,8 @@
-package com.zachgoshen.workoutbuddy.application.set;
+package com.zachgoshen.workoutbuddy.api.set;
 
 import static com.zachgoshen.workoutbuddy.api.exercise.ExerciseDtoAssertions.assertExerciseDtoMatchesExercise;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.zachgoshen.workoutbuddy.application.set.SetDto;
 import com.zachgoshen.workoutbuddy.domain.set.Set;
 import com.zachgoshen.workoutbuddy.domain.set.SingleExerciseSet;
 import com.zachgoshen.workoutbuddy.domain.set.Superset;
@@ -13,8 +12,13 @@ public class SetDtoAssertions {
 	public static void assertSetDtoMatchesSet(SetDto dto, Set set) {
 		assertEquals(set.getTimeCompleted().orElse(null), dto.getTimeCompleted());
 		assertEquals(set.getTimeRested().orElse(null), dto.getTimeRested());
-		assertEquals(set.getMinimumRestTimeAllowed().orElse(null), dto.getMinimumRestTimeAllowed());
 		assertEquals(set.getMaximumRestTimeAllowed().orElse(null), dto.getMaximumRestTimeAllowed());
+		
+		if (dto.minimumRestTimeAllowed == null & dto.getMaximumRestTimeAllowed() != null) {
+			assertEquals(0, set.getMinimumRestTimeAllowed().get());
+		} else {
+			assertEquals(set.getMinimumRestTimeAllowed().orElse(null), dto.getMinimumRestTimeAllowed());
+		}
 		
 		if (set instanceof SingleExerciseSet) {
 			assertEquals("Single Exercise Set", dto.getType());

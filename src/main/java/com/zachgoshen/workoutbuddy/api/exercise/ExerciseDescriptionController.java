@@ -51,7 +51,12 @@ public class ExerciseDescriptionController {
 			@RequestParam(name = "sortBy", required = false) String sortBy) 
 			throws DtoConversionException {
 		
-		ExerciseDescriptionSortOrder sortOrder = ExerciseDescriptionSortOrderAssembler.assemble(sortBy);
+		ExerciseDescriptionSortOrder sortOrder;
+		if (sortBy == null) {
+			sortOrder = ExerciseDescriptionSortOrder.NAME_ALPHABETICALLY;
+		} else {
+			sortOrder = ExerciseDescriptionSortOrderAssembler.assemble(sortBy);
+		}
 		
 		return queryUseCase.findSortedByPartialName(name, sortOrder)
 			.stream()
