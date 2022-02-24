@@ -11,18 +11,60 @@ import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionQuery
 import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionQueryUseCase;
 import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionUpdateService;
 import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionUpdateUseCase;
+import com.zachgoshen.workoutbuddy.application.set.SetQueryService;
+import com.zachgoshen.workoutbuddy.application.set.SetQueryUseCase;
+import com.zachgoshen.workoutbuddy.application.workout.WorkoutCreationService;
+import com.zachgoshen.workoutbuddy.application.workout.WorkoutCreationUseCase;
+import com.zachgoshen.workoutbuddy.application.workout.WorkoutDeletionService;
+import com.zachgoshen.workoutbuddy.application.workout.WorkoutDeletionUseCase;
+import com.zachgoshen.workoutbuddy.application.workout.WorkoutQueryService;
+import com.zachgoshen.workoutbuddy.application.workout.WorkoutQueryUseCase;
+import com.zachgoshen.workoutbuddy.application.workout.WorkoutUpdateService;
+import com.zachgoshen.workoutbuddy.application.workout.WorkoutUpdateUseCase;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionRepository;
 import com.zachgoshen.workoutbuddy.domain.set.SetRepository;
+import com.zachgoshen.workoutbuddy.domain.workout.WorkoutRepository;
 
 @Configuration
 public class UseCaseConfiguration {
-	
-	private final ExerciseDescriptionRepository exerciseDescriptionRepository;
+
+	private final WorkoutRepository workoutRepository;
 	private final SetRepository setRepository;
+	private final ExerciseDescriptionRepository exerciseDescriptionRepository;
 	
-	public UseCaseConfiguration(ExerciseDescriptionRepository exerciseDescriptionRepository, SetRepository setRepository) {
+	public UseCaseConfiguration(
+			WorkoutRepository workoutRepository, 
+			SetRepository setRepository, 
+			ExerciseDescriptionRepository exerciseDescriptionRepository) {
+		
+		this.workoutRepository = workoutRepository;
 		this.exerciseDescriptionRepository = exerciseDescriptionRepository;
 		this.setRepository = setRepository;
+	}
+	
+	@Bean
+	public WorkoutQueryUseCase workoutQueryUseCase() {
+		return new WorkoutQueryService(workoutRepository);
+	}
+	
+	@Bean
+	public WorkoutCreationUseCase workoutCreationUseCase() {
+		return new WorkoutCreationService(workoutRepository);
+	}
+	
+	@Bean
+	public WorkoutUpdateUseCase workoutUpdateUseCase() {
+		return new WorkoutUpdateService(workoutRepository);
+	}
+	
+	@Bean
+	public WorkoutDeletionUseCase workoutDeletionUseCase() {
+		return new WorkoutDeletionService(workoutRepository);
+	}
+	
+	@Bean
+	public SetQueryUseCase setQueryUseCase() {
+		return new SetQueryService(setRepository, workoutRepository);
 	}
 	
 	@Bean

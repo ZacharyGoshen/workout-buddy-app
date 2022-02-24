@@ -1,7 +1,7 @@
-package com.zachgoshen.workoutbuddy.application.workout;
+package com.zachgoshen.workoutbuddy.api.workout;
 
-import static com.zachgoshen.workoutbuddy.application.workout.WorkoutDtoAssertions.assertWorkoutDtoMatchesWorkout;
-import static com.zachgoshen.workoutbuddy.application.workout.WorkoutDtoAssertions.assertWorkoutDtoMatchesWorkoutWithoutComparingIds;
+import static com.zachgoshen.workoutbuddy.api.workout.WorkoutDtoAssertions.assertWorkoutDtoMatchesWorkout;
+import static com.zachgoshen.workoutbuddy.api.workout.WorkoutDtoAssertions.assertWorkoutDtoMatchesWorkoutWithoutComparingIds;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -22,7 +22,7 @@ import com.zachgoshen.workoutbuddy.domain.workout.Workout;
 public class WorkoutConverterTests {
 	
 	@Test
-	public void Assemble_WorkoutWithAllFieldsSet_DtoHasAllFieldsSet() throws InvalidRangeException, DtoConversionException {
+	public void ToDto_WorkoutWithAllOptionalFieldsSet() throws InvalidRangeException, DtoConversionException {
 		Workout workout = new Workout();
 		workout.setName("Push Day");
 		workout.setTimeCompleted(new Date());
@@ -35,7 +35,16 @@ public class WorkoutConverterTests {
 	}
 	
 	@Test
-	public void Assemble_DtoWithAllFieldsSet_WorkoutHasAllFieldsSet() throws InvalidRangeException, DtoConversionException {
+	public void ToDto_WorkoutWithNoOptionalFieldsSet() throws InvalidRangeException, DtoConversionException {
+		Workout workout = new Workout();
+		
+		WorkoutDto dto = WorkoutConverter.toDto(workout);
+		
+		assertWorkoutDtoMatchesWorkout(dto, workout);
+	}
+	
+	@Test
+	public void ToEntity_DtoWithAllFieldsSet() throws InvalidRangeException, DtoConversionException {
 		WorkoutDto workoutDto = new WorkoutDto();
 		workoutDto.setName("Push Day");
 		workoutDto.setTimeCompleted(new Date());

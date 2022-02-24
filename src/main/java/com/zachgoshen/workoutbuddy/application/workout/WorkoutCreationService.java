@@ -1,17 +1,10 @@
-package com.zachgoshen.workoutbuddy.application.workout.crud;
+package com.zachgoshen.workoutbuddy.application.workout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.stereotype.Service;
-
-import com.zachgoshen.workoutbuddy.api.DtoConversionException;
-import com.zachgoshen.workoutbuddy.application.workout.NonexistentWorkoutException;
-import com.zachgoshen.workoutbuddy.application.workout.WorkoutConverter;
-import com.zachgoshen.workoutbuddy.application.workout.WorkoutDto;
-import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
 import com.zachgoshen.workoutbuddy.domain.set.Set;
 import com.zachgoshen.workoutbuddy.domain.set.SingleExerciseSet;
@@ -19,23 +12,22 @@ import com.zachgoshen.workoutbuddy.domain.set.Superset;
 import com.zachgoshen.workoutbuddy.domain.workout.Workout;
 import com.zachgoshen.workoutbuddy.domain.workout.WorkoutRepository;
 
-@Service
-public class WorkoutCreationApplicationService {
+public class WorkoutCreationService implements WorkoutCreationUseCase {
 	
 	private final WorkoutRepository repository;
 	
-	private WorkoutCreationApplicationService(WorkoutRepository repository) {
+	public WorkoutCreationService(WorkoutRepository repository) {
 		this.repository = repository;
 	}
 
-	public String createAndReturnId(WorkoutDto dto) throws DtoConversionException, InvalidRangeException {
-		Workout workout = WorkoutConverter.toEntity(dto);
-		
+	@Override
+	public String createAndReturnId(Workout workout) {
 		repository.save(workout);
 		
 		return workout.getId();
 	}
 
+	@Override
 	public String createNotCompletedCopyAndReturnId(String idOfWorkoutToCopy) throws NonexistentWorkoutException {
 		Workout workoutToCopy = tryToFindWorkoutById(idOfWorkoutToCopy);
 		

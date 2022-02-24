@@ -1,4 +1,4 @@
-package com.zachgoshen.workoutbuddy.application.workout;
+package com.zachgoshen.workoutbuddy.api.workout;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,7 +12,9 @@ import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workoutbuddy.domain.set.Set;
 import com.zachgoshen.workoutbuddy.domain.workout.Workout;
 
-public class WorkoutConverter {
+public final class WorkoutConverter {
+	
+	private WorkoutConverter() {}
 	
 	public static WorkoutDto toDto(Workout workout) throws DtoConversionException {
 		WorkoutDto dto = new WorkoutDto();

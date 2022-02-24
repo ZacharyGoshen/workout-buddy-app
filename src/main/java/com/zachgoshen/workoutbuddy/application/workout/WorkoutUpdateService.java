@@ -1,61 +1,55 @@
-package com.zachgoshen.workoutbuddy.application.workout.crud;
+package com.zachgoshen.workoutbuddy.application.workout;
 
 import java.util.Date;
 import java.util.Optional;
 
-import org.springframework.stereotype.Service;
-
-import com.zachgoshen.workoutbuddy.api.DtoConversionException;
-import com.zachgoshen.workoutbuddy.api.set.SetConverter;
-import com.zachgoshen.workoutbuddy.api.set.SetDto;
-import com.zachgoshen.workoutbuddy.application.workout.NonexistentWorkoutException;
-import com.zachgoshen.workoutbuddy.application.workout.WorkoutDto;
-import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workoutbuddy.domain.set.Set;
 import com.zachgoshen.workoutbuddy.domain.workout.Workout;
 import com.zachgoshen.workoutbuddy.domain.workout.WorkoutRepository;
 
-@Service
-public class WorkoutUpdateApplicationService {
+public class WorkoutUpdateService implements WorkoutUpdateUseCase {
 	
 	private final WorkoutRepository repository;
 	
-	public WorkoutUpdateApplicationService(WorkoutRepository repository) {
+	public WorkoutUpdateService(WorkoutRepository repository) {
 		this.repository = repository;
 	}
 	
-	public void update(String id, WorkoutDto dto) throws NonexistentWorkoutException {
+	@Override
+	public void update(String id, WorkoutUpdate update) throws NonexistentWorkoutException {
 		Workout workout = tryToFindWorkoutById(id);
 		
-		String name = dto.getName();
-		workout.setName(name);
+		Optional<String> name = update.getName();
+		if (name.isPresent()) {
+			workout.setName(name.get());
+		}
 		
-		Date timeCompleted = dto.getTimeCompleted();
-		workout.setTimeCompleted(timeCompleted);
+		Optional<Date> timeCompleted = update.getTimeCompleted();
+		if (timeCompleted.isPresent()) {
+			workout.setTimeCompleted(timeCompleted.get());
+		}
 		
 		repository.save(workout);
 	}
 	
-	public void addSet(String workoutId, int setIndex, SetDto setDto) throws NonexistentWorkoutException, InvalidRangeException, DtoConversionException {
+	@Override
+	public void addSet(String workoutId, int setIndex, Set set) throws NonexistentWorkoutException {
 		Workout workout = tryToFindWorkoutById(workoutId);
-		
-		Set set = SetConverter.toEntity(setDto);
 		workout.addSet(set, setIndex);
 		
 		repository.save(workout);
 	}
 	
-	public void updateSet(String workoutId, int setIndex, SetDto updatedSetDto) throws NonexistentWorkoutException, InvalidRangeException, DtoConversionException {
+	@Override
+	public void replaceSet(String workoutId, int setIndex, Set set) throws NonexistentWorkoutException {
 		Workout workout = tryToFindWorkoutById(workoutId);
-		
 		workout.removeSet(setIndex);
-		
-		Set updatedSet = SetConverter.toEntity(updatedSetDto);
-		workout.addSet(updatedSet, setIndex);
+		workout.addSet(set, setIndex);
 		
 		repository.save(workout);
 	}
 	
+	@Override
 	public void moveSet(String workoutId, int originalIndex, int destinationIndex) throws NonexistentWorkoutException {
 		Workout workout = tryToFindWorkoutById(workoutId);
 		
@@ -64,6 +58,7 @@ public class WorkoutUpdateApplicationService {
 		repository.save(workout);
 	}
 	
+	@Override
 	public void removeSet(String workoutId, int setIndex) throws NonexistentWorkoutException {
 		Workout workout = tryToFindWorkoutById(workoutId);
 		
