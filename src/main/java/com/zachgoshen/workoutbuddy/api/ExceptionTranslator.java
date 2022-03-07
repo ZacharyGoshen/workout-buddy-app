@@ -12,6 +12,16 @@ import com.zachgoshen.workoutbuddy.application.exercise.UndeletableExerciseDescr
 public class ExceptionTranslator extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler
+	public ResponseEntity<ErrorDto> handleDtoConversionException(DtoConversionException exception) {
+		String type = "DTO Conversion";
+		String message = exception.getMessage();
+		
+		ErrorDto dto = new ErrorDto(type, message);
+		
+		return new ResponseEntity<ErrorDto>(dto, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@ExceptionHandler
 	public ResponseEntity<ErrorDto> handleUndeletableExerciseDescriptionException(UndeletableExerciseDescriptionException exception) {
 		String type = "Undeletable Exercise Description";
 		String message = "The exercise description can't be deleted because it belongs to one or more workouts.";

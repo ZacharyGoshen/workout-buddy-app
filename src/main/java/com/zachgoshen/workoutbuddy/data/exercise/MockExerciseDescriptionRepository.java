@@ -10,57 +10,13 @@ import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionRepository;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionSortOrder;
-import com.zachgoshen.workoutbuddy.domain.exercise.description.MuscleGroup;
 
 public class MockExerciseDescriptionRepository implements ExerciseDescriptionRepository {
 	
 	private final List<ExerciseDescription> descriptions;
 
 	public MockExerciseDescriptionRepository() {
-		this.descriptions = buildDescriptions();
-	}
-	
-	private static List<ExerciseDescription> buildDescriptions() {
-		List<ExerciseDescription> descriptions = new ArrayList<>();
-		
-		ExerciseDescription sumoDeadliftDescription = new ExerciseDescription("Sumo Deadlift");
-		sumoDeadliftDescription.addMuscleGroup(MuscleGroup.GLUTES);
-		sumoDeadliftDescription.addMuscleGroup(MuscleGroup.HAMSTRINGS);
-		sumoDeadliftDescription.addMuscleGroup(MuscleGroup.LATS);
-		sumoDeadliftDescription.addMuscleGroup(MuscleGroup.LOWER_BACK);
-		descriptions.add(sumoDeadliftDescription);
-		
-		ExerciseDescription hamstringCurlDescription = new ExerciseDescription("Hamstring Curl");
-		hamstringCurlDescription.setNotes("Fully extend legs.");
-		hamstringCurlDescription.addMuscleGroup(MuscleGroup.BICEPS);
-		descriptions.add(hamstringCurlDescription);
-		
-		ExerciseDescription latPulldownDescription = new ExerciseDescription("Lat Pulldown");
-		latPulldownDescription.setNotes("Use wrist straps.");
-		latPulldownDescription.addMuscleGroup(MuscleGroup.BICEPS);
-		latPulldownDescription.addMuscleGroup(MuscleGroup.LATS);
-		descriptions.add(latPulldownDescription);
-		
-		ExerciseDescription pullupDescription = new ExerciseDescription("Pullup");
-		pullupDescription.addMuscleGroup(MuscleGroup.BICEPS);
-		pullupDescription.addMuscleGroup(MuscleGroup.LATS);
-		descriptions.add(pullupDescription);
-		
-		ExerciseDescription chestSupportedRowDescription = new ExerciseDescription("Chest Supported Row");
-		chestSupportedRowDescription.setNotes("Use wrist straps.");
-		chestSupportedRowDescription.addMuscleGroup(MuscleGroup.BICEPS);
-		chestSupportedRowDescription.addMuscleGroup(MuscleGroup.LATS);
-		descriptions.add(chestSupportedRowDescription);
-		
-		ExerciseDescription ezBarCurlDescription = new ExerciseDescription("EZ Bar Curl");
-		ezBarCurlDescription.addMuscleGroup(MuscleGroup.BICEPS);
-		descriptions.add(ezBarCurlDescription);
-		
-		ExerciseDescription dumbbellCurlDescription = new ExerciseDescription("Dumbbell Curl");
-		dumbbellCurlDescription.addMuscleGroup(MuscleGroup.BICEPS);
-		descriptions.add(dumbbellCurlDescription);
-		
-		return descriptions;
+		descriptions = new ArrayList<>();
 	}
 
 	@Override
@@ -95,6 +51,11 @@ public class MockExerciseDescriptionRepository implements ExerciseDescriptionRep
 		if (!descriptions.contains(description)) {
 			descriptions.add(description);
 		}
+	}
+	
+	@Override
+	public void deleteAll() {
+		descriptions.removeAll(descriptions);
 	}
 
 	@Override
