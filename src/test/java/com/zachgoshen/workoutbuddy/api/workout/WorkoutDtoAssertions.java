@@ -3,7 +3,6 @@ package com.zachgoshen.workoutbuddy.api.workout;
 import static com.zachgoshen.workoutbuddy.api.set.SetDtoAssertions.assertSetDtoMatchesSet;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.zachgoshen.workoutbuddy.api.workout.WorkoutDto;
 import com.zachgoshen.workoutbuddy.domain.workout.Workout;
 
 public class WorkoutDtoAssertions {

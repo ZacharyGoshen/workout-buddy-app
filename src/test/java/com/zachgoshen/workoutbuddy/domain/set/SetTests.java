@@ -10,7 +10,6 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;
-import com.zachgoshen.workoutbuddy.domain.set.Set;
 
 public abstract class SetTests {
 	

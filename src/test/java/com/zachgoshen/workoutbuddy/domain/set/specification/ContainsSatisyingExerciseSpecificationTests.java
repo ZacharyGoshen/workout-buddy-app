@@ -15,7 +15,6 @@ import com.zachgoshen.workoutbuddy.domain.exercise.specification.ExerciseSpecifi
 import com.zachgoshen.workoutbuddy.domain.set.Set;
 import com.zachgoshen.workoutbuddy.domain.set.SingleExerciseSet;
 import com.zachgoshen.workoutbuddy.domain.set.Superset;
-import com.zachgoshen.workoutbuddy.domain.set.specification.SetSpecifications;
 
 public class ContainsSatisyingExerciseSpecificationTests {
 	

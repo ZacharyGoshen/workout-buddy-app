@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import com.zachgoshen.workoutbuddy.domain.common.specification.AlwaysSatisfiedSpecification;
-
 public class AlwaysSatisfiedSpecificationTests {
 	
 	@Test

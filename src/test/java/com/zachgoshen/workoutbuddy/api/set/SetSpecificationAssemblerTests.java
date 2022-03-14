@@ -8,8 +8,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workoutbuddy.api.exercise.ExerciseSearchFilterDto;
-import com.zachgoshen.workoutbuddy.api.set.SetSearchCriteriaDto;
-import com.zachgoshen.workoutbuddy.api.set.SetSpecificationAssembler;
 import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;

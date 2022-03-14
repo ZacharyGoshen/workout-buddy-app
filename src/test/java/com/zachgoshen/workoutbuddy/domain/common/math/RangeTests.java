@@ -7,9 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;
-import com.zachgoshen.workoutbuddy.domain.common.math.Range;
-
 public abstract class RangeTests<T extends Number> {
 
 	@Test

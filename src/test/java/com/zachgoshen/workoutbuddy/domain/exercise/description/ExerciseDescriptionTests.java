@@ -7,9 +7,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
-import com.zachgoshen.workoutbuddy.domain.exercise.description.MuscleGroup;
-
 public class ExerciseDescriptionTests {
 	
 	@Test

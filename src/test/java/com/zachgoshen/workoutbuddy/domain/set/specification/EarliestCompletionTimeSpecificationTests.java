@@ -12,7 +12,6 @@ import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
 import com.zachgoshen.workoutbuddy.domain.set.Set;
 import com.zachgoshen.workoutbuddy.domain.set.SingleExerciseSet;
-import com.zachgoshen.workoutbuddy.domain.set.specification.EarliestCompletionTimeSpecification;
 
 public class EarliestCompletionTimeSpecificationTests {
 	

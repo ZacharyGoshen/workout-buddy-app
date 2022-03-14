@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
-import com.zachgoshen.workoutbuddy.domain.exercise.specification.MinimumRepsCompletedSpecification;
 
 public class MinimumRepsCompletedSpecificationTests {
 	

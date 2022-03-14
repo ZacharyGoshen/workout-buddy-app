@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workoutbuddy.domain.common.date.Dates;
 import com.zachgoshen.workoutbuddy.domain.workout.Workout;
-import com.zachgoshen.workoutbuddy.domain.workout.specification.EarliestCompletionTimeSpecification;
 
 public class EarliestCompletionTimeSpecificationTests {
 	

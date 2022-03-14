@@ -5,10 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import com.zachgoshen.workoutbuddy.domain.common.specification.AlwaysSatisfiedSpecification;
-import com.zachgoshen.workoutbuddy.domain.common.specification.AndSpecification;
-import com.zachgoshen.workoutbuddy.domain.common.specification.NeverSatisfiedSpecification;
-
 public class AndSpecificationTests {
 	
 	@Test

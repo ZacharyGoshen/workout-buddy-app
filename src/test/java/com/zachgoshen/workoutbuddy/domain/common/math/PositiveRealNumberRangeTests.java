@@ -7,10 +7,6 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;
-import com.zachgoshen.workoutbuddy.domain.common.math.PositiveRealNumberRange;
-import com.zachgoshen.workoutbuddy.domain.common.math.Range;
-
 public class PositiveRealNumberRangeTests extends RangeTests<Float> {
 	
 	@Test
