@@ -42,6 +42,11 @@ public class MockWorkoutRepository implements WorkoutRepository {
 	}
 
 	@Override
+	public void deleteAll() {
+		workouts.clear();
+	}
+
+	@Override
 	public void deleteById(String id) {
 		Optional<Workout> workout = findById(id);
 		
@@ -49,5 +54,5 @@ public class MockWorkoutRepository implements WorkoutRepository {
 			workouts.remove(workout.get());
 		}
 	}
-
+	
 }

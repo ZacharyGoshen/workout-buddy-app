@@ -16,7 +16,7 @@ import com.zachgoshen.workoutbuddy.domain.exercise.description.MuscleGroup;
 public class ExerciseDescriptionConverterTests {
 	
 	@Test
-	public void ToDto_ExerciseDescriptionWithAllFieldsSet_DtoHasAllFieldsSet() throws DtoConversionException {
+	public void ToDto() throws DtoConversionException {
 		ExerciseDescription description = new ExerciseDescription("Bench Press");
 		description.setNotes("Arch back and keep feet planted.");
 		description.addMuscleGroup(MuscleGroup.PECS);
@@ -35,7 +35,7 @@ public class ExerciseDescriptionConverterTests {
 	}
 	
 	@Test
-	public void ToEntity_DtoWithAllFieldsSet_ExerciseDescriptionHasAllFieldsSet() throws DtoConversionException {
+	public void ToEntity_DtoWithAllFieldsSet() throws DtoConversionException {
 		ExerciseDescriptionDto dto = new ExerciseDescriptionDto();
 		dto.setName("Bench Press");
 		dto.setNotes("Arch back and keep feet planted.");
@@ -51,6 +51,18 @@ public class ExerciseDescriptionConverterTests {
 		assertTrue(description.getMuscleGroups().contains(MuscleGroup.PECS));
 		assertTrue(description.getMuscleGroups().contains(MuscleGroup.TRICEPS));
 		assertTrue(description.getMuscleGroups().contains(MuscleGroup.DELTS));
+	}
+	
+	@Test
+	public void ToEntity_DtoWithOnlyNameSet() throws DtoConversionException {
+		ExerciseDescriptionDto dto = new ExerciseDescriptionDto();
+		dto.setName("Bench Press");
+		
+		ExerciseDescription description = ExerciseDescriptionConverter.toEntity(dto);
+
+		assertEquals(dto.getName(), description.getName());
+		assertEquals(dto.getNotes(), description.getNotes());
+		assertEquals(0, description.getMuscleGroups().size());
 	}
 	
 	@Test

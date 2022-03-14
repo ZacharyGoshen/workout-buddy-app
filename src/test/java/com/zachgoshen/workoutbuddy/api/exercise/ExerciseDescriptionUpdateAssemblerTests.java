@@ -20,6 +20,7 @@ public class ExerciseDescriptionUpdateAssemblerTests {
 	public void Assemble_NonNullValues() throws DtoConversionException {
 		ExerciseDescriptionDto dto = new ExerciseDescriptionDto();
 		dto.setName("Squat");
+		dto.setNotes("Squat Notes");
 		
 		List<String> muscleGroups = Arrays.asList("Glutes", "Hamstrings", "Lower Back", "Quads");
 		dto.setMuscleGroups(muscleGroups);
@@ -27,6 +28,7 @@ public class ExerciseDescriptionUpdateAssemblerTests {
 		ExerciseDescriptionUpdate update = ExerciseDescriptionUpdateAssembler.assemble(dto);
 		
 		assertEquals("Squat", update.getName().get());
+		assertEquals("Squat Notes", update.getNotes().get());
 		assertTrue(update.getMuscleGroups().get().contains(MuscleGroup.GLUTES));
 		assertTrue(update.getMuscleGroups().get().contains(MuscleGroup.HAMSTRINGS));
 		assertTrue(update.getMuscleGroups().get().contains(MuscleGroup.LOWER_BACK));
@@ -34,18 +36,35 @@ public class ExerciseDescriptionUpdateAssemblerTests {
 	}
 	
 	@Test
-	public void Assemble_NullValues() throws DtoConversionException {
+	public void Assemble_NullValuesExceptName() throws DtoConversionException {
 		ExerciseDescriptionDto dto = new ExerciseDescriptionDto();
+		dto.setName("Squat");
+		dto.setNotes(null);
+		dto.setMuscleGroups(null);
 		
 		ExerciseDescriptionUpdate update = ExerciseDescriptionUpdateAssembler.assemble(dto);
-		
-		assertFalse(update.getName().isPresent());
+
+		assertEquals("Squat", update.getName().get());
 		assertFalse(update.getMuscleGroups().isPresent());
+	}
+	
+	@Test
+	public void Assemble_NullName_ThrowsDtoConversionException() throws DtoConversionException {
+		ExerciseDescriptionDto dto = new ExerciseDescriptionDto();
+		dto.setName(null);
+		dto.setNotes("Squat Notes");
+		
+		List<String> muscleGroups = Arrays.asList("Glutes", "Hamstrings", "Lower Back", "Quads");
+		dto.setMuscleGroups(muscleGroups);
+		
+		assertThrows(DtoConversionException.class, () -> ExerciseDescriptionUpdateAssembler.assemble(dto));
 	}
 	
 	@Test
 	public void Assemble_InvalidMuscleGroup_ThrowsDtoConversionException() throws DtoConversionException {
 		ExerciseDescriptionDto dto = new ExerciseDescriptionDto();
+		dto.setName("Squat");
+		dto.setNotes("Squat Notes");
 		
 		List<String> muscleGroups = Arrays.asList("Invalid Muscle Group");
 		dto.setMuscleGroups(muscleGroups);

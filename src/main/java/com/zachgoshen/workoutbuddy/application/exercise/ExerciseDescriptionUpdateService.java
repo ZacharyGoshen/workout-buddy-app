@@ -24,6 +24,11 @@ public class ExerciseDescriptionUpdateService implements ExerciseDescriptionUpda
 			description.setName(name.get());
 		}
 		
+		Optional<String> notes = update.getNotes();
+		if (notes.isPresent()) {
+			description.setNotes(notes.get());
+		}
+		
 		Optional<List<MuscleGroup>> muscleGroups = update.getMuscleGroups();
 		if (muscleGroups.isPresent()) {
 			description.setMuscleGroups(muscleGroups.get());
@@ -38,7 +43,7 @@ public class ExerciseDescriptionUpdateService implements ExerciseDescriptionUpda
 		if (description.isPresent()) {
 			return description.get();
 		} else {
-			throw new NonexistentExerciseDescriptionException();
+			throw new NonexistentExerciseDescriptionException(id);
 		}
 	}
 

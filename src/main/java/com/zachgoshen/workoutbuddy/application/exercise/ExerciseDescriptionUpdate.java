@@ -8,6 +8,7 @@ import com.zachgoshen.workoutbuddy.domain.exercise.description.MuscleGroup;
 public class ExerciseDescriptionUpdate {
 	
 	private Optional<String> name;
+	private Optional<String> notes;
 	private Optional<List<MuscleGroup>> muscleGroups;
 	
 	public Optional<String> getName() {
@@ -18,6 +19,14 @@ public class ExerciseDescriptionUpdate {
 		this.name = Optional.ofNullable(name);
 	}
 	
+	public Optional<String> getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = Optional.ofNullable(notes);
+	}
+
 	public Optional<List<MuscleGroup>> getMuscleGroups() {
 		return muscleGroups;
 	}

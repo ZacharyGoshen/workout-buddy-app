@@ -13,9 +13,17 @@ public final class ExerciseDescriptionUpdateAssembler {
 	
 	public static ExerciseDescriptionUpdate assemble(ExerciseDescriptionDto dto) throws DtoConversionException {
 		ExerciseDescriptionUpdate update = new ExerciseDescriptionUpdate();
-		
+
 		String name = dto.getName();
+		
+		if (name == null) {
+			throw new DtoConversionException("Name can't be null");
+		}
+		
 		update.setName(name);
+		
+		String notes = dto.getNotes();
+		update.setNotes(notes);
 		
 		List<MuscleGroup> muscleGroups = buildMuscleGroups(dto);
 		update.setMuscleGroups(muscleGroups);

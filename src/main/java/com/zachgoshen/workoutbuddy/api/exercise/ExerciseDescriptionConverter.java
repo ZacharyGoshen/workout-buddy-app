@@ -55,12 +55,23 @@ public final class ExerciseDescriptionConverter {
 		
 		List<String> muscleGroupStrings = dto.getMuscleGroups();
 		
-		for (String muscleGroupString : muscleGroupStrings) {
-			MuscleGroup muscleGroup = MuscleGroupConverter.toEnum(muscleGroupString);
-			description.addMuscleGroup(muscleGroup);
+		if (muscleGroupStrings != null) {
+			List<MuscleGroup> muscleGroups = buildMuscleGroups(muscleGroupStrings);
+			description.setMuscleGroups(muscleGroups);
 		}
 		
 		return description;
+	}
+	
+	private static List<MuscleGroup> buildMuscleGroups(List<String> muscleGroupStrings) throws DtoConversionException {
+		List<MuscleGroup> muscleGroups = new ArrayList<>();
+		
+		for (String muscleGroupString : muscleGroupStrings) {
+			MuscleGroup muscleGroup = MuscleGroupConverter.toEnum(muscleGroupString);
+			muscleGroups.add(muscleGroup);
+		}
+		
+		return muscleGroups;
 	}
 
 }

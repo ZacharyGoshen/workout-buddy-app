@@ -1,26 +1,39 @@
 package integration;
 
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
 import com.zachgoshen.workoutbuddy.WorkoutBuddyApplication;
+import com.zachgoshen.workoutbuddy.api.exercise.ExerciseDescriptionDto;
 import com.zachgoshen.workoutbuddy.api.exercise.MuscleGroupConverter;
+import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionRepository;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.MuscleGroup;
+import com.zachgoshen.workoutbuddy.domain.set.SingleExerciseSet;
+import com.zachgoshen.workoutbuddy.domain.workout.Workout;
+import com.zachgoshen.workoutbuddy.domain.workout.WorkoutRepository;
 
 @SpringBootTest(classes = WorkoutBuddyApplication.class)
 @ActiveProfiles("test")
@@ -31,10 +44,14 @@ public class ExerciseDescriptionIntegrationTests {
 	private MockMvc mockMvc;
 	
 	@Autowired
+	private WorkoutRepository workoutRepository;
+	
+	@Autowired
 	private ExerciseDescriptionRepository exerciseDescriptionRepository;
 	
-	@BeforeEach
+	@AfterEach
 	public void deleteAllData() {
+		workoutRepository.deleteAll();
 		exerciseDescriptionRepository.deleteAll();
 	}
 	
@@ -143,6 +160,118 @@ public class ExerciseDescriptionIntegrationTests {
 		assertResponseContainsExerciseDescriptionAtIndex(resultActions, benchPress, 0);
 	}
 	
+	@Test
+	public void Post_ValidRequest() throws Exception {
+		ExerciseDescriptionDto dto = buildBenchPressDto();
+		
+		performPost(dto).andExpect(status().is2xxSuccessful());
+		
+		List<ExerciseDescription> allDescriptions = exerciseDescriptionRepository.findAll();
+		ExerciseDescription newDescription = allDescriptions.get(0);
+		
+		assertNotNull(newDescription.getId());
+		assertEquals(newDescription.getName(), dto.getName());
+		assertEquals(newDescription.getNotes(), dto.getNotes());
+		assertEquals(newDescription.getMuscleGroups().size(), 3);
+		assertTrue(newDescription.getMuscleGroups().contains(MuscleGroup.DELTS));
+		assertTrue(newDescription.getMuscleGroups().contains(MuscleGroup.PECS));
+		assertTrue(newDescription.getMuscleGroups().contains(MuscleGroup.TRICEPS));
+	}
+	
+	@Test
+	public void Post_NullName() throws Exception {
+		ExerciseDescriptionDto dto = buildBenchPressDto();
+		dto.setName(null);
+		
+		performPost(dto)
+			.andExpect(status().is5xxServerError())
+			.andExpect(jsonPath("$.type", is(equalTo("DTO Conversion"))))
+			.andExpect(jsonPath("$.message", is(equalTo("Name can't be null"))));
+	}
+	
+	@Test
+	public void Patch_DescriptionExists() throws Exception {
+		ExerciseDescription existingDescription = buildBenchPress();
+		exerciseDescriptionRepository.save(existingDescription);
+		
+		ExerciseDescriptionDto updateDto = buildDeadliftDto();
+		
+		String id = existingDescription.getId();
+		performPatch(id, updateDto).andExpect(status().is2xxSuccessful());
+		
+		List<ExerciseDescription> allDescriptions = exerciseDescriptionRepository.findAll();
+		ExerciseDescription updatedDescription = allDescriptions.get(0);
+		
+		assertNotNull(updatedDescription.getId());
+		assertEquals(updatedDescription.getName(), updateDto.getName());
+		assertEquals(updatedDescription.getNotes(), updateDto.getNotes());
+		assertEquals(updatedDescription.getMuscleGroups().size(), 3);
+		assertTrue(updatedDescription.getMuscleGroups().contains(MuscleGroup.GLUTES));
+		assertTrue(updatedDescription.getMuscleGroups().contains(MuscleGroup.HAMSTRINGS));
+		assertTrue(updatedDescription.getMuscleGroups().contains(MuscleGroup.LOWER_BACK));
+	}
+	
+	@Test
+	public void Patch_NullName() throws Exception {
+		ExerciseDescription existingDescription = buildBenchPress();
+		exerciseDescriptionRepository.save(existingDescription);
+		
+		ExerciseDescriptionDto dto = buildDeadliftDto();
+		dto.setName(null);
+
+		String id = existingDescription.getId();
+		performPatch(id, dto)
+			.andExpect(status().is5xxServerError())
+			.andExpect(jsonPath("$.type", is(equalTo("DTO Conversion"))))
+			.andExpect(jsonPath("$.message", is(equalTo("Name can't be null"))));
+	}
+	
+	@Test
+	public void Patch_DescriptionDoesntExist() throws Exception {
+		ExerciseDescriptionDto dto = buildBenchPressDto();
+
+		performPatch("nonexistent-id", dto)
+			.andExpect(status().is5xxServerError())
+			.andExpect(jsonPath("$.type", is(equalTo("Nonexistent Exercise Description"))))
+			.andExpect(jsonPath("$.message", is(equalTo("No exercise description exists with id 'nonexistent-id'"))));
+	}
+
+	@Test
+	public void Delete_DescriptionExists() throws Exception {
+		ExerciseDescription existingDescription = buildBenchPress();
+		exerciseDescriptionRepository.save(existingDescription);
+		
+		String id = existingDescription.getId();
+		performDelete(id).andExpect(status().is2xxSuccessful());
+		
+		Optional<ExerciseDescription> deletedDescription = exerciseDescriptionRepository.findById(id);
+		assertFalse(deletedDescription.isPresent());
+	}
+
+	@Test
+	public void Delete_DescriptionDoesntExist() throws Exception {
+		performDelete("nonexistent-id").andExpect(status().is2xxSuccessful());
+	}
+
+	@Test
+	public void Delete_DescriptionBelongsToWorkout() throws Exception {
+		ExerciseDescription description = buildBenchPress();
+		exerciseDescriptionRepository.save(description);
+		
+		Exercise exercise = new Exercise(description);
+		SingleExerciseSet set = new SingleExerciseSet(exercise);
+		
+		Workout workout = new Workout();
+		workout.appendSet(set);
+		workoutRepository.save(workout);
+		
+		String id = description.getId();
+		performDelete(id)
+			.andExpect(status().is5xxServerError())
+			.andExpect(jsonPath("$.type", is(equalTo("Undeletable Exercise Description"))))
+			.andExpect(jsonPath("$.message", is(equalTo("The exercise description can't be deleted because it belongs to one or more workouts"))));
+	}
+	
 	private static ExerciseDescription buildBenchPress() {
 		ExerciseDescription benchPress = new ExerciseDescription("Bench Press");
 		benchPress.setNotes("Bench Press Notes");
@@ -174,12 +303,104 @@ public class ExerciseDescriptionIntegrationTests {
 		return squat;
 	}
 	
+	private static ExerciseDescriptionDto buildBenchPressDto() {
+		ExerciseDescriptionDto benchPress = new ExerciseDescriptionDto();
+		benchPress.setName("Bench Press");
+		benchPress.setNotes("Bench Press Notes");
+		
+		List<String> muscleGroups = Arrays.asList("Delts", "Pecs", "Triceps");
+		benchPress.setMuscleGroups(muscleGroups);
+		
+		return benchPress;
+	}
+	
+	private static ExerciseDescriptionDto buildDeadliftDto() {
+		ExerciseDescriptionDto deadlift = new ExerciseDescriptionDto();
+		deadlift.setName("Deadlift");
+		deadlift.setNotes("Deadlift Notes");
+		
+		List<String> muscleGroups = Arrays.asList("Glutes", "Hamstrings", "Lower Back");
+		deadlift.setMuscleGroups(muscleGroups);
+		
+		return deadlift;
+	}
+	
 	private ResultActions performGet(String name, String sortBy) throws Exception {
 		MockHttpServletRequestBuilder requestBuilder = get("/api/exercise-descriptions")
 			.param("name", name)
 			.param("sortBy", sortBy);
 		
 		return mockMvc.perform(requestBuilder);
+	}
+	
+	private ResultActions performPost(ExerciseDescriptionDto dto) throws Exception {
+		String requestBody = buildPostOrPatchRequestBody(dto);
+		
+		MockHttpServletRequestBuilder requestBuilder = post("/api/exercise-descriptions")
+			.contentType(MediaType.APPLICATION_JSON)
+			.content(requestBody);
+		
+		return mockMvc.perform(requestBuilder);
+	}
+	
+	private ResultActions performPatch(String id, ExerciseDescriptionDto dto) throws Exception {
+		String url = String.format("/api/exercise-descriptions/%s", id);
+		String requestBody = buildPostOrPatchRequestBody(dto);
+		
+		MockHttpServletRequestBuilder requestBuilder = patch(url)
+			.contentType(MediaType.APPLICATION_JSON)
+			.content(requestBody);
+		
+		return mockMvc.perform(requestBuilder);
+	}
+	
+	private ResultActions performDelete(String id) throws Exception {
+		String url = String.format("/api/exercise-descriptions/%s", id);
+		
+		MockHttpServletRequestBuilder requestBuilder = delete(url);
+		
+		return mockMvc.perform(requestBuilder);
+	}
+	
+	private static String buildPostOrPatchRequestBody(ExerciseDescriptionDto dto) {
+		String name = dto.getName();
+		String nameAsJsonValue = convertStringToJsonValue(name);
+		
+		String notes = dto.getNotes();
+		String notesAsJsonValue = convertStringToJsonValue(notes);
+		
+		List<String> muscleGroups = dto.getMuscleGroups();
+		String muscleGroupsAsJsonValue = convertListToJsonValue(muscleGroups);
+		
+		return String.format(
+			"{" +
+				"\"name\":%s," +
+				"\"notes\":%s," +
+				"\"muscleGroups\":%s" +
+			"}", 
+			nameAsJsonValue,
+			notesAsJsonValue,
+			muscleGroupsAsJsonValue);
+	}
+	
+	private static String convertStringToJsonValue(String string) {
+		if (string == null) {
+			return "null";
+		} else {
+			return String.format("\"%s\"", string);
+		}
+	}
+	
+	private static String convertListToJsonValue(List<String> list) {
+		if (list == null) {
+			return "[]";
+		} else {
+			String joinedItems = list.stream()
+				.map(muscleGroup -> String.format("\"%s\"", muscleGroup))
+				.collect(Collectors.joining(","));
+			
+			return String.format("[%s]", joinedItems);
+		}
 	}
 	
 	private static void assertResponseContainsExerciseDescriptionAtIndex(

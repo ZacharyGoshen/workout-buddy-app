@@ -55,7 +55,7 @@ public class MockExerciseDescriptionRepository implements ExerciseDescriptionRep
 	
 	@Override
 	public void deleteAll() {
-		descriptions.removeAll(descriptions);
+		descriptions.clear();
 	}
 
 	@Override
