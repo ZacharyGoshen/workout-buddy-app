@@ -1,7 +1,6 @@
 package com.zachgoshen.workoutbuddy.application.exercise;
 
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
-import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionRepository;
 
 public class ExerciseDescriptionCreationService implements ExerciseDescriptionCreationUseCase {
 	

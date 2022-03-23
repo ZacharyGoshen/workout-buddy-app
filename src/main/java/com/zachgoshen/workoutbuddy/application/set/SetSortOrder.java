@@ -1,4 +1,4 @@
-package com.zachgoshen.workoutbuddy.domain.set;
+package com.zachgoshen.workoutbuddy.application.set;
 
 public enum SetSortOrder {
 	

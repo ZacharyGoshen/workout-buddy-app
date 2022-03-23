@@ -23,14 +23,16 @@ public class SetWithWorkoutDetailsDtoAssemblerTests {
 	public void Assemble_SingleExerciseSetWithAllFieldsSet_DtoHasAllFieldsSet() throws InvalidRangeException, DtoConversionException {
 		Exercise exercise = buildExercise1();
 		
+		Workout workout = new Workout();
+		workout.setName("Push Day");
+		workout.setTimeCompleted(new Date());
+		
 		SingleExerciseSet set = new SingleExerciseSet(exercise);
 		set.setTimeCompleted(new Date());
 		set.setTimeRested(180f);
 		set.addBoundedRestTimeConstraint(120f, 240f);
 		
-		Workout workout = new Workout();
-		workout.setName("Push Day");
-		workout.setTimeCompleted(new Date());
+		workout.appendSet(set);
 		
 		SetWithWorkoutDetailsDto dto = SetWithWorkoutDetailsDtoAssembler.assemble(set, workout);
 		
@@ -38,10 +40,15 @@ public class SetWithWorkoutDetailsDtoAssemblerTests {
 		assertEquals(workout.getId(), dto.getWorkoutId());
 		assertEquals(workout.getName().get(), dto.getWorkoutName());
 		assertEquals(workout.getTimeCompleted().get(), dto.getWorkoutCompletionTime());
+		assertEquals(0, dto.getSetNumber());
 	}
 	
 	@Test
 	public void Assemble_SupersetWithAllFieldsSet_DtoHasAllFieldsSet() throws InvalidRangeException, DtoConversionException {
+		Workout workout = new Workout();
+		workout.setName("Push Day");
+		workout.setTimeCompleted(new Date());
+
 		Exercise exercise1 = buildExercise1();
 		Exercise exercise2 = buildExercise2();
 		List<Exercise> exercises = Arrays.asList(exercise1, exercise2);
@@ -51,16 +58,15 @@ public class SetWithWorkoutDetailsDtoAssemblerTests {
 		set.setTimeRested(180f);
 		set.addBoundedRestTimeConstraint(120f, 240f);
 		
-		Workout workout = new Workout();
-		workout.setName("Push Day");
-		workout.setTimeCompleted(new Date());
-
+		workout.appendSet(set);
+		
 		SetWithWorkoutDetailsDto dto = SetWithWorkoutDetailsDtoAssembler.assemble(set, workout);
 
 		assertSetDtoMatchesSet(dto, set);
 		assertEquals(workout.getId(), dto.getWorkoutId());
 		assertEquals(workout.getName().get(), dto.getWorkoutName());
 		assertEquals(workout.getTimeCompleted().get(), dto.getWorkoutCompletionTime());
+		assertEquals(0, dto.getSetNumber());
 	}
 	
 	private static Exercise buildExercise1() throws InvalidRangeException {

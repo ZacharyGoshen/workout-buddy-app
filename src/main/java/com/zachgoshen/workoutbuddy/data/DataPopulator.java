@@ -10,16 +10,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionRepository;
+import com.zachgoshen.workoutbuddy.application.workout.WorkoutRepository;
 import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
-import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionRepository;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.MuscleGroup;
 import com.zachgoshen.workoutbuddy.domain.set.Set;
 import com.zachgoshen.workoutbuddy.domain.set.SingleExerciseSet;
 import com.zachgoshen.workoutbuddy.domain.set.Superset;
 import com.zachgoshen.workoutbuddy.domain.workout.Workout;
-import com.zachgoshen.workoutbuddy.domain.workout.WorkoutRepository;
 
 public class DataPopulator {
 	

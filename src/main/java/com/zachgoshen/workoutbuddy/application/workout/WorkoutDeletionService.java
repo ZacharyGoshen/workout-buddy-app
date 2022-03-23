@@ -1,7 +1,5 @@
 package com.zachgoshen.workoutbuddy.application.workout;
 
-import com.zachgoshen.workoutbuddy.domain.workout.WorkoutRepository;
-
 public class WorkoutDeletionService implements WorkoutDeletionUseCase {
 	
 	private final WorkoutRepository repository;

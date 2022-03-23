@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.zachgoshen.workoutbuddy.domain.workout.Workout;
-import com.zachgoshen.workoutbuddy.domain.workout.WorkoutRepository;
 
 public class WorkoutQueryService implements WorkoutQueryUseCase {
 	

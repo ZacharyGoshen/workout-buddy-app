@@ -1,6 +1,7 @@
 package com.zachgoshen.workoutbuddy.api.set;
 
 import java.util.Date;
+import java.util.List;
 
 import com.zachgoshen.workoutbuddy.api.DtoConversionException;
 import com.zachgoshen.workoutbuddy.domain.set.Set;
@@ -23,7 +24,26 @@ public final class SetWithWorkoutDetailsDtoAssembler {
 		Date workoutCompletionTime = workout.getTimeCompleted().orElse(null);
 		setWithWorkoutDetailsDto.setWorkoutCompletionTime(workoutCompletionTime);
 		
+		Integer setNumber = getSetNumber(set, workout);
+		setWithWorkoutDetailsDto.setSetNumber(setNumber);
+		
 		return setWithWorkoutDetailsDto;
+	}
+	
+	private static Integer getSetNumber(Set set, Workout workout) {
+		String setId = set.getId();
+		List<Set> workoutSets = workout.getSets();
+		
+		for (int i = 0; i < workoutSets.size(); i++) {
+			Set workoutSet = workoutSets.get(i);
+			String workoutSetId = workoutSet.getId();
+			
+			if (setId.equals(workoutSetId)) {
+				return i;
+			}
+		}
+		
+		return null;
 	}
 	
 }

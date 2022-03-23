@@ -5,10 +5,10 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionRepository;
+import com.zachgoshen.workoutbuddy.application.workout.WorkoutRepository;
 import com.zachgoshen.workoutbuddy.data.DataPopulator;
 import com.zachgoshen.workoutbuddy.domain.common.math.InvalidRangeException;
-import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionRepository;
-import com.zachgoshen.workoutbuddy.domain.workout.WorkoutRepository;
 
 @Configuration
 @Profile("!test")

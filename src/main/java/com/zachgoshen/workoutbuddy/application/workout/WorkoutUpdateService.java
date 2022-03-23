@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import com.zachgoshen.workoutbuddy.domain.set.Set;
 import com.zachgoshen.workoutbuddy.domain.workout.Workout;
-import com.zachgoshen.workoutbuddy.domain.workout.WorkoutRepository;
 
 public class WorkoutUpdateService implements WorkoutUpdateUseCase {
 	

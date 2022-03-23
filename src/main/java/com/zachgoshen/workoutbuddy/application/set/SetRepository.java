@@ -1,8 +1,9 @@
-package com.zachgoshen.workoutbuddy.domain.set;
+package com.zachgoshen.workoutbuddy.application.set;
 
 import java.util.List;
 
 import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
+import com.zachgoshen.workoutbuddy.domain.set.Set;
 
 public interface SetRepository {
 	

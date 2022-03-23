@@ -1,9 +1,11 @@
-package com.zachgoshen.workoutbuddy.domain.exercise.description;
+package com.zachgoshen.workoutbuddy.application.exercise;
 
 import java.util.List;
 import java.util.Optional;
 
 import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
+import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
+import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionSortOrder;
 
 public interface ExerciseDescriptionRepository {
 	

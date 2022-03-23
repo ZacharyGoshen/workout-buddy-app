@@ -10,7 +10,6 @@ import com.zachgoshen.workoutbuddy.domain.set.Set;
 import com.zachgoshen.workoutbuddy.domain.set.SingleExerciseSet;
 import com.zachgoshen.workoutbuddy.domain.set.Superset;
 import com.zachgoshen.workoutbuddy.domain.workout.Workout;
-import com.zachgoshen.workoutbuddy.domain.workout.WorkoutRepository;
 
 public class WorkoutCreationService implements WorkoutCreationUseCase {
 	

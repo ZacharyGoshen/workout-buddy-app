@@ -10,14 +10,14 @@ public class SetSearchCriteriaDto {
 	@JsonProperty("sortBy")
 	private String sortBy;
 	
-	@JsonProperty("exerciseFilters")
-	private List<ExerciseSearchFilterDto> exerciseFilters;
-	
 	@JsonProperty("minimumTimeRested")
 	private Float minimumTimeRested;
 	
 	@JsonProperty("maximumTimeRested")
 	private Float maximumTimeRested;
+	
+	@JsonProperty("exerciseFilters")
+	private List<ExerciseSearchFilterDto> exerciseFilters;
 
 	public String getSortBy() {
 		return sortBy;
@@ -25,14 +25,6 @@ public class SetSearchCriteriaDto {
 
 	public void setSortBy(String sortBy) {
 		this.sortBy = sortBy;
-	}
-
-	public List<ExerciseSearchFilterDto> getExerciseFilters() {
-		return exerciseFilters;
-	}
-
-	public void setExerciseFilters(List<ExerciseSearchFilterDto> exerciseSearchCriteriaDtos) {
-		this.exerciseFilters = exerciseSearchCriteriaDtos;
 	}
 
 	public Float getMinimumTimeRested() {
@@ -49,6 +41,14 @@ public class SetSearchCriteriaDto {
 
 	public void setMaximumTimeRested(Float maximumTimeRested) {
 		this.maximumTimeRested = maximumTimeRested;
+	}
+
+	public List<ExerciseSearchFilterDto> getExerciseFilters() {
+		return exerciseFilters;
+	}
+
+	public void setExerciseFilters(List<ExerciseSearchFilterDto> exerciseSearchCriteriaDtos) {
+		this.exerciseFilters = exerciseSearchCriteriaDtos;
 	}
 
 }

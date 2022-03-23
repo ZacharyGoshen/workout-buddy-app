@@ -1,17 +1,15 @@
 package com.zachgoshen.workoutbuddy.application.set;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.zachgoshen.workoutbuddy.application.workout.WorkoutRepository;
 import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
 import com.zachgoshen.workoutbuddy.domain.set.Set;
-import com.zachgoshen.workoutbuddy.domain.set.SetRepository;
-import com.zachgoshen.workoutbuddy.domain.set.SetSortOrder;
 import com.zachgoshen.workoutbuddy.domain.workout.Workout;
-import com.zachgoshen.workoutbuddy.domain.workout.WorkoutRepository;
 
 public class SetQueryService implements SetQueryUseCase {
 	
@@ -33,7 +31,7 @@ public class SetQueryService implements SetQueryUseCase {
 	}
 	
 	private Map<Set, Workout> buildSetToWorkoutMap(List<Set> sets) {
-		Map<Set, Workout> setToWorkout = new HashMap<>();
+		Map<Set, Workout> setToWorkout = new LinkedHashMap<>();
 		
 		for (Set set : sets) {
 			String setId = set.getId();

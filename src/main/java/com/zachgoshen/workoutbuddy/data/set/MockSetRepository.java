@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.zachgoshen.workoutbuddy.application.set.SetRepository;
+import com.zachgoshen.workoutbuddy.application.set.SetSortOrder;
+import com.zachgoshen.workoutbuddy.application.workout.WorkoutRepository;
 import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
 import com.zachgoshen.workoutbuddy.domain.set.Set;
-import com.zachgoshen.workoutbuddy.domain.set.SetRepository;
-import com.zachgoshen.workoutbuddy.domain.set.SetSortOrder;
 import com.zachgoshen.workoutbuddy.domain.workout.Workout;
-import com.zachgoshen.workoutbuddy.domain.workout.WorkoutRepository;
 
 public class MockSetRepository implements SetRepository {
 	

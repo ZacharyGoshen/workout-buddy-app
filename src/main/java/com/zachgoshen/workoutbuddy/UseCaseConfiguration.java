@@ -9,21 +9,21 @@ import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionDelet
 import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionDeletionUseCase;
 import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionQueryService;
 import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionQueryUseCase;
+import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionRepository;
 import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionUpdateService;
 import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionUpdateUseCase;
 import com.zachgoshen.workoutbuddy.application.set.SetQueryService;
 import com.zachgoshen.workoutbuddy.application.set.SetQueryUseCase;
+import com.zachgoshen.workoutbuddy.application.set.SetRepository;
 import com.zachgoshen.workoutbuddy.application.workout.WorkoutCreationService;
 import com.zachgoshen.workoutbuddy.application.workout.WorkoutCreationUseCase;
 import com.zachgoshen.workoutbuddy.application.workout.WorkoutDeletionService;
 import com.zachgoshen.workoutbuddy.application.workout.WorkoutDeletionUseCase;
 import com.zachgoshen.workoutbuddy.application.workout.WorkoutQueryService;
 import com.zachgoshen.workoutbuddy.application.workout.WorkoutQueryUseCase;
+import com.zachgoshen.workoutbuddy.application.workout.WorkoutRepository;
 import com.zachgoshen.workoutbuddy.application.workout.WorkoutUpdateService;
 import com.zachgoshen.workoutbuddy.application.workout.WorkoutUpdateUseCase;
-import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionRepository;
-import com.zachgoshen.workoutbuddy.domain.set.SetRepository;
-import com.zachgoshen.workoutbuddy.domain.workout.WorkoutRepository;
 
 @Configuration
 public class UseCaseConfiguration {

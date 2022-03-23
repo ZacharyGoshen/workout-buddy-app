@@ -5,7 +5,6 @@ import java.util.List;
 import com.zachgoshen.workoutbuddy.domain.common.specification.AlwaysSatisfiedSpecification;
 import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
-import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionRepository;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionSortOrder;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.PartialNameSpecification;
 

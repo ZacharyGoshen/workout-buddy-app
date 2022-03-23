@@ -14,8 +14,16 @@ public class Dates {
 		return new Date(System.currentTimeMillis() - MILLISECONDS_IN_ONE_HOUR);
 	}
 	
+	public static Date nHoursAgo(int n) {
+		return new Date(System.currentTimeMillis() - (n * MILLISECONDS_IN_ONE_HOUR));
+	}
+	
 	public static Date oneHourFromNow() {
 		return new Date(System.currentTimeMillis() + MILLISECONDS_IN_ONE_HOUR);
+	}
+	
+	public static Date nHoursFromNow(int n) {
+		return new Date(System.currentTimeMillis() + (n * MILLISECONDS_IN_ONE_HOUR));
 	}
 
 }

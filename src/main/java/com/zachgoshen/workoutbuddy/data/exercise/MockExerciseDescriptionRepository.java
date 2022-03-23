@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.zachgoshen.workoutbuddy.application.exercise.ExerciseDescriptionRepository;
 import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
-import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionRepository;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionSortOrder;
 
 public class MockExerciseDescriptionRepository implements ExerciseDescriptionRepository {

@@ -3,13 +3,12 @@ package com.zachgoshen.workoutbuddy.application.exercise;
 import java.util.List;
 import java.util.Optional;
 
+import com.zachgoshen.workoutbuddy.application.set.SetRepository;
 import com.zachgoshen.workoutbuddy.domain.common.specification.Specification;
 import com.zachgoshen.workoutbuddy.domain.exercise.Exercise;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
-import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionRepository;
 import com.zachgoshen.workoutbuddy.domain.exercise.specification.ExerciseSpecifications;
 import com.zachgoshen.workoutbuddy.domain.set.Set;
-import com.zachgoshen.workoutbuddy.domain.set.SetRepository;
 import com.zachgoshen.workoutbuddy.domain.set.specification.SetSpecifications;
 
 public class ExerciseDescriptionDeletionService implements ExerciseDescriptionDeletionUseCase {

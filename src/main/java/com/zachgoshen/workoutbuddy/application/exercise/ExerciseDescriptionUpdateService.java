@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescription;
-import com.zachgoshen.workoutbuddy.domain.exercise.description.ExerciseDescriptionRepository;
 import com.zachgoshen.workoutbuddy.domain.exercise.description.MuscleGroup;
 
 public class ExerciseDescriptionUpdateService implements ExerciseDescriptionUpdateUseCase {

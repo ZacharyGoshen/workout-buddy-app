@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import com.zachgoshen.workoutbuddy.api.DtoConversionException;
-import com.zachgoshen.workoutbuddy.domain.set.SetSortOrder;
+import com.zachgoshen.workoutbuddy.application.set.SetSortOrder;
 
 public class SetSortOrderAssemblerTests {
 	
